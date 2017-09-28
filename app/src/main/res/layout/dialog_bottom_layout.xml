@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:text="选择对话框"/>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_share_moments"
+        android:textSize="16sp"
+        android:text="1.对话框"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_share_qq"
+        android:textSize="16sp"
+        android:text="1.对话框"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_share_qzone"
+        android:textSize="16sp"
+        android:text="1.对话框"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_share_sms"
+        android:textSize="16sp"
+        android:text="1.对话框"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_share_wechat"
+        android:textSize="16sp"
+        android:text="1.对话框"/>
+
+</LinearLayout>
