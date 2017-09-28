@@ -104,8 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 展示对话框视图，构造方法创建对象
      */
-    private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener listener, List<String> names) {
-        CustomSelectDialog dialog = new CustomSelectDialog(this, R.style.transparentFrameWindowStyle, listener, names);
+    private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener listener,
+                                          List<String> names) {
+        CustomSelectDialog dialog = new CustomSelectDialog(this,
+                R.style.transparentFrameWindowStyle, listener, names);
         dialog.setItemColor(R.color.colorAccent,R.color.colorPrimary);
         //判断activity是否finish
         if (!this.isFinishing()) {
