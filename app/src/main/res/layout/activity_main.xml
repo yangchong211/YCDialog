@@ -64,6 +64,6 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"
         android:background="@color/colorAccent"
-        android:text="6.自定义"/>
+        android:text="6.builder模式自定义PopupWindow控件"/>
 
 </LinearLayout>

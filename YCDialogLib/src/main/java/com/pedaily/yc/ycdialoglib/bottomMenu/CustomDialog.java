@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.bottom;
+package com.pedaily.yc.ycdialoglib.bottomMenu;
 
 import android.app.Dialog;
 import android.content.Context;

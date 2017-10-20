@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.bottom;
+package com.pedaily.yc.ycdialoglib.bottomMenu;
 
 import android.content.Context;
 import android.graphics.Bitmap;

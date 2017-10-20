@@ -2,16 +2,19 @@ package com.pedaily.yc.ycdialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pedaily.yc.ycdialoglib.ToastUtil;
-import com.pedaily.yc.ycdialoglib.bottom.BottomDialog;
-import com.pedaily.yc.ycdialoglib.bottom.CustomBottomDialog;
-import com.pedaily.yc.ycdialoglib.bottom.CustomItem;
-import com.pedaily.yc.ycdialoglib.bottom.OnItemClickListener;
+import com.pedaily.yc.ycdialoglib.bottomLayout.BottomDialog;
+import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
+import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
+import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
+import com.pedaily.yc.ycdialoglib.customPopWindow.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.selector.CustomSelectDialog;
 
 import java.util.ArrayList;
@@ -29,6 +32,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tv1;
+    private CustomPopupWindow popWindow;
+    private TextView tv6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_3).setOnClickListener(this);
         findViewById(R.id.tv_4).setOnClickListener(this);
         findViewById(R.id.tv_5).setOnClickListener(this);
+        tv6 = (TextView) findViewById(R.id.tv_6);
         findViewById(R.id.tv_6).setOnClickListener(this);
     }
 
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showDialog5();
                 break;
             case R.id.tv_6:
-
+                showPopupWindow();
                 break;
             case R.id.tv1:
                 ToastUtil.showToast(this,"分享-------------");
@@ -104,8 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 展示对话框视图，构造方法创建对象
      */
-    private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener listener,
-                                          List<String> names) {
+    private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener listener, List<String> names) {
         CustomSelectDialog dialog = new CustomSelectDialog(this,
                 R.style.transparentFrameWindowStyle, listener, names);
         dialog.setItemColor(R.color.colorAccent,R.color.colorPrimary);
@@ -131,4 +136,110 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .show();
     }
 
+
+    private void showPopupWindow() {
+        View contentView = LayoutInflater.from(this).inflate(R.layout.pop_layout,null);
+        //处理popWindow 显示内容,自定义布局
+        handleLogic(contentView);
+        //处理popWindow 显示内容,recycleView
+        //handleListView(contentView);
+        //创建并显示popWindow
+        popWindow = new CustomPopupWindow.PopupWindowBuilder(this)
+                //.setView(R.layout.pop_layout)
+                .setView(contentView)
+                .setFocusable(true)
+                .enableBackgroundDark(true)         //弹出popWindow时，背景是否变暗
+                .setBgDarkAlpha(0.7f)               //控制亮度
+                .setOutsideTouchable(true)
+                .setAnimationStyle(R.style.popWindowStyle)
+                .setOnDissmissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        //对话框销毁时
+                    }
+                })
+                .create()
+                .showAsDropDown(tv6,0,10);
+    }
+
+
+    /**
+     * 处理弹出显示内容、点击事件等逻辑
+     * @param contentView
+     */
+    private void handleLogic(View contentView){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(popWindow!=null){
+                    popWindow.dismiss();
+                }
+                String showContent = "";
+                switch (v.getId()){
+                    case R.id.menu1:
+                        showContent = "点击 Item菜单1";
+                        break;
+                    case R.id.menu2:
+                        showContent = "点击 Item菜单2";
+                        break;
+                }
+                Toast.makeText(MainActivity.this,showContent,Toast.LENGTH_SHORT).show();
+            }
+        };
+        contentView.findViewById(R.id.menu1).setOnClickListener(listener);
+        contentView.findViewById(R.id.menu2).setOnClickListener(listener);
+    }
+
+
+    /*private void handleListView(View contentView){
+        RecyclerView recyclerView = (RecyclerView) contentView.findViewById(R.id.recyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        MyAdapter adapter = new MyAdapter();
+        adapter.setData(mockData());
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+    }
+
+    private List<String> mockData(){
+        List<String> data = new ArrayList<>();
+        for (int i=0;i<100;i++){
+            data.add("Item:"+i);
+        }
+        return data;
+    }
+
+    public class MyAdapter extends RecyclerView.Adapter{
+        private List<String> mData;
+
+        public void setData(List<String> data) {
+            mData = data;
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,null));
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            ViewHolder viewHolder = (ViewHolder) holder;
+            viewHolder.mTextView.setText(mData.get(position));
+        }
+
+        @Override
+        public int getItemCount() {
+            return mData == null ? 0:mData.size();
+        }
+
+         class ViewHolder extends RecyclerView.ViewHolder{
+            public TextView mTextView;
+            public ViewHolder(View itemView) {
+                super(itemView);
+                mTextView = (TextView) itemView.findViewById(R.id.text_content);
+            }
+        }
+    }*/
 }

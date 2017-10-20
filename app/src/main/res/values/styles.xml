@@ -12,4 +12,9 @@
         <item name="android:windowBackground">@drawable/photo_choose_bg</item>
     </style>
 
+    <style name="popWindowStyle">
+        <item name="android:windowEnterAnimation">@anim/pop_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_anim_out</item>
+    </style>
+
 </resources>

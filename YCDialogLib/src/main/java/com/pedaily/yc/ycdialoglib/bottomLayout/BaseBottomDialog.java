@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.bottom;
+package com.pedaily.yc.ycdialoglib.bottomLayout;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
