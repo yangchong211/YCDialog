@@ -5,6 +5,7 @@
 	- 1.2 关于对话框的种类
 	- 1.3 代码使用方法
 - **2.自定义对话框截图**
+- **3.关于其他更多信息
 
 
 #### 1.使用方法
@@ -139,7 +140,21 @@ BottomDialog.create(getSupportFragmentManager())
 - ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot4.png)
 
 
-
+#### 3.关于获取更多信息
+- 知乎：https://www.zhihu.com/people/yang-chong-69-24/pins/posts
+- 领英：https://www.linkedin.com/in/chong-yang-049216146/
+- 简书：http://www.jianshu.com/u/b7b2c6ed9284
+- csdn：http://my.csdn.net/m0_37700275
+- 网易博客：http://yangchong211.blog.163.com/
+- 新浪博客：http://blog.sina.com.cn/786041010yc
+- github：https://github.com/yangchong211
+- 喜马拉雅听书：http://www.ximalaya.com/zhubo/71989305/
+- 脉脉：yc930211
+- 360图书馆：http://www.360doc.com/myfiles.aspx
+- 开源中国：https://my.oschina.net/zbj1618/blog
+- 泡在网上的日子：http://www.jcodecraeer.com/member/content_list.php?channelid=1
+- 邮箱：yangchong211@163.com
+- 阿里云博客：https://yq.aliyun.com/users/article?spm=5176.100239.headeruserinfo.3.dT4bcV
 
 
 
