@@ -40,6 +40,15 @@
         android:text="@string/tv_3"/>
 
     <TextView
+        android:id="@+id/tv_23"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="@string/tv_3"/>
+
+    <TextView
         android:id="@+id/tv_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,5 +74,14 @@
         android:padding="10dp"
         android:background="@color/colorAccent"
         android:text="6.builder模式自定义PopupWindow控件"/>
+
+    <TextView
+        android:id="@+id/tv_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="7.测试builder模式"/>
 
 </LinearLayout>

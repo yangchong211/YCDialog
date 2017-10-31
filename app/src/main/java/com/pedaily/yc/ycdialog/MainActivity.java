@@ -9,13 +9,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pedaily.yc.ycdialoglib.ToastUtil;
 import com.pedaily.yc.ycdialoglib.bottomLayout.BottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
 import com.pedaily.yc.ycdialoglib.customPopWindow.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.selector.CustomSelectDialog;
+import com.pedaily.yc.ycdialoglib.toast.CustomToast;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +44,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initListener() {
+        CustomToast.Config.reset();
         findViewById(R.id.tv_1).setOnClickListener(this);
         findViewById(R.id.tv_2).setOnClickListener(this);
         findViewById(R.id.tv_3).setOnClickListener(this);
+        findViewById(R.id.tv_23).setOnClickListener(this);
         findViewById(R.id.tv_4).setOnClickListener(this);
         findViewById(R.id.tv_5).setOnClickListener(this);
         tv6 = (TextView) findViewById(R.id.tv_6);
         findViewById(R.id.tv_6).setOnClickListener(this);
+        findViewById(R.id.tv_7).setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_3:
                 ToastUtil.showDelete(this,0);
                 break;
+            case R.id.tv_23:
+                CustomToast.success(this, "分享").show();
+                break;
             case R.id.tv_4:
                 showCustomBottomDialog();
                 break;
@@ -72,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_6:
                 showPopupWindow();
+                break;
+            case R.id.tv_7:
+                showBuilder();
                 break;
             case R.id.tv1:
                 ToastUtil.showToast(this,"分享-------------");
@@ -242,4 +252,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }*/
+
+
+    private void showBuilder() {
+        new BuilderDemo.UserBuilder("yc","10086")
+                .age(24)
+                .address("beijing")
+                .phone("13667225184")
+                .build();
+    }
+
+
 }
