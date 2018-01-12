@@ -5,7 +5,8 @@
 	- 1.2 关于对话框的种类
 	- 1.3 代码使用方法
 - **2.自定义对话框截图**
-- **3.关于其他更多信息
+- **3.关于版本更新情况**
+- **4.关于其他更多信息**
 
 
 #### 1.使用方法
@@ -211,7 +212,11 @@ LoadDialog.dismiss(MainActivity.this);
 - ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot6.png)
 
 
-#### 3.关于获取更多信息
+#### 3.关于版本更新情况
+- v1.0 更新2017年3月2日
+- v3.3 更新2018年1月12日
+
+#### 4.关于获取更多信息
 - 知乎：https://www.zhihu.com/people/yang-chong-69-24/pins/posts
 - 领英：https://www.linkedin.com/in/chong-yang-049216146/
 - 简书：http://www.jianshu.com/u/b7b2c6ed9284
