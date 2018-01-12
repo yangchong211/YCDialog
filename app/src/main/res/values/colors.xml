@@ -3,4 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!--主题颜色-->
+    <!--字体的颜色，纯黑色-->
+    <color name="blackText">#000000</color>
+    <!--字体的颜色 黑色1 -->
+    <color name="blackText1">#464C56</color>
+    <!--字体的颜色 黑色2 -->
+    <color name="blackText2">#464C4E</color>
+    <!--字体的颜色 黑色3-->
+    <color name="blackText3">#212121</color>
+    <!-- 灰色下划线 -->
+    <color name="grayLine">#ECECED</color>
+    <!--背景 纯白色-->
+    <color name="colorBg">#FAFAFA</color>
+    <!-- 偏白色大背景 -->
+    <color name="whiteBg">#f5f5f7</color>
+    <!--背景 纯白色-->
+    <color name="colorWhite">#ffffff</color>
 </resources>

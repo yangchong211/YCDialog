@@ -13,6 +13,7 @@ public class BuilderDemo {
     private final String address;      //可选
     private final String phone;        //可选
 
+
     public BuilderDemo(UserBuilder userBuilder){
         this.name=userBuilder.name;
         this.cardID=userBuilder.cardID;

@@ -118,7 +118,7 @@ public class ToastUtil {
     /**
      * 吐司工具类    避免点击多次导致吐司多次，最后导致Toast就长时间关闭不掉了
      * @param context       注意：这里如果传入context会报内存泄漏；传递activity..getApplicationContext()
-     * @param content
+     * @param content       吐司内容
      */
     private static Toast toast;
     public static void showToast(Context context, String content) {

@@ -1,22 +1,35 @@
 package com.pedaily.yc.ycdialog;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pedaily.yc.ycdialoglib.bottomLayout.BaseBottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomLayout.BottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
 import com.pedaily.yc.ycdialoglib.customPopWindow.CustomPopupWindow;
+import com.pedaily.yc.ycdialoglib.loadDialog.LoadDialog;
 import com.pedaily.yc.ycdialoglib.selector.CustomSelectDialog;
 import com.pedaily.yc.ycdialoglib.toast.CustomToast;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtil;
+
+import org.yczbj.ycrefreshviewlib.item.RecycleViewItemLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +45,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+
     private TextView tv1;
     private CustomPopupWindow popWindow;
     private TextView tv6;
@@ -43,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initListener();
     }
 
+
     private void initListener() {
         CustomToast.Config.reset();
         findViewById(R.id.tv_1).setOnClickListener(this);
@@ -51,10 +66,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_23).setOnClickListener(this);
         findViewById(R.id.tv_4).setOnClickListener(this);
         findViewById(R.id.tv_5).setOnClickListener(this);
+        findViewById(R.id.tv_5_1).setOnClickListener(this);
         tv6 = (TextView) findViewById(R.id.tv_6);
         findViewById(R.id.tv_6).setOnClickListener(this);
+        findViewById(R.id.tv_6_1).setOnClickListener(this);
         findViewById(R.id.tv_7).setOnClickListener(this);
+        findViewById(R.id.tv_8).setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -77,17 +96,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_5:
                 showDialog5();
                 break;
+            case R.id.tv_5_1:
+                showDialog51();
+                break;
             case R.id.tv_6:
-                showPopupWindow();
+                showPopupWindow1();
+                break;
+            case R.id.tv_6_1:
+                showPopupWindow2();
                 break;
             case R.id.tv_7:
+                ToastUtil.showToast(this,"测试");
                 showBuilder();
+                break;
+            case R.id.tv_8:
+                LoadDialog.show(this,"加载中",false,false);
+                //noinspection AlibabaAvoidManuallyCreateThread
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            LoadDialog.dismiss(MainActivity.this);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 break;
             case R.id.tv1:
                 ToastUtil.showToast(this,"分享-------------");
                 break;
+            default:
+                break;
         }
     }
+
 
     private void showDialog5() {
         BottomDialog.create(getSupportFragmentManager())
@@ -103,6 +147,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setTag("BottomDialog")
                 .show();
     }
+
+
+    private void showDialog51() {
+        final List<DialogBean> list = new ArrayList<>();
+        for(int a=0 ; a<20 ; a++){
+            DialogBean dialogBean = new DialogBean("ooo","yangchong","title");
+            list.add(dialogBean);
+        }
+
+        BottomDialog.create(getSupportFragmentManager())
+                .setViewListener(new BottomDialog.ViewListener() {
+                    @Override
+                    public void bindView(View v) {
+                        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+                        ImageView ivCancel = (ImageView) v.findViewById(R.id.iv_cancel);
+                        ImageView ivDownload = (ImageView) v.findViewById(R.id.iv_download);
+
+                        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                        DialogListAdapter mAdapter = new DialogListAdapter(MainActivity.this, list);
+                        recyclerView.setAdapter(mAdapter);
+                        final RecycleViewItemLine line = new RecycleViewItemLine(
+                                MainActivity.this, LinearLayout.HORIZONTAL, 2,
+                                MainActivity.this.getResources().getColor(R.color.grayLine));
+                        recyclerView.addItemDecoration(line);
+                        mAdapter.setOnItemClickListener(new DialogListAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+                        });
+                        View.OnClickListener listener = new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                switch (v.getId()) {
+                                    case R.id.iv_cancel:
+                                        onBackPressed();
+                                        ToastUtil.showToast(MainActivity.this,"取消");
+                                        break;
+                                    case R.id.iv_download:
+                                        ToastUtil.showToast(MainActivity.this,"下载");
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        };
+                        ivCancel.setOnClickListener(listener);
+                        ivDownload.setOnClickListener(listener);
+                    }
+                })
+                .setLayoutRes(R.layout.dialog_bottom_layout_list)
+                .setDimAmount(0.5f)
+                .setTag("BottomDialog")
+                .setCancelOutside(true)
+                .setHeight(getScreenHeight() / 2)
+                .show();
+    }
+
 
     private void showCustomDialog() {
         final List<String> names = new ArrayList<>();
@@ -147,7 +249,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void showPopupWindow() {
+    /**
+     * 这个位置可以自定义的，上下左右都行，很灵活
+     */
+    private void showPopupWindow1() {
         View contentView = LayoutInflater.from(this).inflate(R.layout.pop_layout,null);
         //处理popWindow 显示内容,自定义布局
         handleLogic(contentView);
@@ -158,8 +263,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //.setView(R.layout.pop_layout)
                 .setView(contentView)
                 .setFocusable(true)
-                .enableBackgroundDark(true)         //弹出popWindow时，背景是否变暗
-                .setBgDarkAlpha(0.7f)               //控制亮度
+                //弹出popWindow时，背景是否变暗
+                .enableBackgroundDark(true)
+                //控制亮度
+                .setBgDarkAlpha(0.7f)
                 .setOutsideTouchable(true)
                 .setAnimationStyle(R.style.popWindowStyle)
                 .setOnDissmissListener(new PopupWindow.OnDismissListener() {
@@ -170,6 +277,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 })
                 .create()
                 .showAsDropDown(tv6,0,10);
+    }
+
+
+    private void showPopupWindow2() {
+        CustomPopupWindow popWindow =
+                new CustomPopupWindow.PopupWindowBuilder(this)
+                .setView(R.layout.pop_layout)
+                .create();
+        popWindow .showAsDropDown(tv6,0,  - (tv6.getHeight() + popWindow.getHeight()));
+        //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
     }
 
 
@@ -192,6 +309,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case R.id.menu2:
                         showContent = "点击 Item菜单2";
                         break;
+                    default:
+                        break;
                 }
                 Toast.makeText(MainActivity.this,showContent,Toast.LENGTH_SHORT).show();
             }
@@ -201,58 +320,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    /*private void handleListView(View contentView){
-        RecyclerView recyclerView = (RecyclerView) contentView.findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-        MyAdapter adapter = new MyAdapter();
-        adapter.setData(mockData());
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-    }
-
-    private List<String> mockData(){
-        List<String> data = new ArrayList<>();
-        for (int i=0;i<100;i++){
-            data.add("Item:"+i);
-        }
-        return data;
-    }
-
-    public class MyAdapter extends RecyclerView.Adapter{
-        private List<String> mData;
-
-        public void setData(List<String> data) {
-            mData = data;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,null));
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            ViewHolder viewHolder = (ViewHolder) holder;
-            viewHolder.mTextView.setText(mData.get(position));
-        }
-
-        @Override
-        public int getItemCount() {
-            return mData == null ? 0:mData.size();
-        }
-
-         class ViewHolder extends RecyclerView.ViewHolder{
-            public TextView mTextView;
-            public ViewHolder(View itemView) {
-                super(itemView);
-                mTextView = (TextView) itemView.findViewById(R.id.text_content);
-            }
-        }
-    }*/
-
 
     private void showBuilder() {
         new BuilderDemo.UserBuilder("yc","10086")
@@ -260,6 +327,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .address("beijing")
                 .phone("13667225184")
                 .build();
+
+    }
+
+
+    /**
+     * 获取屏幕的宽度（单位：px）
+     *
+     * @return 屏幕宽px
+     */
+    public int getScreenWidth() {
+        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(dm);
+        return dm.widthPixels;
+    }
+
+    /**
+     * 获取屏幕的高度（单位：px）
+     *
+     * @return 屏幕高px
+     */
+    public int getScreenHeight() {
+        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(dm);
+        return dm.heightPixels;
     }
 
 

@@ -17,4 +17,19 @@
         <item name="android:windowExitAnimation">@anim/pop_anim_out</item>
     </style>
 
+    <!-- 深色下划线 -->
+    <style name="DeepUnderLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/grayLine</item>
+    </style>
+
+    <!-- 深色下划线 -->
+    <style name="DeepUnderLineDp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/grayLine</item>
+    </style>
+
+
 </resources>

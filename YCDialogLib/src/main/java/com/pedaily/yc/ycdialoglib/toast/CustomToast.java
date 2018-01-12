@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pedaily.yc.ycdialoglib.R;
 
@@ -43,103 +44,103 @@ public class CustomToast {
     private CustomToast() {}
 
     @CheckResult
-    public static android.widget.Toast normal(@NonNull Context context, @NonNull CharSequence message) {
+    public static Toast normal(@NonNull Context context, @NonNull CharSequence message) {
         return normal(context, message, android.widget.Toast.LENGTH_SHORT, null, false);
     }
 
     @CheckResult
-    public static android.widget.Toast normal(@NonNull Context context, @NonNull CharSequence message, Drawable icon) {
-        return normal(context, message, android.widget.Toast.LENGTH_SHORT, icon, true);
+    public static Toast normal(@NonNull Context context, @NonNull CharSequence message, Drawable icon) {
+        return normal(context, message, Toast.LENGTH_SHORT, icon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast normal(@NonNull Context context, @NonNull CharSequence message, int duration) {
+    public static Toast normal(@NonNull Context context, @NonNull CharSequence message, int duration) {
         return normal(context, message, duration, null, false);
     }
 
     @CheckResult
-    public static android.widget.Toast normal(@NonNull Context context, @NonNull CharSequence message, int duration, Drawable icon) {
+    public static Toast normal(@NonNull Context context, @NonNull CharSequence message, int duration, Drawable icon) {
         return normal(context, message, duration, icon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast normal(@NonNull Context context, @NonNull CharSequence message, int duration, Drawable icon, boolean withIcon) {
+    public static Toast normal(@NonNull Context context, @NonNull CharSequence message, int duration, Drawable icon, boolean withIcon) {
         return custom(context, message, icon, NORMAL_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast warning(@NonNull Context context, @NonNull CharSequence message) {
+    public static Toast warning(@NonNull Context context, @NonNull CharSequence message) {
         return warning(context, message, android.widget.Toast.LENGTH_SHORT, true);
     }
 
     @CheckResult
-    public static android.widget.Toast warning(@NonNull Context context, @NonNull CharSequence message, int duration) {
+    public static Toast warning(@NonNull Context context, @NonNull CharSequence message, int duration) {
         return warning(context, message, duration, true);
     }
 
     @CheckResult
-    public static android.widget.Toast warning(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
+    public static Toast warning(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         return custom(context, message, ToastUtil.getDrawable(context, R.drawable.ic_error_outline_white_48dp), WARNING_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast info(@NonNull Context context, @NonNull CharSequence message) {
+    public static Toast info(@NonNull Context context, @NonNull CharSequence message) {
         return info(context, message, android.widget.Toast.LENGTH_SHORT, true);
     }
 
     @CheckResult
-    public static android.widget.Toast info(@NonNull Context context, @NonNull CharSequence message, int duration) {
+    public static Toast info(@NonNull Context context, @NonNull CharSequence message, int duration) {
         return info(context, message, duration, true);
     }
 
     @CheckResult
-    public static android.widget.Toast info(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
+    public static Toast info(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         return custom(context, message, ToastUtil.getDrawable(context, R.drawable.ic_info_outline_white_48dp), INFO_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast success(@NonNull Context context, @NonNull CharSequence message) {
+    public static Toast success(@NonNull Context context, @NonNull CharSequence message) {
         return success(context, message, android.widget.Toast.LENGTH_SHORT, true);
     }
 
     @CheckResult
-    public static android.widget.Toast success(@NonNull Context context, @NonNull CharSequence message, int duration) {
+    public static Toast success(@NonNull Context context, @NonNull CharSequence message, int duration) {
         return success(context, message, duration, true);
     }
 
     @CheckResult
-    public static android.widget.Toast success(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
+    public static Toast success(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         return custom(context, message, ToastUtil.getDrawable(context, R.drawable.ic_check_white_48dp), SUCCESS_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast error(@NonNull Context context, @NonNull CharSequence message) {
+    public static Toast error(@NonNull Context context, @NonNull CharSequence message) {
         return error(context, message, android.widget.Toast.LENGTH_SHORT, true);
     }
 
     @CheckResult
-    public static android.widget.Toast error(@NonNull Context context, @NonNull CharSequence message, int duration) {
+    public static Toast error(@NonNull Context context, @NonNull CharSequence message, int duration) {
         return error(context, message, duration, true);
     }
 
     @CheckResult
-    public static android.widget.Toast error(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
+    public static Toast error(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
         return custom(context, message, ToastUtil.getDrawable(context, R.drawable.ic_clear_white_48dp), ERROR_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
-    public static android.widget.Toast custom(@NonNull Context context, @NonNull CharSequence message, Drawable icon, int duration, boolean withIcon) {
+    public static Toast custom(@NonNull Context context, @NonNull CharSequence message, Drawable icon, int duration, boolean withIcon) {
         return custom(context, message, icon, -1, duration, withIcon, false);
     }
 
     @CheckResult
-    public static android.widget.Toast custom(@NonNull Context context, @NonNull CharSequence message, @DrawableRes int iconRes, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
+    public static Toast custom(@NonNull Context context, @NonNull CharSequence message, @DrawableRes int iconRes, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
         return custom(context, message, ToastUtil.getDrawable(context, iconRes),
                 tintColor, duration, withIcon, shouldTint);
     }
 
     @CheckResult
-    public static android.widget.Toast custom(@NonNull Context context, @NonNull CharSequence message, Drawable icon, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
+    public static Toast custom(@NonNull Context context, @NonNull CharSequence message, Drawable icon, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
         final android.widget.Toast currentToast = new android.widget.Toast(context);
         final View toastLayout = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_toast_layout, null);
         final ImageView toastIcon = (ImageView) toastLayout.findViewById(R.id.toast_icon);

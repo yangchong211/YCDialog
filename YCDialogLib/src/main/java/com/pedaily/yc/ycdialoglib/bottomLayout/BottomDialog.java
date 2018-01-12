@@ -12,6 +12,10 @@ import android.view.View;
  * 创建日期：2017/8/9
  * 描    述：自定义布局弹窗
  * 修订历史：
+ *          1月10日
+ *          有bug，如果想通过点击弹窗控件销毁dialog，该如何处理。
+ *          使用场景：点击对话框中控件，不会销毁dialog，按返回键处理销毁逻辑。
+ *          其实质是DialogFragment，
  * ================================================
  */
 public class BottomDialog extends BaseBottomDialog {
@@ -22,7 +26,6 @@ public class BottomDialog extends BaseBottomDialog {
     private static final String KEY_CANCEL_OUTSIDE = "bottom_cancel_outside";
 
     private FragmentManager mFragmentManager;
-
     private boolean mIsCancelOutside = super.getCancelOutside();
     private String mTag = super.getFragmentTag();
     private float mDimAmount = super.getDimAmount();
@@ -133,4 +136,6 @@ public class BottomDialog extends BaseBottomDialog {
         show(mFragmentManager);
         return this;
     }
+
+
 }

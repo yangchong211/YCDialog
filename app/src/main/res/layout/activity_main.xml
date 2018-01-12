@@ -55,7 +55,7 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"
         android:background="@color/colorAccent"
-        android:text="4.从底部自定义弹窗"/>
+        android:text="4.从底部自定义弹窗，填充menu菜单"/>
 
     <TextView
         android:id="@+id/tv_5"
@@ -67,6 +67,15 @@
         android:text="5.自定义底部布局弹窗"/>
 
     <TextView
+        android:id="@+id/tv_5_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="5.1 自定义底部布局弹窗，填充recyclerView"/>
+
+    <TextView
         android:id="@+id/tv_6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,6 +83,16 @@
         android:padding="10dp"
         android:background="@color/colorAccent"
         android:text="6.builder模式自定义PopupWindow控件"/>
+
+
+    <TextView
+        android:id="@+id/tv_6_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="6.1 builder模式自定义PopupWindow控件,不同位置"/>
 
     <TextView
         android:id="@+id/tv_7"
@@ -83,5 +102,15 @@
         android:padding="10dp"
         android:background="@color/colorAccent"
         android:text="7.测试builder模式"/>
+
+
+    <TextView
+        android:id="@+id/tv_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="8.加载对话框"/>
 
 </LinearLayout>
