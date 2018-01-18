@@ -12,20 +12,20 @@
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加 **
 ```
-compile 'cn.yc:YCDialogLib:3.3'
+compile 'cn.yc:YCDialogLib:3.4'
 ```
 
 - **1.2 关于对话框的种类**
-	- 仿IOS底部弹窗
-	- 自定义Toast
-	- 自定义底部弹窗【使用menu】
-	- 自定义底部弹窗【用布局，与上一种是不同的】
-	- 自定义底部弹窗【在自定义布局中添加recyclerView】
-	- 自定义PopupWindow弹窗【Builder模式】
-	- 自定义loading加载窗
+	- 1.2.1 仿IOS底部弹窗
+	- 1.2.2 自定义Toast
+	- 1.2.3 自定义底部弹窗【使用menu】
+	- 1.2.4 自定义底部弹窗【布局】第一种形式，带来取消监听【可以使用recyclerView】
+	- 1.2.5 自定义底部弹窗【布局】第二种形式【可以使用recyclerView】
+	- 1.2.6 自定义底部弹窗【用布局，与上一种是不同的】
+	- 1.2.7 自定义loading加载窗
 	
 
-> **自定义对话框，仿IOS底部弹窗**
+> **1.2.1 仿IOS底部弹窗，自定义对话框**
 
 ```
 private void showCustomDialog() {
@@ -52,7 +52,10 @@ private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener li
 }
 ```
 
-> **自定义底部弹窗【menu】**
+> **1.2.2 自定义Toast**
+这个可以直接参考demo
+
+> **1.2.3 自定义底部弹窗【使用menu】**
 
 ```
 new CustomBottomDialog(MainActivity.this)
@@ -67,23 +70,48 @@ new CustomBottomDialog(MainActivity.this)
 		})
 		.show();
 ```
-> **自定义底部弹窗【布局】**
-```
-BottomDialog.create(getSupportFragmentManager())
-                .setViewListener(new BottomDialog.ViewListener() {
-                    @Override
-                    public void bindView(View v) {
-                        tv1 = (TextView) v.findViewById(R.id.tv1);
-                        tv1.setOnClickListener(MainActivity.this);
-                    }
-                })
-                .setLayoutRes(R.layout.dialog_bottom_layout)
-                .setDimAmount(0.5f)
-                .setTag("BottomDialog")
-                .show();
-```
 
-> **自定义PopupWindow弹窗【Builder模式】**
+> **1.2.4 自定义底部弹窗【布局】第一种形式，带来取消监听**
+```
+final BottomDialogFragment dialog = new BottomDialogFragment();
+        dialog.setFragmentManager(getSupportFragmentManager());
+        dialog.setViewListener(new BottomDialogFragment.ViewListener() {
+            @Override
+            public void bindView(View v) {
+                TextView tv_cancel = (TextView) v.findViewById(R.id.tv_cancel);
+                tv_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismissDialogFragment();
+                    }
+                });
+            }
+        });
+        dialog.setLayoutRes(R.layout.dialog_bottom_layout);
+        dialog.setDimAmount(0.5f);
+        dialog.setTag("BottomDialog");
+        dialog.setCancelOutside(true);
+        //这个高度可以自己设置，十分灵活
+        dialog.setHeight(getScreenHeight() / 2);
+        dialog.show();
+```
+> **1.2.5 自定义底部弹窗【布局】第二种形式**
+```
+BottomDialogFragment.create(getSupportFragmentManager())
+		.setViewListener(new BottomDialogFragment.ViewListener() {
+			@Override
+			public void bindView(View v) {
+				
+			}
+		})
+		.setLayoutRes(R.layout.dialog_bottom_layout)
+		.setDimAmount(0.5f)
+		.setTag("BottomDialogFragment")
+		.setCancelOutside(true)
+		.setHeight(getScreenHeight() / 2)
+		.show();
+```
+> **1.2.6 自定义底部弹窗【用布局，与上一种是不同的】**
 ```
     private void showPopupWindow() {
         View contentView = LayoutInflater.from(this).inflate(R.layout.pop_layout,null);
@@ -139,7 +167,7 @@ BottomDialog.create(getSupportFragmentManager())
     }
 ```
 
-> **自定义loading加载窗**
+> **1.2.7 自定义loading加载窗**
 - 直接一行代码搞定展示或者销毁
 ```
 //展示
@@ -215,6 +243,13 @@ LoadDialog.dismiss(MainActivity.this);
 #### 3.关于版本更新情况
 - v1.0 更新2017年3月2日
 - v3.3 更新2018年1月12日
+- v3.4 更新2018年1月18日
+```
+3.4.1 更新bottomLayout包下代码，添加了取消销毁dialog监听，还有就是在调用show方法时增加了对传值的判断，解决了空指针崩溃问题
+3.4.2 更新了selector包下的代码，添加了多个创造对话框的构造方法，方便调用时适用不同的业务场景
+3.4.3 不知道在什么情况下调用getWindow()获取的Window对象，会为null，所以增加了非空判断
+3.4.4 增加了一些方法的注释
+```
 
 #### 4.关于获取更多信息
 - 知乎：https://www.zhihu.com/people/yang-chong-69-24/pins/posts
