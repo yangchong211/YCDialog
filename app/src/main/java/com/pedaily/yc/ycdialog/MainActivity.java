@@ -2,9 +2,7 @@ package com.pedaily.yc.ycdialog;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -18,8 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pedaily.yc.ycdialoglib.bottomLayout.BaseBottomDialog;
-import com.pedaily.yc.ycdialoglib.bottomLayout.BottomDialog;
+import com.pedaily.yc.ycdialoglib.bottomLayout.BottomDialogFragment;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
@@ -132,20 +129,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
+    /**
+     * 两种方式
+     */
     private void showDialog5() {
-        BottomDialog.create(getSupportFragmentManager())
-                .setViewListener(new BottomDialog.ViewListener() {
+        BottomDialogFragment.create(getSupportFragmentManager())
+                .setViewListener(new BottomDialogFragment.ViewListener() {
                     @Override
                     public void bindView(View v) {
                         tv1 = (TextView) v.findViewById(R.id.tv1);
                         tv1.setOnClickListener(MainActivity.this);
+
                     }
                 })
                 .setLayoutRes(R.layout.dialog_bottom_layout)
                 .setDimAmount(0.5f)
-                .setTag("BottomDialog")
+                .setTag("BottomDialogFragment")
+                .setCancelOutside(true)
+                .setHeight(getScreenHeight() / 2)
                 .show();
+
+
+        final BottomDialogFragment dialog = new BottomDialogFragment();
+        dialog.setFragmentManager(getSupportFragmentManager());
+        dialog.setViewListener(new BottomDialogFragment.ViewListener() {
+            @Override
+            public void bindView(View v) {
+                TextView tv_cancel = (TextView) v.findViewById(R.id.tv_cancel);
+                tv_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismissDialogFragment();
+                    }
+                });
+            }
+        });
+        dialog.setLayoutRes(R.layout.dialog_bottom_layout);
+        dialog.setDimAmount(0.5f);
+        dialog.setTag("BottomDialog");
+        dialog.setCancelOutside(true);
+        //这个高度可以自己设置，十分灵活
+        dialog.setHeight(getScreenHeight() / 2);
+        dialog.show();
     }
 
 
@@ -156,8 +181,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             list.add(dialogBean);
         }
 
-        BottomDialog.create(getSupportFragmentManager())
-                .setViewListener(new BottomDialog.ViewListener() {
+        BottomDialogFragment.create(getSupportFragmentManager())
+                .setViewListener(new BottomDialogFragment.ViewListener() {
                     @Override
                     public void bindView(View v) {
                         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
@@ -182,8 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             public void onClick(View v) {
                                 switch (v.getId()) {
                                     case R.id.iv_cancel:
-                                        onBackPressed();
-                                        ToastUtil.showToast(MainActivity.this,"取消");
+
                                         break;
                                     case R.id.iv_download:
                                         ToastUtil.showToast(MainActivity.this,"下载");

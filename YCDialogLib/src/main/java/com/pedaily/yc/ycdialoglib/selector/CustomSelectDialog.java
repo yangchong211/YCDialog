@@ -34,15 +34,18 @@ import java.util.List;
 public class CustomSelectDialog extends Dialog implements OnClickListener,OnItemClickListener {
 
     private SelectDialogListener mListener;
+    private SelectDialogCancelListener mCancelListener;
+
     private Activity mActivity;
-    private Button mMBtn_Cancel;
-    private TextView mTv_Title;
     private List<String> mName;
     private String mTitle;
     private boolean mUseCustomColor = false;
     private int mFirstItemColor;
     private int mOtherItemColor;
 
+    /**
+     * 设置item监听事件
+     */
     public interface SelectDialogListener {
         void onItemClick(AdapterView<?> parent, View view, int position, long id);
     }
@@ -50,11 +53,16 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
     /**
      * 取消事件监听接口
      */
-    private SelectDialogCancelListener mCancelListener;
     public interface SelectDialogCancelListener {
         void onCancelClick(View v);
     }
 
+    /**
+     * @param activity          调用弹出菜单的activity
+     * @param theme             主题
+     * @param listener          菜单项单击事件
+     * @param names             菜单项名称
+     */
     public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener, List<String> names) {
         super(activity, theme);
         mActivity = activity;
@@ -69,7 +77,6 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * @param listener          菜单项单击事件
      * @param cancelListener    取消事件
      * @param names             菜单项名称
-     *
      */
     public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener, SelectDialogCancelListener cancelListener , List<String> names) {
         super(activity, theme);
@@ -125,26 +132,29 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         setContentView(view, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
         Window window = getWindow();
         // 设置显示动画
-        window.setWindowAnimations(R.style.main_menu_animStyle);
-        WindowManager.LayoutParams wl = window.getAttributes();
-        wl.x = 0;
-        wl.y = mActivity.getWindowManager().getDefaultDisplay().getHeight();
-        // 以下这两句是为了保证按钮可以水平满屏
-        wl.width = LayoutParams.MATCH_PARENT;
-        wl.height = LayoutParams.WRAP_CONTENT;
-        // 设置显示位置
-        onWindowAttributesChanged(wl);
+        if (window != null) {
+            window.setWindowAnimations(R.style.main_menu_animStyle);
+            WindowManager.LayoutParams wl = window.getAttributes();
+            wl.x = 0;
+            wl.y = mActivity.getWindowManager().getDefaultDisplay().getHeight();
+            // 以下这两句是为了保证按钮可以水平满屏
+            wl.width = LayoutParams.MATCH_PARENT;
+            wl.height = LayoutParams.WRAP_CONTENT;
+            // 设置显示位置
+            onWindowAttributesChanged(wl);
+        }
         initViews();
     }
 
     private void initViews() {
         DialogAdapter dialogAdapter=new DialogAdapter(mName);
         ListView dialogList=(ListView) findViewById(R.id.dialog_list);
+        Button mMBtnCancel = (Button) findViewById(R.id.mBtn_Cancel);
+        TextView mTvTitle = (TextView) findViewById(R.id.mTv_Title);
+
         dialogList.setOnItemClickListener(this);
         dialogList.setAdapter(dialogAdapter);
-        mMBtn_Cancel = (Button) findViewById(R.id.mBtn_Cancel);
-        mTv_Title = (TextView) findViewById(R.id.mTv_Title);
-        mMBtn_Cancel.setOnClickListener(new View.OnClickListener() {
+        mMBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mCancelListener != null){
@@ -154,11 +164,11 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
             }
         });
 
-        if(!TextUtils.isEmpty(mTitle) && mTv_Title != null){
-            mTv_Title.setVisibility(View.VISIBLE);
-            mTv_Title.setText(mTitle);
+        if(!TextUtils.isEmpty(mTitle)){
+            mTvTitle.setVisibility(View.VISIBLE);
+            mTvTitle.setText(mTitle);
         }else{
-            mTv_Title.setVisibility(View.GONE);
+            mTvTitle.setVisibility(View.GONE);
         }
     }
 
@@ -178,7 +188,7 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         private List<String> mStrings;
         private ViewHolder viewholder;
         private LayoutInflater layoutInflater;
-        public DialogAdapter(List<String> strings) {
+        DialogAdapter(List<String> strings) {
             this.mStrings = strings;
             this.layoutInflater=mActivity.getLayoutInflater();
         }
@@ -232,7 +242,7 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
     }
 
     public static class ViewHolder {
-        public TextView dialogItemButton;
+        TextView dialogItemButton;
     }
 
     /**

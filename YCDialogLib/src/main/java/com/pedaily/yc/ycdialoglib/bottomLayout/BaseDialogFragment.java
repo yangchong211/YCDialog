@@ -1,5 +1,6 @@
 package com.pedaily.yc.ycdialoglib.bottomLayout;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.DialogFragment;
@@ -12,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtil;
 
 /**
  * ================================================
@@ -22,10 +24,11 @@ import com.pedaily.yc.ycdialoglib.R;
  * 修订历史：
  * ================================================
  */
-public abstract class BaseBottomDialog extends DialogFragment {
+public abstract class BaseDialogFragment extends DialogFragment {
 
     private static final String TAG = "base_bottom_dialog";
     private static final float DEFAULT_DIM = 0.2f;
+    private Dialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,26 +38,42 @@ public abstract class BaseBottomDialog extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(getDialog()!=null){
-            if(getDialog().getWindow()!=null){
-                getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog = getDialog();
+        if(dialog!=null){
+            if(dialog.getWindow()!=null){
+                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             }
-            getDialog().setCanceledOnTouchOutside(getCancelOutside());
+            dialog.setCanceledOnTouchOutside(getCancelOutside());
+            dialog.setCancelable(false);
         }
         View v = inflater.inflate(getLayoutRes(), container, false);
         bindView(v);
         return v;
     }
 
+    /**
+     * 获取布局资源文件
+     * @return              布局资源文件id值
+     */
     @LayoutRes
     public abstract int getLayoutRes();
 
+    /**
+     * 绑定
+     * @param v             view
+     */
     public abstract void bindView(View v);
 
+    /**
+     * 开始展示
+     */
     @Override
     public void onStart() {
         super.onStart();
-        Window window = getDialog().getWindow();
+        if(dialog==null){
+            dialog = getDialog();
+        }
+        Window window = dialog.getWindow();
         if(window!=null){
             WindowManager.LayoutParams params = window.getAttributes();
             params.dimAmount = getDimAmount();
@@ -69,6 +88,10 @@ public abstract class BaseBottomDialog extends DialogFragment {
         }
     }
 
+    /**
+     * 获取弹窗高度
+     * @return          int类型值
+     */
     public int getHeight() {
         return -1;
     }
@@ -86,6 +109,23 @@ public abstract class BaseBottomDialog extends DialogFragment {
     }
 
     public void show(FragmentManager fragmentManager) {
-        show(fragmentManager, getFragmentTag());
+        if(fragmentManager!=null){
+            show(fragmentManager, getFragmentTag());
+        }else {
+            ToastUtil.showToast(getContext(),"需要设置setFragmentManager");
+        }
     }
+
+    /**
+     * 一定要销毁dialog，设置为null，防止内存泄漏
+     * GitHub地址：https://github.com/yangchong211
+     * 如果可以，欢迎star
+     */
+    public void dismissDialog(){
+        if(dialog!=null && dialog.isShowing()){
+            dialog.dismiss();
+            dialog = null;
+        }
+    }
+
 }

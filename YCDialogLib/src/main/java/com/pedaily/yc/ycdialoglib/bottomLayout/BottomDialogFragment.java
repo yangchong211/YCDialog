@@ -18,7 +18,7 @@ import android.view.View;
  *          其实质是DialogFragment，
  * ================================================
  */
-public class BottomDialog extends BaseBottomDialog {
+public class BottomDialogFragment extends BaseDialogFragment {
 
     private static final String KEY_LAYOUT_RES = "bottom_layout_res";
     private static final String KEY_HEIGHT = "bottom_height";
@@ -35,8 +35,8 @@ public class BottomDialog extends BaseBottomDialog {
     private int mLayoutRes;
     private ViewListener mViewListener;
 
-    public static BottomDialog create(FragmentManager manager) {
-        BottomDialog dialog = new BottomDialog();
+    public static BottomDialogFragment create(FragmentManager manager) {
+        BottomDialogFragment dialog = new BottomDialogFragment();
         dialog.setFragmentManager(manager);
         return dialog;
     }
@@ -73,37 +73,37 @@ public class BottomDialog extends BaseBottomDialog {
         return mLayoutRes;
     }
 
-    public BottomDialog setFragmentManager(FragmentManager manager) {
+    public BottomDialogFragment setFragmentManager(FragmentManager manager) {
         mFragmentManager = manager;
         return this;
     }
 
-    public BottomDialog setViewListener(ViewListener listener) {
+    public BottomDialogFragment setViewListener(ViewListener listener) {
         mViewListener = listener;
         return this;
     }
 
-    public BottomDialog setLayoutRes(@LayoutRes int layoutRes) {
+    public BottomDialogFragment setLayoutRes(@LayoutRes int layoutRes) {
         mLayoutRes = layoutRes;
         return this;
     }
 
-    public BottomDialog setCancelOutside(boolean cancel) {
+    public BottomDialogFragment setCancelOutside(boolean cancel) {
         mIsCancelOutside = cancel;
         return this;
     }
 
-    public BottomDialog setTag(String tag) {
+    public BottomDialogFragment setTag(String tag) {
         mTag = tag;
         return this;
     }
 
-    public BottomDialog setDimAmount(float dim) {
+    public BottomDialogFragment setDimAmount(float dim) {
         mDimAmount = dim;
         return this;
     }
 
-    public BottomDialog setHeight(int heightPx) {
+    public BottomDialogFragment setHeight(int heightPx) {
         mHeight = heightPx;
         return this;
     }
@@ -128,14 +128,22 @@ public class BottomDialog extends BaseBottomDialog {
         return mTag;
     }
 
-    public interface ViewListener {
-        void bindView(View v);
-    }
 
-    public BaseBottomDialog show() {
+    public BaseDialogFragment show() {
         show(mFragmentManager);
         return this;
     }
 
+    public void dismissDialogFragment(){
+        dismissDialog();
+    }
+
+    public interface ViewListener {
+        /**
+         * 绑定
+         * @param v     view
+         */
+        void bindView(View v);
+    }
 
 }

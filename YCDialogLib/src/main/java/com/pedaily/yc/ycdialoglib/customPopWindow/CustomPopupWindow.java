@@ -23,7 +23,6 @@ import android.widget.PopupWindow;
  */
 public class CustomPopupWindow implements PopupWindow.OnDismissListener {
 
-
     private Context mContext;
     private int mResLayoutId;
     private View mContentView;
@@ -79,7 +78,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
     private CustomPopupWindow(Context context) {
         this.mResLayoutId = -1;
         this.mAnimationStyle = -1;
-        this.mIsFocusable = true;           //默认设置为true
+        this.mIsFocusable = true;
         this.mIsOutside = true;
         this.mClippEnable = true;
         this.mIgnoreCheekPress = false;
