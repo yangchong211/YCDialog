@@ -12,7 +12,7 @@
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加 **
 ```
-compile 'cn.yc:YCDialogLib:3.4'
+compile 'cn.yc:YCDialogLib:3.5'
 ```
 
 - **1.2 关于对话框的种类**
@@ -22,8 +22,7 @@ compile 'cn.yc:YCDialogLib:3.4'
 	- 1.2.4 自定义底部弹窗【布局】第一种形式，带来取消监听【可以使用recyclerView】
 	- 1.2.5 自定义底部弹窗【布局】第二种形式【可以使用recyclerView】
 	- 1.2.6 自定义底部弹窗【用布局，与上一种是不同的】
-	- 1.2.7 自定义loading加载窗
-	
+
 
 > **1.2.1 仿IOS底部弹窗，自定义对话框**
 
@@ -41,7 +40,7 @@ private void showCustomDialog() {
 }
 private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener listener,
 										List<String> names) {
-	CustomSelectDialog dialog = new CustomSelectDialog(this, 
+	CustomSelectDialog dialog = new CustomSelectDialog(this,
 			R.style.transparentFrameWindowStyle, listener, names);
 	dialog.setItemColor(R.color.colorAccent,R.color.colorPrimary);
 	//判断activity是否finish
@@ -101,7 +100,7 @@ BottomDialogFragment.create(getSupportFragmentManager())
 		.setViewListener(new BottomDialogFragment.ViewListener() {
 			@Override
 			public void bindView(View v) {
-				
+
 			}
 		})
 		.setLayoutRes(R.layout.dialog_bottom_layout)
@@ -167,69 +166,6 @@ BottomDialogFragment.create(getSupportFragmentManager())
     }
 ```
 
-> **1.2.7 自定义loading加载窗**
-- 直接一行代码搞定展示或者销毁
-```
-//展示
-LoadDialog.show(this,"加载中",false,false);
-//销毁
-LoadDialog.dismiss(MainActivity.this);
-```
-
-- 源代码是这样写的，判断了当前宿主activity是否销毁，并且销毁对象为null，避免静态对象导致内存泄漏。
-```
-    /**
-     * 展示加载窗
-     * @param context               上下文
-     * @param message               内容
-     * @param showMsg               是否展示文字
-     * @param isCancel              是否可以取消
-     */
-    public static void show(Context context, String message,boolean showMsg, boolean isCancel) {
-        if (context instanceof Activity) {
-            if (((Activity) context).isFinishing()) {
-                return;
-            }
-        }
-        if (loadDialog != null && loadDialog.isShowing()) {
-            return;
-        }
-        loadDialog = new LoadDialog(context, isCancel,showMsg, message);
-        loadDialog.show();
-    }
-    
-    
-     /**
-     * 销毁加载窗
-     * @param context               上下文
-     */
-    public static void dismiss(Context context) {
-        try {
-            if (context instanceof Activity) {
-                if (((Activity) context).isFinishing()) {
-                    loadDialog = null;
-                    return;
-                }
-            }
-            if (loadDialog != null && loadDialog.isShowing()) {
-                Context loadContext = loadDialog.getContext();
-                if (loadContext instanceof Activity) {
-                    if (((Activity) loadContext).isFinishing()) {
-                        loadDialog = null;
-                        return;
-                    }
-                }
-                loadDialog.dismiss();
-                loadDialog = null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            loadDialog = null;
-        }
-    }
-```
-
-
 
 #### 2.自定义对话框截图
 - ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot1.png)
@@ -244,11 +180,14 @@ LoadDialog.dismiss(MainActivity.this);
 - v1.0 更新2017年3月2日
 - v3.3 更新2018年1月12日
 - v3.4 更新2018年1月18日
+- v3.5 更新2018年1月31日
 ```
 3.4.1 更新bottomLayout包下代码，添加了取消销毁dialog监听，还有就是在调用show方法时增加了对传值的判断，解决了空指针崩溃问题
 3.4.2 更新了selector包下的代码，添加了多个创造对话框的构造方法，方便调用时适用不同的业务场景
 3.4.3 不知道在什么情况下调用getWindow()获取的Window对象，会为null，所以增加了非空判断
 3.4.4 增加了一些方法的注释
+
+3.5.1 去除了toast工具类中无用的代码，整理了代码
 ```
 
 #### 4.关于获取更多信息
