@@ -21,10 +21,8 @@ import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
 import com.pedaily.yc.ycdialoglib.customPopWindow.CustomPopupWindow;
-import com.pedaily.yc.ycdialoglib.loadDialog.LoadDialog;
-import com.pedaily.yc.ycdialoglib.selector.CustomSelectDialog;
-import com.pedaily.yc.ycdialoglib.toast.CustomToast;
-import com.pedaily.yc.ycdialoglib.toast.ToastUtil;
+import com.pedaily.yc.ycdialoglib.selectDialog.CustomSelectDialog;
+import com.pedaily.yc.ycdialoglib.customToast.ToastUtil;
 
 import org.yczbj.ycrefreshviewlib.item.RecycleViewItemLine;
 
@@ -56,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void initListener() {
-        CustomToast.Config.reset();
         findViewById(R.id.tv_1).setOnClickListener(this);
         findViewById(R.id.tv_2).setOnClickListener(this);
         findViewById(R.id.tv_3).setOnClickListener(this);
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ToastUtil.showDelete(this,0);
                 break;
             case R.id.tv_23:
-                CustomToast.success(this, "分享").show();
+                ToastUtil.showStart(this,0);
                 break;
             case R.id.tv_4:
                 showCustomBottomDialog();
@@ -107,19 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showBuilder();
                 break;
             case R.id.tv_8:
-                LoadDialog.show(this,"加载中",false,false);
-                //noinspection AlibabaAvoidManuallyCreateThread
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                            LoadDialog.dismiss(MainActivity.this);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+
                 break;
             case R.id.tv1:
                 ToastUtil.showToast(this,"分享-------------");
@@ -133,23 +118,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 两种方式
      */
     private void showDialog5() {
-        BottomDialogFragment.create(getSupportFragmentManager())
-                .setViewListener(new BottomDialogFragment.ViewListener() {
-                    @Override
-                    public void bindView(View v) {
-                        tv1 = (TextView) v.findViewById(R.id.tv1);
-                        tv1.setOnClickListener(MainActivity.this);
-
-                    }
-                })
-                .setLayoutRes(R.layout.dialog_bottom_layout)
-                .setDimAmount(0.5f)
-                .setTag("BottomDialogFragment")
-                .setCancelOutside(true)
-                .setHeight(getScreenHeight() / 2)
-                .show();
-
-
         final BottomDialogFragment dialog = new BottomDialogFragment();
         dialog.setFragmentManager(getSupportFragmentManager());
         dialog.setViewListener(new BottomDialogFragment.ViewListener() {
