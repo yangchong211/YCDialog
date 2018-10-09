@@ -243,12 +243,12 @@ BottomDialogFragment.create(getSupportFragmentManager())
 
 
 #### 2.自定义对话框截图
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot1.png)
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot2.png)
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot3.png)
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot4.png)
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot5.png)
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/Screenshot6.png)
+- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/1.jpg)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/2.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/3.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/4.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/5.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/6.png)
 
 
 #### 3.关于版本更新情况
