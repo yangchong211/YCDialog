@@ -1,5 +1,6 @@
 package com.pedaily.yc.ycdialoglib.bottomMenu;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.view.SupportMenuInflater;
@@ -121,6 +122,7 @@ public class CustomDialog extends Dialog {
         background.setBackgroundResource(res);
     }
 
+    @SuppressLint("RestrictedApi")
     void inflateMenu(int menu, OnItemClickListener onItemClickListener) {
         MenuInflater menuInflater = new SupportMenuInflater(getContext());
         MenuBuilder menuBuilder = new MenuBuilder(getContext());

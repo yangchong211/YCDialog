@@ -5,5 +5,4 @@
     <dimen name="app_tiny_margin">4dp</dimen>
     <dimen name="bottom_dialog_top_icon">38dp</dimen>
     <dimen name="bottom_dialog_left_icon">32dp</dimen>
-
 </resources>

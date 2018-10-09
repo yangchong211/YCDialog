@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.bottomLayout;
+package com.pedaily.yc.ycdialoglib.dialogFragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -13,16 +13,17 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.pedaily.yc.ycdialoglib.R;
-import com.pedaily.yc.ycdialoglib.customToast.ToastUtil;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
+
 
 /**
- * ================================================
- * 作    者：杨充
- * 版    本：1.0
- * 创建日期：2017/8/9
- * 描    述：自定义布局弹窗
- * 修订历史：
- * ================================================
+ * <pre>
+ *     @author yangchong
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/8/9
+ *     desc  : 自定义布局弹窗DialogFragment
+ *     revise:
+ * </pre>
  */
 public abstract class BaseDialogFragment extends DialogFragment {
 
@@ -88,6 +89,14 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mListener!=null){
+            mListener.listener(true);
+        }
+    }
+
     /**
      * 获取弹窗高度
      * @return          int类型值
@@ -112,7 +121,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if(fragmentManager!=null){
             show(fragmentManager, getFragmentTag());
         }else {
-            ToastUtil.showToast(getContext(),"需要设置setFragmentManager");
+            ToastUtils.showToast("需要设置setFragmentManager");
         }
     }
 
@@ -126,6 +135,15 @@ public abstract class BaseDialogFragment extends DialogFragment {
             dialog.dismiss();
             dialog = null;
         }
+    }
+
+    public onLoadFinishListener mListener;
+    public void setLoadFinishListenter(onLoadFinishListener listener){
+        mListener = listener;
+    }
+
+    public interface onLoadFinishListener{
+        void listener(boolean isSuccess);
     }
 
 }

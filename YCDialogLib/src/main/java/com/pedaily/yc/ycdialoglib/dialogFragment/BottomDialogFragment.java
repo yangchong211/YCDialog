@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.bottomLayout;
+package com.pedaily.yc.ycdialoglib.dialogFragment;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -6,17 +6,16 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 
 /**
- * ================================================
- * 作    者：杨充
- * 版    本：1.0
- * 创建日期：2017/8/9
- * 描    述：自定义布局弹窗
- * 修订历史：
- *          1月10日
- *          有bug，如果想通过点击弹窗控件销毁dialog，该如何处理。
- *          使用场景：点击对话框中控件，不会销毁dialog，按返回键处理销毁逻辑。
- *          其实质是DialogFragment，
- * ================================================
+ * <pre>
+ *     @author yangchong
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/8/9
+ *     desc  : 自定义布局弹窗DialogFragment
+ *     revise: 1月10日
+ *                  有bug，如果想通过点击弹窗控件销毁dialog，该如何处理。
+ *                  使用场景：点击对话框中控件，不会销毁dialog，按返回键处理销毁逻辑。
+ *                  其实质是DialogFragment，
+ * </pre>
  */
 public class BottomDialogFragment extends BaseDialogFragment {
 

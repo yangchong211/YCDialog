@@ -22,7 +22,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.1'
-    //compile project(':YCDialogLib')
-    compile 'cn.yc:YCDialogLib:3.5'
-    compile 'org.yczbj:YCRefreshViewLib:1.4'                        //RecyclerView封装
+    compile project(':YCDialogLib')
+//    compile 'cn.yc:YCDialogLib:3.5.1'
+    compile 'org.yczbj:YCRefreshViewLib:2.5.6'                        //RecyclerView封装
 }

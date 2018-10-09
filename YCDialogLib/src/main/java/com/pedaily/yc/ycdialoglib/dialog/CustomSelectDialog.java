@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.selectDialog;
+package com.pedaily.yc.ycdialoglib.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;

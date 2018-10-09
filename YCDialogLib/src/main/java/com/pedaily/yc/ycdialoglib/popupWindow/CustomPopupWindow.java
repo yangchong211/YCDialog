@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.customPopWindow;
+package com.pedaily.yc.ycdialoglib.popupWindow;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,14 +12,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
+
 /**
- * ================================================
- * 作    者：杨充
- * 版    本：1.0
- * 创建日期：2017/1/5
- * 描    述：自定义PopupWindow控件【学习Builder模式，可以借鉴AlertDialog.Builder模式】
- * 修订历史：
- * ================================================
+ * <pre>
+ *     @author yangchong
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/1/5
+ *     desc  : 自定义PopupWindow控件【学习Builder模式，可以借鉴AlertDialog.Builder模式】
+ *     revise:
+ * </pre>
  */
 public class CustomPopupWindow implements PopupWindow.OnDismissListener {
 

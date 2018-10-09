@@ -26,33 +26,107 @@
             android:background="@color/colorAccent"
             android:text="@string/tv_dialog"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_21"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="2.1 系统原生Toast"/>
+
+            <TextView
+                android:id="@+id/tv_22"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="2.2 自定义Toast"/>
+
+            <TextView
+                android:id="@+id/tv_23"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="2.3 自定义Toast"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_24"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="2.4 自定义布局Toast"/>
+
+            <TextView
+                android:id="@+id/tv_25"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="2.5 自定义布局Toast"/>
+
+            <TextView
+                android:id="@+id/tv_26"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="2.6 自定义布局Toast"/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_2"
+            android:id="@+id/tv_31"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:background="@color/colorAccent"
-            android:text="@string/tv_2"/>
+            android:text="3.1 自定义PopupWindow弹窗"/>
 
         <TextView
-            android:id="@+id/tv_3"
+            android:id="@+id/tv_32"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:background="@color/colorAccent"
-            android:text="@string/tv_3"/>
+            android:text="3.2 自定义PopupWindow弹窗，builder模式"/>
 
         <TextView
-            android:id="@+id/tv_23"
+            android:id="@+id/tv_33"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:background="@color/colorAccent"
-            android:text="@string/tv_3"/>
+            android:text="3.3 自定义PopupWindow弹窗，builder模式"/>
+
 
         <TextView
             android:id="@+id/tv_4"
@@ -64,41 +138,22 @@
             android:text="4.从底部自定义弹窗，填充menu菜单"/>
 
         <TextView
-            android:id="@+id/tv_5"
+            android:id="@+id/tv_51"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:background="@color/colorAccent"
-            android:text="5.自定义底部布局弹窗"/>
+            android:text="5.1 自定义底部布局弹窗dialogFragment"/>
 
         <TextView
-            android:id="@+id/tv_5_1"
+            android:id="@+id/tv_52"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:background="@color/colorAccent"
-            android:text="5.1 自定义底部布局弹窗，填充recyclerView"/>
-
-        <TextView
-            android:id="@+id/tv_6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:background="@color/colorAccent"
-            android:text="6.builder模式自定义PopupWindow控件"/>
-
-
-        <TextView
-            android:id="@+id/tv_6_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:background="@color/colorAccent"
-            android:text="6.1 builder模式自定义PopupWindow控件,不同位置"/>
+            android:text="5.2 自定义弹窗dialogFragment，填充recyclerView"/>
 
         <TextView
             android:id="@+id/tv_7"
@@ -109,15 +164,6 @@
             android:background="@color/colorAccent"
             android:text="7.测试builder模式"/>
 
-
-        <TextView
-            android:id="@+id/tv_8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:background="@color/colorAccent"
-            android:text="8."/>
 
     </LinearLayout>
 

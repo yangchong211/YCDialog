@@ -1,11 +1,13 @@
 package com.pedaily.yc.ycdialog;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,13 +18,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pedaily.yc.ycdialoglib.bottomLayout.BottomDialogFragment;
+import com.pedaily.yc.ycdialoglib.dialogFragment.BottomDialogFragment;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
-import com.pedaily.yc.ycdialoglib.customPopWindow.CustomPopupWindow;
-import com.pedaily.yc.ycdialoglib.selectDialog.CustomSelectDialog;
-import com.pedaily.yc.ycdialoglib.customToast.ToastUtil;
+import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
+import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
 
 import org.yczbj.ycrefreshviewlib.item.RecycleViewItemLine;
 
@@ -41,9 +43,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextView tv1;
     private CustomPopupWindow popWindow;
-    private TextView tv6;
+    private TextView tv_7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +56,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initListener() {
         findViewById(R.id.tv_1).setOnClickListener(this);
-        findViewById(R.id.tv_2).setOnClickListener(this);
-        findViewById(R.id.tv_3).setOnClickListener(this);
+        findViewById(R.id.tv_21).setOnClickListener(this);
+        findViewById(R.id.tv_22).setOnClickListener(this);
         findViewById(R.id.tv_23).setOnClickListener(this);
+        findViewById(R.id.tv_24).setOnClickListener(this);
+        findViewById(R.id.tv_25).setOnClickListener(this);
+        findViewById(R.id.tv_26).setOnClickListener(this);
+        findViewById(R.id.tv_31).setOnClickListener(this);
+        findViewById(R.id.tv_32).setOnClickListener(this);
+        findViewById(R.id.tv_33).setOnClickListener(this);
         findViewById(R.id.tv_4).setOnClickListener(this);
-        findViewById(R.id.tv_5).setOnClickListener(this);
-        findViewById(R.id.tv_5_1).setOnClickListener(this);
-        tv6 = (TextView) findViewById(R.id.tv_6);
-        findViewById(R.id.tv_6).setOnClickListener(this);
-        findViewById(R.id.tv_6_1).setOnClickListener(this);
+        findViewById(R.id.tv_51).setOnClickListener(this);
+        findViewById(R.id.tv_52).setOnClickListener(this);
+        tv_7 = (TextView) findViewById(R.id.tv_7);
         findViewById(R.id.tv_7).setOnClickListener(this);
-        findViewById(R.id.tv_8).setOnClickListener(this);
     }
 
 
@@ -75,39 +79,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_1:
                 showCustomDialog();
                 break;
-            case R.id.tv_2:
-                ToastUtil.showToast(this,"自定义吐司");
+            case R.id.tv_21:
+                ToastUtils.showToast("自定义吐司");
                 break;
-            case R.id.tv_3:
-                ToastUtil.showDelete(this,0);
+            case R.id.tv_22:
+                ToastUtils.showRoundRectToast("自定义吐司");
                 break;
             case R.id.tv_23:
-                ToastUtil.showStart(this,0);
+                ToastUtils.showRoundRectToast("吐司一下","他发的撒经济法的解放军");
+                break;
+            case R.id.tv_24:
+                ToastUtils.showRoundRectToast(R.layout.view_layout_toast_delete);
+                break;
+            case R.id.tv_25:
+                ToastUtils.showRoundRectToast(R.layout.view_layout_toast_load);
+                break;
+            case R.id.tv_26:
+                ToastUtils.Builder builder = new ToastUtils.Builder(this.getApplication());
+                builder
+                        .setDuration(Toast.LENGTH_SHORT)
+                        .setFill(false)
+                        .setGravity(Gravity.CENTER)
+                        .setOffset(0)
+                        .setDesc("内容内容")
+                        .setTitle("标题")
+                        .setTextColor(Color.WHITE)
+                        .setBackgroundColor(this.getResources().getColor(R.color.blackText))
+                        .build()
+                        .show();
+                break;
+            case R.id.tv_31:
+                CustomPop customPop = new CustomPop(this);
+                customPop.setDelayedMsDismiss(2500);
+                customPop.setBgAlpha(0.5f);
+                customPop.showAsDropDown(tv_7, 0, -tv_7.getMeasuredHeight() - tv_7.getHeight());
+                break;
+            case R.id.tv_32:
+                showPopupWindow1();
+                break;
+            case R.id.tv_33:
+                showPopupWindow2();
                 break;
             case R.id.tv_4:
                 showCustomBottomDialog();
                 break;
-            case R.id.tv_5:
-                showDialog5();
+            case R.id.tv_51:
+                showDialogFragment();
                 break;
-            case R.id.tv_5_1:
-                showDialog51();
-                break;
-            case R.id.tv_6:
-                showPopupWindow1();
-                break;
-            case R.id.tv_6_1:
-                showPopupWindow2();
+            case R.id.tv_52:
+                showDialogFragment2();
                 break;
             case R.id.tv_7:
-                ToastUtil.showToast(this,"测试");
                 showBuilder();
-                break;
-            case R.id.tv_8:
-
-                break;
-            case R.id.tv1:
-                ToastUtil.showToast(this,"分享-------------");
                 break;
             default:
                 break;
@@ -117,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 两种方式
      */
-    private void showDialog5() {
+    private void showDialogFragment() {
         final BottomDialogFragment dialog = new BottomDialogFragment();
         dialog.setFragmentManager(getSupportFragmentManager());
         dialog.setViewListener(new BottomDialogFragment.ViewListener() {
@@ -137,15 +160,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog.setTag("BottomDialog");
         dialog.setCancelOutside(true);
         //这个高度可以自己设置，十分灵活
-        dialog.setHeight(getScreenHeight() / 2);
+        //dialog.setHeight(getScreenHeight() / 2);
         dialog.show();
     }
 
 
-    private void showDialog51() {
+    private void showDialogFragment2() {
         final List<DialogBean> list = new ArrayList<>();
         for(int a=0 ; a<20 ; a++){
-            DialogBean dialogBean = new DialogBean("ooo","yangchong","title");
+            DialogBean dialogBean = new DialogBean("ooo","杨充","title");
             list.add(dialogBean);
         }
 
@@ -178,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         break;
                                     case R.id.iv_download:
-                                        ToastUtil.showToast(MainActivity.this,"下载");
+                                        ToastUtils.showToast("下载");
                                         break;
                                     default:
                                         break;
@@ -210,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }, names);
     }
+
 
     /**
      * 展示对话框视图，构造方法创建对象
@@ -268,23 +292,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 })
                 .create()
-                .showAsDropDown(tv6,0,10);
+                .showAsDropDown(tv_7,0,10);
     }
 
 
     private void showPopupWindow2() {
         CustomPopupWindow popWindow =
                 new CustomPopupWindow.PopupWindowBuilder(this)
-                .setView(R.layout.pop_layout)
+                .setView(R.layout.view_pop_custom)
                 .create();
-        popWindow .showAsDropDown(tv6,0,  - (tv6.getHeight() + popWindow.getHeight()));
+        popWindow .showAsDropDown(tv_7,0,  - (tv_7.getHeight() + popWindow.getHeight()));
         //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
     }
 
 
     /**
      * 处理弹出显示内容、点击事件等逻辑
-     * @param contentView
+     * @param contentView           view
      */
     private void handleLogic(View contentView){
         View.OnClickListener listener = new View.OnClickListener() {
@@ -304,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     default:
                         break;
                 }
-                Toast.makeText(MainActivity.this,showContent,Toast.LENGTH_SHORT).show();
+                ToastUtils.showRoundRectToast(showContent);
             }
         };
         contentView.findViewById(R.id.menu1).setOnClickListener(listener);
@@ -322,18 +346,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-    /**
-     * 获取屏幕的宽度（单位：px）
-     *
-     * @return 屏幕宽px
-     */
-    public int getScreenWidth() {
-        WindowManager windowManager = (WindowManager) this.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
-        return dm.widthPixels;
-    }
 
     /**
      * 获取屏幕的高度（单位：px）
