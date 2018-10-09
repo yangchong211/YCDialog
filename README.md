@@ -10,7 +10,7 @@
 
 
 #### 1.使用方法
-- **1.1首先在项目build.gradlew中添加 **
+- **1.1首先在项目build.gradlew中添加**
 ```
 compile 'cn.yc:YCDialogLib:3.5.2'
 ```
