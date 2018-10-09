@@ -249,7 +249,8 @@ BottomDialogFragment.create(getSupportFragmentManager())
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/4.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/5.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/6.png)
-
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/7.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/8.png)
 
 #### 3.关于版本更新情况
 - v1.0 更新2017年3月2日
