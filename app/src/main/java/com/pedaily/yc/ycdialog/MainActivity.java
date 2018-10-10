@@ -84,12 +84,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showCustomDialog();
                 break;
             case R.id.tv_21:
+                ToastUtils.setToastBackColor(this.getResources().getColor(R.color.gray_black));
                 ToastUtils.showToast("自定义吐司");
                 break;
             case R.id.tv_22:
+                ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_7f000000));
                 ToastUtils.showRoundRectToast("自定义吐司");
                 break;
             case R.id.tv_23:
+                ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_000000));
                 ToastUtils.showRoundRectToast("吐司一下","他发的撒经济法的解放军");
                 break;
             case R.id.tv_24:

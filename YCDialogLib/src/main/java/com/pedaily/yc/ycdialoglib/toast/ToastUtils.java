@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -20,7 +21,7 @@ import com.pedaily.yc.ycdialoglib.R;
 
 /**
  * <pre>
- *     @author
+ *     @author yangchong
  *     blog  : https://github.com/yangchong211
  *     time  : 2016/06/4
  *     desc  : Toast工具类
@@ -29,9 +30,10 @@ import com.pedaily.yc.ycdialoglib.R;
  */
 public class ToastUtils {
 
+
     @SuppressLint("StaticFieldLeak")
     private static Application mApp;
-    private static int toastBackColor= R.color.color_7f000000;
+    private static int toastBackColor;
 
     /**
      * 初始化吐司工具类
@@ -39,8 +41,16 @@ public class ToastUtils {
      */
     public static void init(@NonNull final Application app) {
         mApp = app;
+        toastBackColor = mApp.getResources().getColor(R.color.color_000000);
     }
 
+    public static Application getApp() {
+        return mApp;
+    }
+
+    public static void setToastBackColor(@ColorInt int color){
+        toastBackColor = color;
+    }
 
     private ToastUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -94,7 +104,7 @@ public class ToastUtils {
                 .setOffset(0)
                 .setTitle(notice)
                 .setTextColor(Color.WHITE)
-                .setBackgroundColor(mApp.getResources().getColor(toastBackColor))
+                .setBackgroundColor(toastBackColor)
                 .setRadius(DialogUtils.dip2px(mApp, 10))
                 .setElevation(DialogUtils.dip2px(mApp, 0))
                 .build()
@@ -115,7 +125,7 @@ public class ToastUtils {
                 .setDesc(desc)
                 .setTitle(notice)
                 .setTextColor(Color.WHITE)
-                .setBackgroundColor(mApp.getResources().getColor(toastBackColor))
+                .setBackgroundColor(toastBackColor)
                 .setRadius(DialogUtils.dip2px(mApp, 10))
                 .setElevation(DialogUtils.dip2px(mApp, 0))
                 .build()

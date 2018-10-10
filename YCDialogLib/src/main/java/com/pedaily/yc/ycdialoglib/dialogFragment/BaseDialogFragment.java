@@ -40,7 +40,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         if(local == Local.BOTTOM){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
-        }else if(local == Local.CENTER){
+        }else if(local == Local.CENTER || local == Local.TOP){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CenterDialog);
         }
     }
@@ -52,8 +52,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
             if(dialog.getWindow()!=null){
                 dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             }
-            dialog.setCanceledOnTouchOutside(getCancelOutside());
-            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(isCancel());
+            dialog.setCancelable(isCancel());
         }
         View v = inflater.inflate(getLayoutRes(), container, false);
         bindView(v);
@@ -72,6 +72,12 @@ public abstract class BaseDialogFragment extends DialogFragment {
      * @param v             view
      */
     public abstract void bindView(View v);
+
+    /**
+     * 设置是否可以cancel
+     * @return
+     */
+    protected abstract boolean isCancel();
 
     /**
      * 开始展示
@@ -121,10 +127,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     public float getDimAmount() {
         return DEFAULT_DIM;
-    }
-
-    public boolean getCancelOutside() {
-        return true;
     }
 
     public String getFragmentTag() {

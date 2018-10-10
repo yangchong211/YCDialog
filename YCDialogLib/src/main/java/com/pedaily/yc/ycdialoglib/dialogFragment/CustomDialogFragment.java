@@ -1,6 +1,8 @@
 package com.pedaily.yc.ycdialoglib.dialogFragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -28,12 +30,13 @@ public class CustomDialogFragment extends BaseDialogFragment {
     private static final String KEY_CANCEL_OUTSIDE = "bottom_cancel_outside";
 
     private FragmentManager mFragmentManager;
-    private boolean mIsCancelOutside = super.getCancelOutside();
+    private boolean mIsCancelOutside = false;
     private String mTag = super.getFragmentTag();
     private float mDimAmount = super.getDimAmount();
     private int mHeight = super.getHeight();
     private String title;
     private String content;
+    private int color;
     private View.OnClickListener cancelListener;
     private View.OnClickListener okListener;
     private String otherContent;
@@ -95,6 +98,12 @@ public class CustomDialogFragment extends BaseDialogFragment {
             mTvContent.setVisibility(View.GONE);
         }
 
+        if(color!=0){
+            mTvOk.setTextColor(color);
+        }else {
+            mTvOk.setTextColor(Color.parseColor("#ff666666"));
+        }
+
         if(cancelListener!=null){
             mTvCancel.setOnClickListener(cancelListener);
         }
@@ -111,6 +120,11 @@ public class CustomDialogFragment extends BaseDialogFragment {
             mViewLine.setVisibility(View.GONE);
             mTvOther.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected boolean isCancel() {
+        return mIsCancelOutside;
     }
 
     public CustomDialogFragment setFragmentManager(FragmentManager manager) {
@@ -148,6 +162,11 @@ public class CustomDialogFragment extends BaseDialogFragment {
         return this;
     }
 
+    public CustomDialogFragment setOkColor(@ColorInt int color) {
+        this.color = color;
+        return this;
+    }
+
     public CustomDialogFragment setOtherContent(String content) {
         this.otherContent = content;
         return this;
@@ -176,11 +195,6 @@ public class CustomDialogFragment extends BaseDialogFragment {
     @Override
     public int getHeight() {
         return mHeight;
-    }
-
-    @Override
-    public boolean getCancelOutside() {
-        return mIsCancelOutside;
     }
 
     @Override

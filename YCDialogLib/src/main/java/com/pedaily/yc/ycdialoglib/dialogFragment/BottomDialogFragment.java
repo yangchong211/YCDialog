@@ -25,7 +25,7 @@ public class BottomDialogFragment extends BaseDialogFragment {
     private static final String KEY_CANCEL_OUTSIDE = "bottom_cancel_outside";
 
     private FragmentManager mFragmentManager;
-    private boolean mIsCancelOutside = super.getCancelOutside();
+    private boolean mIsCancelOutside = false;
     private String mTag = super.getFragmentTag();
     private float mDimAmount = super.getDimAmount();
     private int mHeight = super.getHeight();
@@ -66,6 +66,11 @@ public class BottomDialogFragment extends BaseDialogFragment {
         if (mViewListener != null) {
             mViewListener.bindView(v);
         }
+    }
+
+    @Override
+    protected boolean isCancel() {
+        return mIsCancelOutside;
     }
 
     @Override
@@ -116,11 +121,6 @@ public class BottomDialogFragment extends BaseDialogFragment {
     @Override
     public int getHeight() {
         return mHeight;
-    }
-
-    @Override
-    public boolean getCancelOutside() {
-        return mIsCancelOutside;
     }
 
     @Override

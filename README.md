@@ -14,7 +14,7 @@
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加**
 ```
-compile 'cn.yc:YCDialogLib:3.5.5'
+compile 'cn.yc:YCDialogLib:3.5.7'
 ```
 
 - **1.2 关于对话框的种类**
@@ -60,6 +60,9 @@ private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener li
 - 采用builder构造者模式，链式编程，一行代码调用即可设置吐司Toast。注意：为了避免静态toast对象内存泄漏，固可以使用应用级别的上下文context。
 - 具体的用法如下所示：
 ```
+//可以自由设置吐司的背景颜色，默认是纯黑色
+ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_7f000000));
+
 //直接设置最简单吐司，只有吐司内容
 ToastUtils.showRoundRectToast("自定义吐司");
 

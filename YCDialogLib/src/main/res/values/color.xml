@@ -4,5 +4,6 @@
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="gray_dark">#646464</color>
     <color name="gray_black">#202020</color>
+    <color name="color_000000">#000000</color>
     <color name="color_7f000000">#6f000000</color>
 </resources>
