@@ -162,8 +162,8 @@ public abstract class BaseDialog extends DialogFragment {
         }
     }
 
-    public BaseDialogFragment.onLoadFinishListener mListener;
-    public void setLoadFinishListener(BaseDialogFragment.onLoadFinishListener listener){
+    public onLoadFinishListener mListener;
+    public void setLoadFinishListener(onLoadFinishListener listener){
         mListener = listener;
     }
     public interface onLoadFinishListener{
