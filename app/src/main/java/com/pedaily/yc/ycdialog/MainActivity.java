@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +19,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pedaily.yc.ycdialoglib.dialogFragment.BaseDialogFragment;
 import com.pedaily.yc.ycdialoglib.dialogFragment.BottomDialogFragment;
-import com.pedaily.yc.ycdialoglib.bottomMenu.CustomBottomDialog;
-import com.pedaily.yc.ycdialoglib.bottomMenu.CustomItem;
-import com.pedaily.yc.ycdialoglib.bottomMenu.OnItemClickListener;
+import com.pedaily.yc.ycdialoglib.dialogFragment.CustomDialogFragment;
+import com.pedaily.yc.ycdialoglib.dialogMenu.CustomBottomDialog;
+import com.pedaily.yc.ycdialoglib.dialogMenu.CustomItem;
+import com.pedaily.yc.ycdialoglib.dialogMenu.OnItemClickListener;
 import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_4).setOnClickListener(this);
         findViewById(R.id.tv_51).setOnClickListener(this);
         findViewById(R.id.tv_52).setOnClickListener(this);
+        findViewById(R.id.tv_61).setOnClickListener(this);
+        findViewById(R.id.tv_62).setOnClickListener(this);
         tv_7 = (TextView) findViewById(R.id.tv_7);
         findViewById(R.id.tv_7).setOnClickListener(this);
     }
@@ -129,6 +134,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_52:
                 showDialogFragment2();
                 break;
+            case R.id.tv_61:
+                showCustomDialog2();
+                break;
+            case R.id.tv_62:
+                showCustomDialog3();
+                break;
             case R.id.tv_7:
                 showBuilder();
                 break;
@@ -136,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
 
     /**
      * 两种方式
@@ -333,6 +345,75 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         contentView.findViewById(R.id.menu1).setOnClickListener(listener);
         contentView.findViewById(R.id.menu2).setOnClickListener(listener);
+    }
+
+
+    private void showCustomDialog2() {
+        final CustomDialogFragment dialog = new CustomDialogFragment();
+        //CustomDialogFragment customDialogFragment = CustomDialogFragment.create(getSupportFragmentManager());
+        dialog.setFragmentManager(getSupportFragmentManager());
+        dialog.setTitle("这个是是标题");
+        dialog.setContent("这个是弹窗的内容");
+        dialog.setDimAmount(0.0f);
+        dialog.setTag("BottomDialog");
+        dialog.setCancelOutside(true);
+        dialog.setCancelListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogFragment.dismissDialogFragment();
+                ToastUtils.showRoundRectToast("取消了");
+            }
+        });
+        dialog.setOkListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogFragment.dismissDialogFragment();
+                ToastUtils.showRoundRectToast("确定了");
+            }
+        });
+        //这个高度可以自己设置，十分灵活
+        //dialog.setHeight(getScreenHeight() / 2);
+        dialog.show();
+        dialog.setLoadFinishListener(new BaseDialogFragment.onLoadFinishListener() {
+            @Override
+            public void listener() {
+                Log.e("结束了","监听事件");
+            }
+        });
+    }
+
+
+    private void showCustomDialog3() {
+        CustomDialogFragment
+                .create(getSupportFragmentManager())
+                .setTitle("这个是是标题")
+                .setContent("这个是弹窗的内容")
+                .setOtherContent("其他")
+                .setDimAmount(0.2f)
+                .setTag("dialog")
+                .setCancelOutside(true)
+                .setCancelListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CustomDialogFragment.dismissDialogFragment();
+                        ToastUtils.showRoundRectToast("取消了");
+                    }
+                })
+                .setOkListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CustomDialogFragment.dismissDialogFragment();
+                        ToastUtils.showRoundRectToast("确定了");
+                    }
+                })
+                .setOtherListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CustomDialogFragment.dismissDialogFragment();
+                        ToastUtils.showRoundRectToast("其他内容");
+                    }
+                })
+                .show();
     }
 
 

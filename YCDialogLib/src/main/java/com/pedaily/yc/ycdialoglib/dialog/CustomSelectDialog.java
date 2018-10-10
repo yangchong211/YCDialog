@@ -133,7 +133,7 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         Window window = getWindow();
         // 设置显示动画
         if (window != null) {
-            window.setWindowAnimations(R.style.main_menu_animStyle);
+            window.setWindowAnimations(R.style.BottomDialogAnimationStyle);
             WindowManager.LayoutParams wl = window.getAttributes();
             wl.x = 0;
             wl.y = mActivity.getWindowManager().getDefaultDisplay().getHeight();

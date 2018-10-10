@@ -155,6 +155,31 @@
             android:background="@color/colorAccent"
             android:text="5.2 自定义弹窗dialogFragment，填充recyclerView"/>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="6.1 自定义普通弹窗1"/>
+
+            <TextView
+                android:id="@+id/tv_62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:background="@color/colorAccent"
+                android:text="6.2 自定义普通弹窗2"/>
+        </LinearLayout>
+
+
         <TextView
             android:id="@+id/tv_7"
             android:layout_width="match_parent"

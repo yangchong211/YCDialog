@@ -42,6 +42,7 @@ public class BottomDialogFragment extends BaseDialogFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setLocal(Local.BOTTOM);
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             mLayoutRes = savedInstanceState.getInt(KEY_LAYOUT_RES);

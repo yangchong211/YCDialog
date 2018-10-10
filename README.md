@@ -12,7 +12,7 @@
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加**
 ```
-compile 'cn.yc:YCDialogLib:3.5.2'
+compile 'cn.yc:YCDialogLib:3.5.3'
 ```
 
 - **1.2 关于对话框的种类**
@@ -23,6 +23,7 @@ compile 'cn.yc:YCDialogLib:3.5.2'
 	- 1.2.5 自定义底部弹窗Dialog，builder模式【使用menu】
 	- 1.2.6 自定义布局弹窗dialogFragment[填充普通布局]
 	- 1.2.7 自定义布局弹窗dialogFragment[填充list布局]
+	- 1.2.8 自定义常见弹窗，builder模式
 
 
 
@@ -240,6 +241,39 @@ BottomDialogFragment.create(getSupportFragmentManager())
     .show();
 ```
 
+> **1.2.8 自定义常见弹窗，builder模式**
+```
+CustomDialogFragment
+        .create(getSupportFragmentManager())
+        .setTitle("这个是是标题")
+        .setContent("这个是弹窗的内容")
+        .setOtherContent("其他")
+        .setDimAmount(0.2f)
+        .setTag("dialog")
+        .setCancelOutside(true)
+        .setCancelListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogFragment.dismissDialogFragment();
+                ToastUtils.showRoundRectToast("取消了");
+            }
+        })
+        .setOkListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogFragment.dismissDialogFragment();
+                ToastUtils.showRoundRectToast("确定了");
+            }
+        })
+        .setOtherListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogFragment.dismissDialogFragment();
+                ToastUtils.showRoundRectToast("其他内容");
+            }
+        })
+        .show();
+```
 
 
 #### 2.自定义对话框截图
@@ -251,6 +285,11 @@ BottomDialogFragment.create(getSupportFragmentManager())
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/6.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/7.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/8.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/9.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/10.png)
+
+
+
 
 #### 3.关于版本更新情况
 - v1.0 更新2017年3月2日

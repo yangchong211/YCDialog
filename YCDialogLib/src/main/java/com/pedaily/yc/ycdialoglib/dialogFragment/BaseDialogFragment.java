@@ -29,12 +29,20 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     private static final String TAG = "base_bottom_dialog";
     private static final float DEFAULT_DIM = 0.2f;
-    private Dialog dialog;
+    private static Dialog dialog;
+    private Local local = Local.BOTTOM;
+    public enum Local {
+        TOP, CENTER, BOTTOM
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
+        if(local == Local.BOTTOM){
+            setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
+        }else if(local == Local.CENTER){
+            setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CenterDialog);
+        }
     }
 
     @Override
@@ -84,7 +92,13 @@ public abstract class BaseDialogFragment extends DialogFragment {
             } else {
                 params.height = WindowManager.LayoutParams.WRAP_CONTENT;
             }
-            params.gravity = Gravity.BOTTOM;
+            if (local == Local.TOP) {
+                params.gravity = Gravity.TOP;
+            } else if (local == Local.CENTER) {
+                params.gravity = Gravity.CENTER;
+            } else {
+                params.gravity = Gravity.BOTTOM;
+            }
             window.setAttributes(params);
         }
     }
@@ -93,7 +107,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public void onDestroy() {
         super.onDestroy();
         if(mListener!=null){
-            mListener.listener(true);
+            mListener.listener();
         }
     }
 
@@ -117,6 +131,10 @@ public abstract class BaseDialogFragment extends DialogFragment {
         return TAG;
     }
 
+    public void setLocal(Local local) {
+        this.local = local;
+    }
+
     public void show(FragmentManager fragmentManager) {
         if(fragmentManager!=null){
             show(fragmentManager, getFragmentTag());
@@ -130,7 +148,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
      * GitHub地址：https://github.com/yangchong211
      * 如果可以，欢迎star
      */
-    public void dismissDialog(){
+    public static void dismissDialog(){
         if(dialog!=null && dialog.isShowing()){
             dialog.dismiss();
             dialog = null;
@@ -138,12 +156,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
     }
 
     public onLoadFinishListener mListener;
-    public void setLoadFinishListenter(onLoadFinishListener listener){
+    public void setLoadFinishListener(onLoadFinishListener listener){
         mListener = listener;
     }
-
     public interface onLoadFinishListener{
-        void listener(boolean isSuccess);
+        void listener();
     }
 
 }

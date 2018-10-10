@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.bottomMenu;
+package com.pedaily.yc.ycdialoglib.dialogMenu;
 
 import android.content.Context;
 import android.support.v7.widget.OrientationHelper;
