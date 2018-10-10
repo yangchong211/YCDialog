@@ -37,9 +37,11 @@ public class CustomDialogFragment extends BaseDialogFragment {
     private String title;
     private String content;
     private int color;
+    private String cancelContent;
+    private String okContent;
+    private String otherContent;
     private View.OnClickListener cancelListener;
     private View.OnClickListener okListener;
-    private String otherContent;
     private View.OnClickListener otherListener;
 
 
@@ -104,6 +106,18 @@ public class CustomDialogFragment extends BaseDialogFragment {
             mTvOk.setTextColor(Color.parseColor("#ff666666"));
         }
 
+        if(cancelContent!=null && cancelContent.length()>0){
+            mTvCancel.setText(cancelContent);
+        }else {
+            mTvCancel.setText("取消");
+        }
+
+        if (okContent!=null && okContent.length()>0){
+            mTvOk.setText(okContent);
+        }else {
+            mTvOk.setText("确定");
+        }
+
         if(cancelListener!=null){
             mTvCancel.setOnClickListener(cancelListener);
         }
@@ -164,6 +178,16 @@ public class CustomDialogFragment extends BaseDialogFragment {
 
     public CustomDialogFragment setOkColor(@ColorInt int color) {
         this.color = color;
+        return this;
+    }
+
+    public CustomDialogFragment setCancelContent(String content) {
+        this.cancelContent = content;
+        return this;
+    }
+
+    public CustomDialogFragment setOkContent(String content) {
+        this.okContent = content;
         return this;
     }
 

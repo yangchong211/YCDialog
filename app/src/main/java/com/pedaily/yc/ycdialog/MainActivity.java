@@ -387,6 +387,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setTitle("这个是是标题")
                 .setContent("这个是弹窗的内容")
                 .setOtherContent("其他")
+                .setCancelContent("取消")
+                .setOkContent("确定")
                 .setDimAmount(0.2f)
                 .setTag("dialog")
                 .setCancelOutside(true)
