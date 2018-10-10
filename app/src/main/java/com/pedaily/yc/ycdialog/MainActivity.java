@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private CustomPopupWindow popWindow;
-    private TextView tv_7;
+    private TextView tv_33;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_52).setOnClickListener(this);
         findViewById(R.id.tv_61).setOnClickListener(this);
         findViewById(R.id.tv_62).setOnClickListener(this);
-        tv_7 = (TextView) findViewById(R.id.tv_7);
+        tv_33 = (TextView) findViewById(R.id.tv_33);
         findViewById(R.id.tv_7).setOnClickListener(this);
     }
 
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 CustomPop customPop = new CustomPop(this);
                 customPop.setDelayedMsDismiss(2500);
                 customPop.setBgAlpha(0.5f);
-                customPop.showAsDropDown(tv_7, 0, -tv_7.getMeasuredHeight() - tv_7.getHeight());
+                customPop.showAsDropDown(tv_33, 0, -tv_33.getMeasuredHeight() - tv_33.getHeight());
                 break;
             case R.id.tv_32:
                 showPopupWindow1();
@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 })
                 .create()
-                .showAsDropDown(tv_7,0,10);
+                .showAsDropDown(tv_33,0,10);
     }
 
 
@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new CustomPopupWindow.PopupWindowBuilder(this)
                 .setView(R.layout.view_pop_custom)
                 .create();
-        popWindow .showAsDropDown(tv_7,0,  - (tv_7.getHeight() + popWindow.getHeight()));
+        popWindow .showAsDropDown(tv_33,0,  - (tv_33.getHeight() + popWindow.getHeight()));
         //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
     }
 
