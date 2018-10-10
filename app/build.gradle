@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.pedaily.yc.ycdialog"
-        minSdkVersion 17
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -23,6 +23,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile project(':YCDialogLib')
-//    compile 'cn.yc:YCDialogLib:3.5.1'
-    compile 'org.yczbj:YCRefreshViewLib:2.5.6'                        //RecyclerView封装
+//    compile 'cn.yc:YCDialogLib:3.5.4'
 }

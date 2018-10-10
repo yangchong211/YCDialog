@@ -76,7 +76,7 @@
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:text="确定"
-                android:textColor="#333333"
+                android:textColor="#4A90E2"
                 android:visibility="visible" />
 
             <View

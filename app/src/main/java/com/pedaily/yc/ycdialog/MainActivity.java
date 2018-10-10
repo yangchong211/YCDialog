@@ -29,7 +29,6 @@ import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
 
-import org.yczbj.ycrefreshviewlib.item.RecycleViewItemLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -195,10 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                         DialogListAdapter mAdapter = new DialogListAdapter(MainActivity.this, list);
                         recyclerView.setAdapter(mAdapter);
-                        final RecycleViewItemLine line = new RecycleViewItemLine(
-                                MainActivity.this, LinearLayout.HORIZONTAL, 2,
-                                MainActivity.this.getResources().getColor(R.color.grayLine));
-                        recyclerView.addItemDecoration(line);
                         mAdapter.setOnItemClickListener(new DialogListAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {

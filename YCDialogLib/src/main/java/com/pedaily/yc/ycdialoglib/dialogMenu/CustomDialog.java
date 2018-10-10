@@ -56,9 +56,12 @@ public class CustomDialog extends Dialog {
         setContentView(R.layout.bottom_dialog);
         setCancelable(true);
         setCanceledOnTouchOutside(true);
-        getWindow().setGravity(Gravity.BOTTOM);
-        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        //建议在这里做个非空判断
+        if(getWindow()!=null){
+            getWindow().setGravity(Gravity.BOTTOM);
+            getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
+        }
         background = (LinearLayout) findViewById(R.id.background);
         titleView = (TextView) findViewById(R.id.title);
         container = (LinearLayout) findViewById(R.id.container);
