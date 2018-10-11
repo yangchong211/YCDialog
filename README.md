@@ -303,7 +303,8 @@ ViewLoading.dismiss(this);
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/8.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/9.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/10.png)
-
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/11.png)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/12.png)
 
 
 
