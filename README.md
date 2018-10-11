@@ -30,7 +30,7 @@ compile 'cn.yc:YCDialogLib:3.6.4'
 
 
 > **1.2.1 仿IOS底部弹窗，自定义对话框**
-
+- 支持设置弹窗主题，支持设置取消事件listener，支持设置名称和标题。有多个构造方法可以创建对象……
 ```
 private void showCustomDialog() {
 	final List<String> names = new ArrayList<>();
@@ -58,7 +58,7 @@ private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener li
 
 > **1.2.2 自定义Toast**
 - 采用builder构造者模式，链式编程，一行代码调用即可设置吐司Toast。注意：为了避免静态toast对象内存泄漏，固可以使用应用级别的上下文context。
-- 具体的用法如下所示：
+- 支持设置吐司的背景颜色，支持设置自定义吐司，同时支持设置吐司的多种属性等等，具体的用法如下所示：
 ```
 //可以自由设置吐司的背景颜色，默认是纯黑色
 ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_7f000000));
@@ -88,6 +88,7 @@ builder
 ```
 
 > **1.2.3 自定义简易型PopupWindow**
+- 只需要继承BasePopDialog即可，实现其中的两个抽象方法
 ```
 //第一步，自定义pop，继承BasePopDialog类，重新抽象方法
 public class CustomPop extends BasePopDialog {
@@ -166,6 +167,7 @@ new CustomBottomDialog(MainActivity.this)
 ```
 
 > **1.2.6 自定义布局弹窗dialogFragment[填充普通布局]**
+- 同1.2.7 具体可以先安装一下demo，看一下效果，使用方法如下所示：
 ```
 final BottomDialogFragment dialog = new BottomDialogFragment();
         dialog.setFragmentManager(getSupportFragmentManager());
@@ -191,6 +193,8 @@ final BottomDialogFragment dialog = new BottomDialogFragment();
 ```
 
 > **1.2.7 自定义布局弹窗dialogFragment[填充list布局]**
+- 这个是之前沙丘大学底部弹窗而定制的，可以设置自定义布局view或者layout，可以设置tag，设置是否可以cancel弹窗，并且最主要可以设置弹窗的高度。
+- 比较常见，比如下载音乐，下载视频等等，弹窗页面可以滚动，ok，就可以使用这个，代码也不是很复杂，具体使用场景可以参考我的另外一个demo：https://github.com/yangchong211/YCVideoPlayer
 ```
 final List<DialogBean> list = new ArrayList<>();
 for(int a=0 ; a<20 ; a++){
@@ -247,6 +251,8 @@ BottomDialogFragment.create(getSupportFragmentManager())
 ```
 
 > **1.2.8 自定义常见弹窗，builder模式**
+- 非常常见的弹窗，由于原生自带的弹窗不太美观，因此就需要自己定制弹窗呢。可以设置弹窗标题，内容，以及下面取消，确定等按钮内容和颜色
+- 注意，如果某个属性设置为空或者不设置，那么就会隐藏该布局。这个也是根据公司产品具体的业务场景，逐渐演变过来的，具体效果可以直接看项目demo
 ```
 CustomDialogFragment
         .create(getSupportFragmentManager())
@@ -281,7 +287,7 @@ CustomDialogFragment
 ```
 
 > **1.2.9 自定义loading加载窗**
-- 一行代码调用即可：
+- 一行代码调用即可，个人感觉不需要太复杂的代码，就能实现这个功能，满足具体业务需求，也是不亦乐乎：
 ```
 //开始loading
 ViewLoading.show(this);
