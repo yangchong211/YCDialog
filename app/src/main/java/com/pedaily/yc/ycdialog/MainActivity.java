@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showCustomDialog3();
                 break;
             case R.id.tv_7:
-                showBuilder();
+                showCustomDialog4();
                 break;
             default:
                 break;
@@ -414,6 +414,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 })
                 .show();
+
+    }
+
+    private void showCustomDialog4() {
+        CustomDialogFragment
+                .create(getSupportFragmentManager())
+                .setTitle("这个是是标题")
+                .setContent("这个是弹窗的内容这个是弹窗的内容这个是弹窗的内容这个是弹窗的内容")
+                //.setCancelContent("取消")
+                .setOkContent("确定")
+                .setDimAmount(0.2f)
+                .setTag("dialog")
+                .setCancelOutside(true)
+                .setCancelListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CustomDialogFragment.dismissDialogFragment();
+                        ToastUtils.showRoundRectToast("取消了");
+                    }
+                })
+                .setOkListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CustomDialogFragment.dismissDialogFragment();
+                        ToastUtils.showRoundRectToast("确定了");
+                    }
+                })
+                .setOtherListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CustomDialogFragment.dismissDialogFragment();
+                        ToastUtils.showRoundRectToast("其他内容");
+                    }
+                })
+                .show();
+
     }
 
 

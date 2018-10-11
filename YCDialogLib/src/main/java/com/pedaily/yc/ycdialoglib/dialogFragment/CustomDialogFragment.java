@@ -6,10 +6,13 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
+import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 /**
  * <pre>
@@ -36,7 +39,8 @@ public class CustomDialogFragment extends BaseDialogFragment {
     private int mHeight = super.getHeight();
     private String title;
     private String content;
-    private int color;
+    private int cancelColor;
+    private int okColor;
     private String cancelContent;
     private String okContent;
     private String otherContent;
@@ -82,8 +86,9 @@ public class CustomDialogFragment extends BaseDialogFragment {
         TextView mTvContent = (TextView) v.findViewById(R.id.tv_content);
         TextView mTvCancel = (TextView) v.findViewById(R.id.tv_cancel);
         TextView mTvOk = (TextView) v.findViewById(R.id.tv_ok);
-        View mViewLine = v.findViewById(R.id.view_line);
         TextView mTvOther = (TextView) v.findViewById(R.id.tv_other);
+        View mViewLineLeft = (View) v.findViewById(R.id.view_line_left);
+        View mViewLineRight = (View) v.findViewById(R.id.view_line_right);
 
 
         if (title!=null && title.length()>0){
@@ -91,6 +96,12 @@ public class CustomDialogFragment extends BaseDialogFragment {
             mTvTitle.setText(title);
         }else {
             mTvTitle.setVisibility(View.GONE);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.topMargin = DialogUtils.dip2px(ToastUtils.getApp(),20.0f);
+            params.leftMargin = DialogUtils.dip2px(ToastUtils.getApp(),20.0f);
+            params.rightMargin = DialogUtils.dip2px(ToastUtils.getApp(),20.0f);
+            mTvContent.setLayoutParams(params);
         }
 
         if (content!=null && content.length()>0){
@@ -100,16 +111,25 @@ public class CustomDialogFragment extends BaseDialogFragment {
             mTvContent.setVisibility(View.GONE);
         }
 
-        if(color!=0){
-            mTvOk.setTextColor(color);
+        if(cancelColor!=0){
+            mTvCancel.setTextColor(cancelColor);
+        }else {
+            mTvCancel.setTextColor(Color.parseColor("#333333"));
+        }
+
+        if(okColor!=0){
+            mTvOk.setTextColor(okColor);
         }else {
             mTvOk.setTextColor(Color.parseColor("#ff666666"));
         }
 
         if(cancelContent!=null && cancelContent.length()>0){
             mTvCancel.setText(cancelContent);
+            mTvCancel.setVisibility(View.VISIBLE);
+            mViewLineLeft.setVisibility(View.VISIBLE);
         }else {
-            mTvCancel.setText("取消");
+            mTvCancel.setVisibility(View.GONE);
+            mViewLineLeft.setVisibility(View.GONE);
         }
 
         if (okContent!=null && okContent.length()>0){
@@ -126,12 +146,12 @@ public class CustomDialogFragment extends BaseDialogFragment {
         }
 
         if(otherContent!=null && otherContent.length()>0 && otherListener!=null){
-            mViewLine.setVisibility(View.VISIBLE);
+            mViewLineRight.setVisibility(View.VISIBLE);
             mTvOther.setVisibility(View.VISIBLE);
             mTvOther.setOnClickListener(otherListener);
             dismissDialogFragment();
         }else {
-            mViewLine.setVisibility(View.GONE);
+            mViewLineRight.setVisibility(View.GONE);
             mTvOther.setVisibility(View.GONE);
         }
     }
@@ -176,8 +196,13 @@ public class CustomDialogFragment extends BaseDialogFragment {
         return this;
     }
 
+    public CustomDialogFragment setCancelColor(@ColorInt int color) {
+        this.cancelColor = color;
+        return this;
+    }
+
     public CustomDialogFragment setOkColor(@ColorInt int color) {
-        this.color = color;
+        this.okColor = color;
         return this;
     }
 

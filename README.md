@@ -14,7 +14,7 @@
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加**
 ```
-compile 'cn.yc:YCDialogLib:3.5.9'
+compile 'cn.yc:YCDialogLib:3.6.4'
 ```
 
 - **1.2 关于对话框的种类**

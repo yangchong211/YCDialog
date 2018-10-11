@@ -20,6 +20,7 @@
             android:layout_marginTop="20dp"
             android:textColor="#333333"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:text="这个是标题"
             android:visibility="visible" />
 
@@ -62,6 +63,7 @@
                 android:textColor="#999999" />
 
             <View
+                android:id="@+id/view_line_left"
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="#ff666666"
@@ -80,7 +82,7 @@
                 android:visibility="visible" />
 
             <View
-                android:id="@+id/view_line"
+                android:id="@+id/view_line_right"
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="#ff666666"
