@@ -26,6 +26,7 @@ compile 'cn.yc:YCDialogLib:3.6.4'
 	- 1.2.6 自定义布局弹窗dialogFragment[填充普通布局]
 	- 1.2.7 自定义布局弹窗dialogFragment[填充list布局]
 	- 1.2.8 自定义常见弹窗，builder模式
+	- 1.2.9 自定义loading加载窗
 
 
 > **1.2.1 仿IOS底部弹窗，自定义对话框**
@@ -278,6 +279,17 @@ CustomDialogFragment
         })
         .show();
 ```
+
+> **1.2.9 自定义loading加载窗**
+- 一行代码调用即可：
+```
+//开始loading
+ViewLoading.show(this);
+ViewLoading.show(this,"加载中");
+//结束loading
+ViewLoading.dismiss(this);
+```
+
 
 
 #### 2.自定义对话框截图

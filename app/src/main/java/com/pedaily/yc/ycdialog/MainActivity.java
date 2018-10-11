@@ -3,6 +3,7 @@ package com.pedaily.yc.ycdialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,7 @@ import com.pedaily.yc.ycdialoglib.dialogFragment.CustomDialogFragment;
 import com.pedaily.yc.ycdialoglib.dialogMenu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.dialogMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.dialogMenu.OnItemClickListener;
+import com.pedaily.yc.ycdialoglib.loading.ViewLoading;
 import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_62).setOnClickListener(this);
         tv_33 = (TextView) findViewById(R.id.tv_33);
         findViewById(R.id.tv_7).setOnClickListener(this);
+        findViewById(R.id.tv_81).setOnClickListener(this);
+        findViewById(R.id.tv_82).setOnClickListener(this);
+        findViewById(R.id.tv_83).setOnClickListener(this);
     }
 
 
@@ -144,6 +149,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_7:
                 showCustomDialog4();
+                break;
+            case R.id.tv_81:
+                ViewLoading.show(this);
+                new CountDownTimer(3000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ViewLoading.dismiss(MainActivity.this);
+                    }
+                }.start();
+                break;
+            case R.id.tv_82:
+                ViewLoading.show(this,"加载中");
+                new CountDownTimer(3000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ViewLoading.dismiss(MainActivity.this);
+                    }
+                }.start();
+                break;
+            case R.id.tv_83:
+                ViewLoading.show(this,"加载中",true);
+                new CountDownTimer(3000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ViewLoading.dismiss(MainActivity.this);
+                    }
+                }.start();
                 break;
             default:
                 break;

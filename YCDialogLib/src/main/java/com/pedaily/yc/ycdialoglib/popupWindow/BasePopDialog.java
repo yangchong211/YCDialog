@@ -14,7 +14,7 @@ import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 /**
  * <pre>
- *     @author
+ *     @author yangchong
  *     blog  : https://github.com/yangchong211
  *     time  : 2016/06/4
  *     desc  : PopupWindow抽象类
