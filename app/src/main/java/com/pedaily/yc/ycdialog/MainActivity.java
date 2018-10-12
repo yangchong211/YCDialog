@@ -1,6 +1,7 @@
 package com.pedaily.yc.ycdialog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -30,6 +31,7 @@ import com.pedaily.yc.ycdialoglib.loading.ViewLoading;
 import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
+import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 
 import java.util.ArrayList;
@@ -55,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initListener();
+
+        //注意，建议加上这个判断
+        DialogUtils.requestMsgPermission(this);
     }
 
 
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_81).setOnClickListener(this);
         findViewById(R.id.tv_82).setOnClickListener(this);
         findViewById(R.id.tv_83).setOnClickListener(this);
+        findViewById(R.id.tv_9).setOnClickListener(this);
     }
 
 
@@ -191,6 +197,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ViewLoading.dismiss(MainActivity.this);
                     }
                 }.start();
+                break;
+            case R.id.tv_9:
+                startActivity(new Intent(this,TestActivity.class));
                 break;
             default:
                 break;
@@ -399,6 +408,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog.setFragmentManager(getSupportFragmentManager());
         dialog.setTitle("这个是是标题");
         dialog.setContent("这个是弹窗的内容");
+        dialog.setCancelContent("取消");
+        dialog.setOkContent("确定");
         dialog.setDimAmount(0.0f);
         dialog.setTag("BottomDialog");
         dialog.setCancelOutside(true);

@@ -18,6 +18,7 @@ compile 'cn.yc:YCDialogLib:3.6.4'
 ```
 
 - **1.2 关于对话框的种类**
+	- 1.2.0 判断通知权限
 	- 1.2.1 仿IOS底部弹窗Dialog
 	- 1.2.2 自定义Toast
 	- 1.2.3 自定义简易型PopupWindow
@@ -27,6 +28,14 @@ compile 'cn.yc:YCDialogLib:3.6.4'
 	- 1.2.7 自定义布局弹窗dialogFragment[填充list布局]
 	- 1.2.8 自定义常见弹窗，builder模式
 	- 1.2.9 自定义loading加载窗
+
+
+> **1.2.0 判断通知权限**
+- 一行代码调用，建议加上，大部分手机通知权限是开启的。如果关闭了，则吐司是无法显示的，但是仍有部分手机，比如某型号小米手机，锤子手机等就权限需要手动开启。
+```
+//注意，建议加上这个判断
+DialogUtils.requestMsgPermission(this);
+```
 
 
 > **1.2.1 仿IOS底部弹窗，自定义对话框**
