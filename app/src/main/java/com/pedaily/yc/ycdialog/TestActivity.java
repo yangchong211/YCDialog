@@ -2,6 +2,7 @@ package com.pedaily.yc.ycdialog;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 
 
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,6 +31,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         mTv1.setOnClickListener(this);
         findViewById(R.id.tv_2).setOnClickListener(this);
+        findViewById(R.id.tv_3).setOnClickListener(this);
     }
 
     @Override
@@ -39,6 +43,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_2:
                 Toast.makeText(this,"吐司",Toast.LENGTH_SHORT).show();
                 showDialogFragment();
+                break;
+            case R.id.tv_3:
+                showToast();
                 break;
         }
     }
@@ -83,5 +90,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         CustomDialogFragment.showDialog(this);
     }
 
+
+    private void showToast() {
+        ToastUtils.showRoundRectToast("潇湘剑雨-杨充");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

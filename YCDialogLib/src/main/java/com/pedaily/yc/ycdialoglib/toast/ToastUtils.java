@@ -226,7 +226,9 @@ public class ToastUtils {
         }
 
         public Toast build() {
-            Toast toast = new Toast(context);
+            if(toast==null){
+                toast = new Toast(context);
+            }
             if (isFill) {
                 toast.setGravity(gravity | Gravity.FILL_HORIZONTAL, 0, yOffset);
             } else {
