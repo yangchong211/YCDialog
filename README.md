@@ -84,7 +84,7 @@ ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_7f000000
 ToastUtils.showRoundRectToast("自定义吐司");
 
 //设置吐司标题和内容
-ToastUtils.showRoundRectToast("吐司一下","他发的撒经济法的解放军");
+ToastUtils.showRoundRectToast("吐司一下","潇湘剑雨杨充是个逗比");
 
 //第三种直接设置自定义布局的吐司
 ToastUtils.showRoundRectToast(R.layout.view_layout_toast_delete);
