@@ -11,6 +11,25 @@
 - **6.关于其他更多信息**
 
 
+
+### 好消息
+- 博客笔记大汇总【16年3月到至今】，包括Java基础及深入知识点，Android技术博客，Python学习笔记等等，还包括平时开发中遇到的bug汇总，当然也在工作之余收集了大量的面试题，长期更新维护并且修正，持续完善……开源的文件是markdown格式的！同时也开源了生活博客，从12年起，积累共计47篇[近20万字]，转载请注明出处，谢谢！
+- **链接地址：https://github.com/yangchong211/YCBlogs**
+- 如果觉得好，可以star一下，谢谢！当然也欢迎提出建议，万事起于忽微，量变引起质变！
+- [02.Toast源码深度分析](https://github.com/yangchong211/YCBlogs/blob/master/android/Window/02.Toast%E6%BA%90%E7%A0%81%E6%B7%B1%E5%BA%A6%E5%88%86%E6%9E%90.md)
+    - 最简单的创建，简单改造避免重复创建，show()方法源码分析，scheduleTimeoutLocked吐司如何自动销毁的，TN类中的消息机制是如何执行的，普通应用的Toast显示数量是有限制的，用代码解释为何Activity销毁后Toast仍会显示，Toast偶尔报错Unable to add window是如何产生的，Toast运行在子线程问题，Toast如何添加系统窗口的权限等等
+- [03.DialogFragment源码分析](https://github.com/yangchong211/YCBlogs/blob/master/android/Window/03.DialogFragment%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
+    - 最简单的使用方法，onCreate(@Nullable Bundle savedInstanceState)源码分析，重点分析弹窗展示和销毁源码，使用中show()方法遇到的IllegalStateException分析
+- [05.PopupWindow源码分析](https://github.com/yangchong211/YCBlogs/blob/master/android/Window/05.PopupWindow%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
+    - 显示PopupWindow，注意问题宽和高属性，showAsDropDown()源码，dismiss()源码分析，PopupWindow和Dialog有什么区别？为何弹窗点击一下就dismiss呢？
+- [06.Snackbar源码分析](https://github.com/yangchong211/YCBlogs/blob/master/android/Window/06.Snackbar%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
+    - 最简单的创建，Snackbar的make方法源码分析，Snackbar的show显示与点击消失源码分析，显示和隐藏中动画源码分析，Snackbar的设计思路，为什么Snackbar总是显示在最下面
+- [07.弹窗常见问题](https://github.com/yangchong211/YCBlogs/blob/master/android/Window/07.%E5%BC%B9%E7%AA%97%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.md)
+    - DialogFragment使用中show()方法遇到的IllegalStateException,什么常见产生的？Toast偶尔报错Unable to add window，Toast运行在子线程导致崩溃如何解决？
+- [08.Builder模式](https://github.com/yangchong211/YCBlogs/blob/master/android/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/02.Builder%E6%A8%A1%E5%BC%8F.md)
+    - 你会发现，在这个弹窗封装库中，很多地方用到了builder模式，那么可以先了解下Builder模式使用场景，简单案例，Builder模式实际案例Demo展示，看看AlertDialog.Builder源代码如何实现，为什么AlertDialog要使用builder模式呢？builder模式优缺点分析。
+ 
+
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加**
 ```

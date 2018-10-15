@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -111,21 +112,32 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showSnackBar(View v){
         Snackbar sb = Snackbar.make(v,"潇湘剑雨",Snackbar.LENGTH_LONG)
-                .setAction("是吗？", new View.OnClickListener() {
+                .setAction("删除吗？", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //点击了"是吗？"字符串操作
+                        ToastUtils.showRoundRectToast("逗比");
                     }
                 })
                 .setActionTextColor(Color.RED)
-                .setText("aa是不够的")
+                .setText("杨充是个逗比")
                 .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
                         super.onDismissed(transientBottomBar, event);
+                        switch (event) {
+                            case Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE:
+                            case Snackbar.Callback.DISMISS_EVENT_MANUAL:
+                            case Snackbar.Callback.DISMISS_EVENT_SWIPE:
+                            case Snackbar.Callback.DISMISS_EVENT_TIMEOUT:
+                                ToastUtils.showRoundRectToast("删除成功");
+                                break;
+                            case Snackbar.Callback.DISMISS_EVENT_ACTION:
+                                ToastUtils.showRoundRectToast("撤销了删除操作");
+                                break;
+                        }
                         Log.d("MainActivity","onDismissed");
                     }
-
                     @Override
                     public void onShown(Snackbar transientBottomBar) {
                         super.onShown(transientBottomBar);
@@ -133,6 +145,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
         sb.show();
+        //sb.dismiss();
     }
 
 }

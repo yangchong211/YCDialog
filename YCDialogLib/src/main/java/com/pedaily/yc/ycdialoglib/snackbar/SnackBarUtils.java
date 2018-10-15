@@ -64,6 +64,9 @@ public final class SnackBarUtils {
 
 
     public static void showSnackBar(Activity activity, String text) {
+        if(activity==null || text==null || text.length()==0){
+            return;
+        }
         SnackBarUtils.builder()
                 .setBackgroundColor(activity.getResources().getColor(R.color.color_000000))
                 .setTextSize(14)
@@ -79,6 +82,9 @@ public final class SnackBarUtils {
 
 
     public static void showSnackBar(Activity activity, String text, String action, View.OnClickListener listener) {
+        if(activity==null || text==null || text.length()==0 || action==null || action.length()==0){
+            return;
+        }
         SnackBarUtils.builder()
                 .setBackgroundColor(activity.getResources().getColor(R.color.color_000000))
                 .setTextSize(14)
@@ -98,6 +104,9 @@ public final class SnackBarUtils {
     }
 
     public static void showSnackBar(Activity activity, String text, String action, @DrawableRes int resId, View.OnClickListener listener) {
+        if(activity==null || text==null || text.length()==0 || action==null || action.length()==0 || resId!=0){
+            return;
+        }
         SnackBarUtils.builder()
                 .setBackgroundColor(activity.getResources().getColor(R.color.color_000000))
                 .setTextSize(14)
