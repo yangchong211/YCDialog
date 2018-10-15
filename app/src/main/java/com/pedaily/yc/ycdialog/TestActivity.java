@@ -1,10 +1,14 @@
 package com.pedaily.yc.ycdialog;
 
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -32,6 +36,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         mTv1.setOnClickListener(this);
         findViewById(R.id.tv_2).setOnClickListener(this);
         findViewById(R.id.tv_3).setOnClickListener(this);
+        findViewById(R.id.tv_4).setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +51,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_3:
                 showToast();
+                break;
+            case R.id.tv_4:
+                showSnackBar(v);
                 break;
         }
     }
@@ -98,6 +106,33 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void showSnackBar(View v){
+        Snackbar sb = Snackbar.make(v,"潇湘剑雨",Snackbar.LENGTH_LONG)
+                .setAction("是吗？", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //点击了"是吗？"字符串操作
+                    }
+                })
+                .setActionTextColor(Color.RED)
+                .setText("aa是不够的")
+                .addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                        super.onDismissed(transientBottomBar, event);
+                        Log.d("MainActivity","onDismissed");
+                    }
+
+                    @Override
+                    public void onShown(Snackbar transientBottomBar) {
+                        super.onShown(transientBottomBar);
+                        Log.d("MainActivity","onShown");
+                    }
+                });
+        sb.show();
     }
 
 }

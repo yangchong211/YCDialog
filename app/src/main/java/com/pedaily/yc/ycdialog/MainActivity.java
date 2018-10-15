@@ -3,8 +3,11 @@ package com.pedaily.yc.ycdialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +19,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import com.pedaily.yc.ycdialoglib.dialogMenu.CustomItem;
 import com.pedaily.yc.ycdialoglib.dialogMenu.OnItemClickListener;
 import com.pedaily.yc.ycdialoglib.loading.ViewLoading;
 import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
+import com.pedaily.yc.ycdialoglib.snackbar.SnackBarUtils;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
 import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
@@ -85,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_82).setOnClickListener(this);
         findViewById(R.id.tv_83).setOnClickListener(this);
         findViewById(R.id.tv_9).setOnClickListener(this);
+        findViewById(R.id.tv_101).setOnClickListener(this);
+        findViewById(R.id.tv_102).setOnClickListener(this);
+        findViewById(R.id.tv_103).setOnClickListener(this);
+        findViewById(R.id.tv_104).setOnClickListener(this);
+        findViewById(R.id.tv_105).setOnClickListener(this);
+        findViewById(R.id.tv_106).setOnClickListener(this);
     }
 
 
@@ -200,6 +209,79 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_9:
                 startActivity(new Intent(this,TestActivity.class));
+                break;
+            case R.id.tv_101:
+                SnackBarUtils.showSnackBar(this,"滚犊子");
+                break;
+            case R.id.tv_102:
+                SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastUtils.showRoundRectToast("滚犊子啦？");
+                    }
+                });
+                break;
+            case R.id.tv_103:
+                SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION",R.drawable.icon_cancel, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastUtils.showRoundRectToast("滚犊子啦？");
+                    }
+                });
+                break;
+            case R.id.tv_104:
+                SnackBarUtils.builder()
+                        .setView(view)
+                        .setText("滚犊子")
+                        .setDuration(SnackBarUtils.DurationType.LENGTH_SHORT)
+                        .build()
+                        .show();
+                break;
+            case R.id.tv_105:
+                Snackbar snackbar = SnackBarUtils.builder()
+                        .setView(view)
+                        .setText("滚犊子")
+                        .setDuration(SnackBarUtils.DurationType.LENGTH_SHORT)
+                        .build();
+                snackbar.addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                        super.onDismissed(transientBottomBar, event);
+                        Log.d("MainActivity","onDismissed");
+                    }
+
+                    @Override
+                    public void onShown(Snackbar transientBottomBar) {
+                        super.onShown(transientBottomBar);
+                        Log.d("MainActivity","onShown");
+                    }
+                });
+                snackbar.show();
+                break;
+            case R.id.tv_106:
+                SnackBarUtils.builder()
+                        .setBackgroundColor(this.getResources().getColor(R.color.color_7f000000))
+                        .setTextSize(14)
+                        .setTextColor(this.getResources().getColor(R.color.white))
+                        .setTextTypefaceStyle(Typeface.BOLD)
+                        .setText("滚犊子")
+                        .setMaxLines(4)
+                        .centerText()
+                        .setActionText("收到")
+                        .setActionTextColor(this.getResources().getColor(R.color.color_f25057))
+                        .setActionTextSize(16)
+                        .setActionTextTypefaceStyle(Typeface.BOLD)
+                        .setActionClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ToastUtils.showRoundRectToast("滚犊子啦？");
+                            }
+                        })
+                        .setIcon(R.drawable.icon_cancel)
+                        .setActivity(MainActivity.this)
+                        .setDuration(SnackBarUtils.DurationType.LENGTH_INDEFINITE)
+                        .build()
+                        .show();
                 break;
             default:
                 break;

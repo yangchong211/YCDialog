@@ -28,7 +28,7 @@ import com.pedaily.yc.ycdialoglib.R;
  *     revise:
  * </pre>
  */
-public class ToastUtils {
+public final class ToastUtils {
 
 
     @SuppressLint("StaticFieldLeak")

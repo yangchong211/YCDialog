@@ -34,4 +34,13 @@
         android:background="@color/colorAccent"
         android:text="3.分析Toast源代码"/>
 
+    <TextView
+        android:id="@+id/tv_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/colorAccent"
+        android:text="4.分析SnackBar源代码"/>
+
 </LinearLayout>

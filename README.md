@@ -14,7 +14,7 @@
 #### 1.使用方法
 - **1.1首先在项目build.gradlew中添加**
 ```
-compile 'cn.yc:YCDialogLib:3.6.4'
+compile 'cn.yc:YCDialogLib:3.6.5'
 ```
 
 - **1.2 关于对话框的种类**
@@ -28,6 +28,7 @@ compile 'cn.yc:YCDialogLib:3.6.4'
 	- 1.2.7 自定义布局弹窗dialogFragment[填充list布局]
 	- 1.2.8 自定义常见弹窗，builder模式
 	- 1.2.9 自定义loading加载窗
+	- 1.3.0 自定义SnackBar
 
 
 > **1.2.0 判断通知权限**
@@ -305,6 +306,53 @@ ViewLoading.show(this,"加载中");
 ViewLoading.dismiss(this);
 ```
 
+> **1.3.0 自定义SnackBar**
+- 可以一行代码调用，也可以自己使用链式编程调用。支持设置显示时长属性；可以设置背景色；可以设置文字大小，颜色；可以设置action内容，文字大小，颜色，还有点击事件；可以设置icon；代码如下所示，更多内容可以直接运行demo哦！
+```
+//1.只设置text
+SnackBarUtils.showSnackBar(this,"滚犊子");
+
+//2.设置text，action，和点击事件
+SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION", new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        ToastUtils.showRoundRectToast("滚犊子啦？");
+    }
+});
+
+//3.设置text，action，和点击事件，和icon
+SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION",R.drawable.icon_cancel, new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        ToastUtils.showRoundRectToast("滚犊子啦？");
+    }
+});
+
+//4.链式调用
+SnackBarUtils.builder()
+    .setBackgroundColor(this.getResources().getColor(R.color.color_7f000000))
+    .setTextSize(14)
+    .setTextColor(this.getResources().getColor(R.color.white))
+    .setTextTypefaceStyle(Typeface.BOLD)
+    .setText("滚犊子")
+    .setMaxLines(4)
+    .centerText()
+    .setActionText("收到")
+    .setActionTextColor(this.getResources().getColor(R.color.color_f25057))
+    .setActionTextSize(16)
+    .setActionTextTypefaceStyle(Typeface.BOLD)
+    .setActionClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ToastUtils.showRoundRectToast("滚犊子啦？");
+        }
+    })
+    .setIcon(R.drawable.icon_cancel)
+    .setActivity(MainActivity.this)
+    .setDuration(SnackBarUtils.DurationType.LENGTH_INDEFINITE)
+    .build()
+    .show();
+```
 
 
 #### 2.自定义对话框截图
