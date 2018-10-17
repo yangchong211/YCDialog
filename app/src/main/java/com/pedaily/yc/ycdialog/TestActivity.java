@@ -1,5 +1,6 @@
 package com.pedaily.yc.ycdialog;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +40,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tv_2).setOnClickListener(this);
         findViewById(R.id.tv_3).setOnClickListener(this);
         findViewById(R.id.tv_4).setOnClickListener(this);
+        findViewById(R.id.tv_5).setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +58,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_4:
                 showSnackBar(v);
+                break;
+            case R.id.tv_5:
+                showDialog();
                 break;
         }
     }
@@ -147,5 +153,32 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         sb.show();
         //sb.dismiss();
     }
+
+    private AlertDialog alertDialog=null;
+    public void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("潇湘剑雨");
+        builder.setTitle("这个是标题");
+        builder.setView(R.layout.activity_main);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.cancel();
+                alertDialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+
 
 }
