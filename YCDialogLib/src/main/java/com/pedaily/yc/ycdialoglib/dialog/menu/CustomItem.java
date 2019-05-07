@@ -2,14 +2,15 @@ package com.pedaily.yc.ycdialoglib.dialog.menu;
 
 import android.graphics.drawable.Drawable;
 
+
 /**
- * ================================================
- * 作    者：杨充
- * 版    本：1.0
- * 创建日期：2017/5/2
- * 描    述：
- * 修订历史：
- * ================================================
+ * <pre>
+ *     @author yangchong
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/5/2
+ *     desc  : 实体类
+ *     revise:
+ * </pre>
  */
 public class CustomItem {
 

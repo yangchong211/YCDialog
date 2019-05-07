@@ -87,7 +87,6 @@ public class ViewLoading extends Dialog {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        //Log.e("ViewLoading","onDetachedFromWindow");
         //注意需要销毁动画
         if (animation!=null){
             animation.cancel();

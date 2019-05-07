@@ -1,18 +1,20 @@
 package com.pedaily.yc.ycdialoglib.dialog.menu;
 
+import android.app.Application;
 import android.content.Context;
 import android.support.v7.widget.OrientationHelper;
 
 import java.util.List;
 
+
 /**
- * ================================================
- * 作    者：杨充
- * 版    本：1.0
- * 创建日期：2017/5/2
- * 描    述：
- * 修订历史：
- * ================================================
+ * <pre>
+ *     @author yangchong
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/5/2
+ *     desc  : CustomDialog
+ *     revise:
+ * </pre>
  */
 public class CustomBottomDialog {
 
@@ -21,7 +23,13 @@ public class CustomBottomDialog {
     public static final int VERTICAL = OrientationHelper.VERTICAL;
 
     public CustomBottomDialog(Context context) {
-        customDialog = new CustomDialog(context);
+        //注意这里增加一个判断，不能是全局上下文
+        if (context instanceof Application){
+            throw new IllegalStateException("context must not be application");
+        }
+        if (customDialog==null){
+            customDialog = new CustomDialog(context);
+        }
     }
 
     public CustomBottomDialog title(String title) {

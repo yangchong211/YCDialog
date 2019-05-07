@@ -28,7 +28,7 @@ import java.util.List;
  *     @author yangchong
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/06/4
- *     desc  : Toast工具类
+ *     desc  : 仿IOS底部弹窗Dialog
  *     revise:
  * </pre>
  */
@@ -200,9 +200,10 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         private List<String> mStrings;
         private ViewHolder viewholder;
         private LayoutInflater layoutInflater;
+
         DialogAdapter(List<String> strings) {
             this.mStrings = strings;
-            this.layoutInflater=mActivity.getLayoutInflater();
+            this.layoutInflater = mActivity.getLayoutInflater();
         }
 
         @Override
@@ -225,7 +226,7 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
             if (null == convertView) {
                 viewholder=new ViewHolder();
                 convertView = layoutInflater.inflate(R.layout.view_dialog_item, null);
-                viewholder.dialogItemButton=(TextView) convertView.findViewById(R.id.dialog_item_bt);
+                viewholder.dialogItemButton= convertView.findViewById(R.id.dialog_item_bt);
                 convertView.setTag(viewholder);
             }else{
                 viewholder=(ViewHolder) convertView.getTag();
