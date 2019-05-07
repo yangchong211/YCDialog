@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.dialogMenu;
+package com.pedaily.yc.ycdialoglib.dialog.menu;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -62,10 +62,10 @@ public class CustomDialog extends Dialog {
             getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 
         }
-        background = (LinearLayout) findViewById(R.id.background);
-        titleView = (TextView) findViewById(R.id.title);
-        container = (LinearLayout) findViewById(R.id.container);
-        cancel = (TextView) findViewById(R.id.cancel);
+        background = findViewById(R.id.background);
+        titleView = findViewById(R.id.title);
+        container = findViewById(R.id.container);
+        cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

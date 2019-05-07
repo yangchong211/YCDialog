@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.dialogMenu;
+package com.pedaily.yc.ycdialoglib.dialog.menu;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -31,7 +31,7 @@ import java.util.List;
  * 修订历史：
  * ================================================
  */
-class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     private static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     private static final int VERTICAL = OrientationHelper.VERTICAL;
@@ -81,11 +81,13 @@ class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (layout == CustomDialog.GRID)
+        if (layout == CustomDialog.GRID) {
             return new TopHolder(new LinearLayout(parent.getContext()));
-        else if (orientation == HORIZONTAL)
+        } else if (orientation == HORIZONTAL) {
             return new TopHolder(new LinearLayout(parent.getContext()));
-        else return new LeftHolder(new LinearLayout(parent.getContext()));
+        } else {
+            return new LeftHolder(new LinearLayout(parent.getContext()));
+        }
     }
 
     @Override
@@ -103,7 +105,9 @@ class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
             topHolder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (itemClickListener != null) itemClickListener.click(item);
+                    if (itemClickListener != null) {
+                        itemClickListener.click(item);
+                    }
                 }
             });
         } else if (orientation == HORIZONTAL) {
@@ -114,7 +118,9 @@ class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
             topHolder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (itemClickListener != null) itemClickListener.click(item);
+                    if (itemClickListener != null) {
+                        itemClickListener.click(item);
+                    }
                 }
             });
         } else {
@@ -125,7 +131,9 @@ class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
             leftHolder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (itemClickListener != null) itemClickListener.click(item);
+                    if (itemClickListener != null) {
+                        itemClickListener.click(item);
+                    }
                 }
             });
         }
@@ -187,6 +195,7 @@ class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
      * 左边的
      */
     private class LeftHolder extends RecyclerView.ViewHolder {
+
         private TextView item;
 
         LeftHolder(View view) {
@@ -206,7 +215,8 @@ class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
             item.setPadding(padding, padding, padding, padding);
 
             TypedValue typedValue = new TypedValue();
-            view.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, typedValue, true);
+            view.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
+                    typedValue, true);
             item.setBackgroundResource(typedValue.resourceId);
 
             ((LinearLayout) view).addView(item);

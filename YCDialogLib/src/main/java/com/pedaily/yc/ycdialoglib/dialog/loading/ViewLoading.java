@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.R;
-
+import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 
 
 /**
@@ -40,12 +40,12 @@ public class ViewLoading extends Dialog {
         // 加载布局
         if(content!=null && content.length()>0){
             setContentView(R.layout.layout_dialog_loading);
-            TextView message = (TextView) findViewById(R.id.message);
+            TextView message = findViewById(R.id.message);
             message.setText(content);
         }else {
             setContentView(R.layout.layout_dialog_loaded);
         }
-        ImageView progressImageView = (ImageView) findViewById(R.id.iv_image);
+        ImageView progressImageView = findViewById(R.id.iv_image);
         //创建旋转动画
         animation = new RotateAnimation(0f, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
@@ -99,6 +99,7 @@ public class ViewLoading extends Dialog {
     public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (canNotCancel) {
+                dismiss();
                 return true;
             }
         }
@@ -107,10 +108,12 @@ public class ViewLoading extends Dialog {
 
 
     public static void show(Context context) {
+        ToastUtils.checkContext();
         show(context,"");
     }
 
     public static void show(Context context, String message) {
+        ToastUtils.checkContext();
         show(context, message,false);
     }
 

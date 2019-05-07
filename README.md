@@ -1,7 +1,17 @@
 ### 自定义对话框
 #### 目录介绍
+- 01.该库介绍
+- 02.效果展示
+- 03.如何使用
+- 04.注意要点
+- 05.优化问题
+- 06.版本更新
+- 07.弹窗bug
+- 08.参考案例
+
+
 - **1.使用方法**
-	- 1.1 添加库
+	- 1.1 添加库操作
 	- 1.2 关于对话框的种类
 	- 1.3 代码使用方法
 - **2.自定义对话框截图**
@@ -12,10 +22,13 @@
 
 
 
-### 好消息
-- 博客笔记大汇总【16年3月到至今】，包括Java基础及深入知识点，Android技术博客，Python学习笔记等等，还包括平时开发中遇到的bug汇总，当然也在工作之余收集了大量的面试题，长期更新维护并且修正，持续完善……开源的文件是markdown格式的！同时也开源了生活博客，从12年起，积累共计47篇[近20万字]，转载请注明出处，谢谢！
-- **链接地址：https://github.com/yangchong211/YCBlogs**
-- 如果觉得好，可以star一下，谢谢！当然也欢迎提出建议，万事起于忽微，量变引起质变！
+### 01.该库介绍
+- 本库融合了弹窗类型有：Dialog，DialogFragment，Toast，PopupWindow，SnackBar。功能十分齐全，适合应用于实际开发中。
+- 一行代码调用检测手机通知权限，建议加上，大部分手机通知权限是开启的。如果关闭了，则吐司是无法显示的，但是仍有部分手机，比如某型号小米手机，锤子手机等就权限需要手动开启。
+- 针对吐司工具类，轻量级，使用builder模式，链式调用设置属性，可以设置吐司背景，文字内容，或者自定义布局吐司。解决避免点击多次导致吐司多次问题。
+- 针对
+
+
 
 
 #### 1.使用方法
@@ -410,31 +423,6 @@ SnackBarUtils.builder()
 
 #### 5.关于弹窗遇到bug管理
 - 关于弹窗的常见问题，可以看07中的博客。后期持续记录更新。
-
-
-
-#### 6.关于获取更多信息
-##### 01.关于博客汇总链接
-- 1.[技术博客汇总](https://www.jianshu.com/p/614cb839182c)
-- 2.[开源项目汇总](https://blog.csdn.net/m0_37700275/article/details/80863574)
-- 3.[生活博客汇总](https://blog.csdn.net/m0_37700275/article/details/79832978)
-- 4.[喜马拉雅音频汇总](https://www.jianshu.com/p/f665de16d1eb)
-- 5.[其他汇总](https://www.jianshu.com/p/53017c3fc75d)
-
-
-
-##### 02.关于我的博客
-- 我的个人站点：www.yczbj.org，www.ycbjie.cn
-- github：https://github.com/yangchong211
-- 知乎：https://www.zhihu.com/people/yang-chong-69-24/pins/posts
-- 简书：http://www.jianshu.com/u/b7b2c6ed9284
-- csdn：http://my.csdn.net/m0_37700275
-- 喜马拉雅听书：http://www.ximalaya.com/zhubo/71989305/
-- 开源中国：https://my.oschina.net/zbj1618/blog
-- 泡在网上的日子：http://www.jcodecraeer.com/member/content_list.php?channelid=1
-- 邮箱：yangchong211@163.com
-- 阿里云博客：https://yq.aliyun.com/users/article?spm=5176.100- 239.headeruserinfo.3.dT4bcV
-- segmentfault头条：https://segmentfault.com/u/xiangjianyu/articles
 
 
 

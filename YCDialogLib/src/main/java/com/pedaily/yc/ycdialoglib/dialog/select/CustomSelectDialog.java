@@ -22,14 +22,15 @@ import com.pedaily.yc.ycdialoglib.R;
 
 import java.util.List;
 
+
 /**
- * ================================================
- * 作    者：杨充
- * 版    本：1.0
- * 创建日期：2017/4/21
- * 描    述：选择对话框
- * 修订历史：
- * ================================================
+ * <pre>
+ *     @author yangchong
+ *     blog  : https://github.com/yangchong211
+ *     time  : 2017/06/4
+ *     desc  : Toast工具类
+ *     revise:
+ * </pre>
  */
 public class CustomSelectDialog extends Dialog implements OnClickListener,OnItemClickListener {
 
@@ -63,7 +64,8 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * @param listener          菜单项单击事件
      * @param names             菜单项名称
      */
-    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener, List<String> names) {
+    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
+                              List<String> names) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
@@ -78,7 +80,8 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * @param cancelListener    取消事件
      * @param names             菜单项名称
      */
-    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener, SelectDialogCancelListener cancelListener , List<String> names) {
+    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
+                              SelectDialogCancelListener cancelListener , List<String> names) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
@@ -96,7 +99,8 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * @param title             菜单标题文字
      *
      */
-    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener, List<String> names, String title) {
+    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
+                              List<String> names, String title) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
@@ -114,7 +118,9 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * @param names             名称
      * @param title             标题
      */
-    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener, SelectDialogCancelListener cancelListener, List<String> names, String title) {
+    public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
+                              SelectDialogCancelListener cancelListener, List<String> names,
+                              String title) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
@@ -129,7 +135,14 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = getLayoutInflater().inflate(R.layout.view_dialog_select, null);
-        setContentView(view, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+        setContentView(view, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        initViews();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //设置弹窗的位置时在底部
         Window window = getWindow();
         // 设置显示动画
         if (window != null) {
@@ -143,14 +156,13 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
             // 设置显示位置
             onWindowAttributesChanged(wl);
         }
-        initViews();
     }
 
     private void initViews() {
-        DialogAdapter dialogAdapter=new DialogAdapter(mName);
-        ListView dialogList=(ListView) findViewById(R.id.dialog_list);
-        Button mMBtnCancel = (Button) findViewById(R.id.mBtn_Cancel);
-        TextView mTvTitle = (TextView) findViewById(R.id.mTv_Title);
+        DialogAdapter dialogAdapter = new DialogAdapter(mName);
+        ListView dialogList= findViewById(R.id.dialog_list);
+        Button mMBtnCancel = findViewById(R.id.mBtn_Cancel);
+        TextView mTvTitle = findViewById(R.id.mTv_Title);
 
         dialogList.setOnItemClickListener(this);
         dialogList.setAdapter(dialogAdapter);

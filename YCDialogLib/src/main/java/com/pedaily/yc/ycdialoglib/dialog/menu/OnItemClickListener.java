@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.dialogMenu;
+package com.pedaily.yc.ycdialoglib.dialog.menu;
 
 /**
  * ================================================

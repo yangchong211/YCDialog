@@ -23,9 +23,9 @@ import com.pedaily.yc.ycdialoglib.R;
  * <pre>
  *     @author yangchong
  *     blog  : https://github.com/yangchong211
- *     time  : 2016/06/4
+ *     time  : 2017/06/4
  *     desc  : Toast工具类
- *     revise:
+ *     revise: 具体看GitHub开源项目：https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public final class ToastUtils {
@@ -59,7 +59,7 @@ public final class ToastUtils {
     /**
      * 检查上下文不能为空，必须先进性初始化操作
      */
-    private static void checkContext(){
+    public static void checkContext(){
         if(mApp==null){
             throw new NullPointerException("ToastUtils context is not null，please first init");
         }
@@ -238,8 +238,8 @@ public final class ToastUtils {
             toast.setMargin(0, 0);
             if(layout==0){
                 CardView rootView = (CardView) LayoutInflater.from(context).inflate(R.layout.view_toast_custom, null);
-                TextView textView = (TextView) rootView.findViewById(R.id.toastTextView);
-                TextView descTv = (TextView) rootView.findViewById(R.id.desc);
+                TextView textView = rootView.findViewById(R.id.toastTextView);
+                TextView descTv = rootView.findViewById(R.id.desc);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     //rootView.setElevation(elevation);
                     rootView.setCardElevation(elevation);

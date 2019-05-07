@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.dialogMenu;
+package com.pedaily.yc.ycdialoglib.dialog.menu;
 
 import android.graphics.drawable.Drawable;
 
@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
  * ================================================
  */
 public class CustomItem {
+
     private int id;
     private String title;
     private Drawable icon;
