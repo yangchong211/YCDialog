@@ -1,9 +1,11 @@
-package com.pedaily.yc.ycdialoglib.loading;
+package com.pedaily.yc.ycdialoglib.dialog.loading;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Window;
@@ -30,6 +32,7 @@ public class ViewLoading extends Dialog {
 
     private static ViewLoading loadDialog;
     private boolean canNotCancel;
+    private final Animation animation;
 
     private ViewLoading(Context context , String content , boolean canNotCancel) {
         super(context, R.style.Loading);
@@ -44,7 +47,7 @@ public class ViewLoading extends Dialog {
         }
         ImageView progressImageView = (ImageView) findViewById(R.id.iv_image);
         //创建旋转动画
-        Animation animation =new RotateAnimation(0f, 360f,
+        animation = new RotateAnimation(0f, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(2000);
@@ -63,6 +66,34 @@ public class ViewLoading extends Dialog {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Window window = getWindow();
+        if (window!=null){
+            window.getDecorView().setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStart();
+        Window window = getWindow();
+        if (window!=null){
+            window.getDecorView().setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        //Log.e("ViewLoading","onDetachedFromWindow");
+        //注意需要销毁动画
+        if (animation!=null){
+            animation.cancel();
+        }
+        //onDetachedFromWindow  比 dismiss 方法中的 finally 先执行
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
@@ -129,6 +160,8 @@ public class ViewLoading extends Dialog {
         } catch (Exception e) {
             e.printStackTrace();
             loadDialog = null;
+        } finally {
+            //Log.e("ViewLoading","finally");
         }
     }
 

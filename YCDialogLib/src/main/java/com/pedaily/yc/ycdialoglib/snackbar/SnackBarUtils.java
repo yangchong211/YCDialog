@@ -199,8 +199,9 @@ public final class SnackBarUtils {
 
         //设置内容字体样式
         Typeface textTypeface = text.getTypeface();
-        if (builder.textTypeface != null)
+        if (builder.textTypeface != null) {
             textTypeface = builder.textTypeface;
+        }
         if (builder.textTypefaceStyle != null) {
             text.setTypeface(textTypeface, builder.textTypefaceStyle);
         } else {

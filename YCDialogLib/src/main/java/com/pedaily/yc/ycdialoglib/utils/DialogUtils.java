@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.pedaily.yc.ycdialoglib.R;
-import com.pedaily.yc.ycdialoglib.dialogFragment.CustomDialogFragment;
+import com.pedaily.yc.ycdialoglib.fragment.CustomDialogFragment;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialogFragment;
+package com.pedaily.yc.ycdialoglib.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

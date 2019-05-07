@@ -1,10 +1,12 @@
-package com.pedaily.yc.ycdialoglib.dialogFragment;
+package com.pedaily.yc.ycdialoglib.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +90,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if(dialog==null){
             dialog = getDialog();
         }
+        //这个主要是设置弹窗的位置
         Window window = dialog.getWindow();
         if(window!=null){
             WindowManager.LayoutParams params = window.getAttributes();
@@ -115,6 +118,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if(mListener!=null){
             mListener.listener();
         }
+        dismissDialog();
     }
 
     /**
@@ -139,9 +143,16 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     public void show(FragmentManager fragmentManager) {
         if(fragmentManager!=null){
-            show(fragmentManager, getFragmentTag());
+            //show(fragmentManager, getFragmentTag());
+
+            //主要是为了解决Can not perform this action after onSaveInstanceState异常
+            //发生场景：Activity即将被销毁，再给它添加Fragment就会出错。
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.add(this, getFragmentTag());
+            ft.commitAllowingStateLoss();
         }else {
-            ToastUtils.showToast("需要设置setFragmentManager");
+            throw new NullPointerException("需要设置setFragmentManager");
+            //ToastUtils.showToast("需要设置setFragmentManager");
         }
     }
 

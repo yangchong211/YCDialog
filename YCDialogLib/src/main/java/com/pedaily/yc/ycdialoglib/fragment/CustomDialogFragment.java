@@ -1,9 +1,8 @@
-package com.pedaily.yc.ycdialoglib.dialogFragment;
+package com.pedaily.yc.ycdialoglib.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,8 +86,8 @@ public class CustomDialogFragment extends BaseDialogFragment {
         TextView mTvCancel = (TextView) v.findViewById(R.id.tv_cancel);
         TextView mTvOk = (TextView) v.findViewById(R.id.tv_ok);
         TextView mTvOther = (TextView) v.findViewById(R.id.tv_other);
-        View mViewLineLeft = (View) v.findViewById(R.id.view_line_left);
-        View mViewLineRight = (View) v.findViewById(R.id.view_line_right);
+        View mViewLineLeft = v.findViewById(R.id.view_line_left);
+        View mViewLineRight = v.findViewById(R.id.view_line_right);
 
 
         if (title!=null && title.length()>0){

@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
-import com.pedaily.yc.ycdialoglib.popupWindow.BasePopDialog;
+import com.pedaily.yc.ycdialoglib.popup.BasePopDialog;
 
 public class CustomPop extends BasePopDialog {
 

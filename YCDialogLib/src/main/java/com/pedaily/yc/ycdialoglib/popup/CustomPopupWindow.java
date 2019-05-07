@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.popupWindow;
+package com.pedaily.yc.ycdialoglib.popup;
 
 import android.app.Activity;
 import android.content.Context;

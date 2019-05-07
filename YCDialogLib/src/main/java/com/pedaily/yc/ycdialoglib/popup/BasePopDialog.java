@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.popupWindow;
+package com.pedaily.yc.ycdialoglib.popup;
 
 import android.app.Activity;
 import android.content.Context;
@@ -45,8 +45,10 @@ public abstract class BasePopDialog extends PopupWindow {
         // 设置弹出窗体的背景
         this.setBackgroundDrawable(dw);*/
         setOutsideTouchable(false);
-        setFocusable(true); // 设置PopupWindow可获得焦点
-        setTouchable(true); // 设置PopupWindow可触摸
+        // 设置PopupWindow可获得焦点
+        setFocusable(true);
+        // 设置PopupWindow可触摸
+        setTouchable(true);
     }
 
     /**
@@ -85,6 +87,7 @@ public abstract class BasePopDialog extends PopupWindow {
         }
     }
 
+    @Override
     public int getWidth(){
         if(contentView==null){
             return 0;
@@ -93,6 +96,7 @@ public abstract class BasePopDialog extends PopupWindow {
         return contentView.getMeasuredWidth();
     }
 
+    @Override
     public int getHeight(){
         if(contentView==null){
             return 0;

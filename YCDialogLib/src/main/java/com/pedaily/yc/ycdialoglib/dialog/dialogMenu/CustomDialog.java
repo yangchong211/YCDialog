@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialogMenu;
+package com.pedaily.yc.ycdialoglib.dialog.dialogMenu;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;

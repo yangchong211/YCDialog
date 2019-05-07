@@ -23,17 +23,17 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pedaily.yc.ycdialoglib.dialogFragment.BaseDialogFragment;
-import com.pedaily.yc.ycdialoglib.dialogFragment.BottomDialogFragment;
-import com.pedaily.yc.ycdialoglib.dialogFragment.CustomDialogFragment;
-import com.pedaily.yc.ycdialoglib.dialogMenu.CustomBottomDialog;
-import com.pedaily.yc.ycdialoglib.dialogMenu.CustomItem;
-import com.pedaily.yc.ycdialoglib.dialogMenu.OnItemClickListener;
-import com.pedaily.yc.ycdialoglib.loading.ViewLoading;
-import com.pedaily.yc.ycdialoglib.popupWindow.CustomPopupWindow;
+import com.pedaily.yc.ycdialoglib.fragment.BaseDialogFragment;
+import com.pedaily.yc.ycdialoglib.fragment.BottomDialogFragment;
+import com.pedaily.yc.ycdialoglib.fragment.CustomDialogFragment;
+import com.pedaily.yc.ycdialoglib.dialog.dialogMenu.CustomBottomDialog;
+import com.pedaily.yc.ycdialoglib.dialog.dialogMenu.CustomItem;
+import com.pedaily.yc.ycdialoglib.dialog.dialogMenu.OnItemClickListener;
+import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
+import com.pedaily.yc.ycdialoglib.popup.CustomPopupWindow;
 import com.pedaily.yc.ycdialoglib.snackbar.SnackBarUtils;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
-import com.pedaily.yc.ycdialoglib.dialog.CustomSelectDialog;
+import com.pedaily.yc.ycdialoglib.dialog.select.CustomSelectDialog;
 import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 
