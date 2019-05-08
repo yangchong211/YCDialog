@@ -28,7 +28,7 @@
 ### 03.如何使用
 - 首先在项目build.gradlew中添加**
     ```
-    implementation 'cn.yc:YCDialogLib:3.6.5'
+    implementation 'cn.yc:YCDialogLib:3.6.6'
     ```
 
 
@@ -368,7 +368,7 @@
 
 
 ### 05.效果展示
-- ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/1.jpg)
+![image](https://github.com/yangchong211/YCDialog/blob/master/pic/1.jpg)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/2.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/3.png)
 ![image](https://github.com/yangchong211/YCDialog/blob/master/pic/4.png)
@@ -415,7 +415,7 @@
 - v3.5.1 更新与2018年6月2日
 - v3.5.3 更新于2018年9月10日
 - v3.6.5 更新于2018年9月15日
-
+- v3.6.6 更新于2019年5月7日
 
 
 
