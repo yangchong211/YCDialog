@@ -263,7 +263,8 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
         //判断添加的view是否为null
         if(this.mContentView == null) {
             //如果view为null，则获取的资源布局文件
-            this.mContentView = LayoutInflater.from(this.mContext).inflate(this.mResLayoutId, (ViewGroup)null);
+            this.mContentView = LayoutInflater.from(this.mContext).
+                    inflate(this.mResLayoutId, null);
         }
 
         //获取Activity对象

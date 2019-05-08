@@ -17,6 +17,8 @@
 - 一行代码调用检测手机通知权限，建议加上，大部分手机通知权限是开启的。如果关闭了，则吐司是无法显示的，但是仍有部分手机，比如某型号小米手机，锤子手机等就权限需要手动开启。
 - 针对吐司工具类，轻量级，使用builder模式，链式调用设置属性，可以设置吐司背景，文字内容，或者自定义布局吐司。解决避免点击多次导致吐司多次问题。
 - 针对Dialog弹窗，仿IOS底部弹窗Dialog，可以设置弹窗主题，菜单项单击事件，取消事件监听，可以设置菜单项名称，十分方便。
+- 针对实际开发中，比如请求接口需要加载loading，可以直接使用该库中的ViewLoading，一行代码show或者一行代码dismiss。
+-
 
 
 
@@ -314,51 +316,51 @@
 
 ##### 1.3.0 自定义SnackBar工具类
 - 可以一行代码调用，也可以自己使用链式编程调用。支持设置显示时长属性；可以设置背景色；可以设置文字大小，颜色；可以设置action内容，文字大小，颜色，还有点击事件；可以设置icon；代码如下所示，更多内容可以直接运行demo哦！
-```
-//1.只设置text
-SnackBarUtils.showSnackBar(this,"滚犊子");
+    ```
+    //1.只设置text
+    SnackBarUtils.showSnackBar(this,"滚犊子");
 
-//2.设置text，action，和点击事件
-SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION", new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        ToastUtils.showRoundRectToast("滚犊子啦？");
-    }
-});
-
-//3.设置text，action，和点击事件，和icon
-SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION",R.drawable.icon_cancel, new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        ToastUtils.showRoundRectToast("滚犊子啦？");
-    }
-});
-
-//4.链式调用
-SnackBarUtils.builder()
-    .setBackgroundColor(this.getResources().getColor(R.color.color_7f000000))
-    .setTextSize(14)
-    .setTextColor(this.getResources().getColor(R.color.white))
-    .setTextTypefaceStyle(Typeface.BOLD)
-    .setText("滚犊子")
-    .setMaxLines(4)
-    .centerText()
-    .setActionText("收到")
-    .setActionTextColor(this.getResources().getColor(R.color.color_f25057))
-    .setActionTextSize(16)
-    .setActionTextTypefaceStyle(Typeface.BOLD)
-    .setActionClickListener(new View.OnClickListener() {
+    //2.设置text，action，和点击事件
+    SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION", new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             ToastUtils.showRoundRectToast("滚犊子啦？");
         }
-    })
-    .setIcon(R.drawable.icon_cancel)
-    .setActivity(MainActivity.this)
-    .setDuration(SnackBarUtils.DurationType.LENGTH_INDEFINITE)
-    .build()
-    .show();
-```
+    });
+
+    //3.设置text，action，和点击事件，和icon
+    SnackBarUtils.showSnackBar(this, "滚犊子", "ACTION",R.drawable.icon_cancel, new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ToastUtils.showRoundRectToast("滚犊子啦？");
+        }
+    });
+
+    //4.链式调用
+    SnackBarUtils.builder()
+        .setBackgroundColor(this.getResources().getColor(R.color.color_7f000000))
+        .setTextSize(14)
+        .setTextColor(this.getResources().getColor(R.color.white))
+        .setTextTypefaceStyle(Typeface.BOLD)
+        .setText("滚犊子")
+        .setMaxLines(4)
+        .centerText()
+        .setActionText("收到")
+        .setActionTextColor(this.getResources().getColor(R.color.color_f25057))
+        .setActionTextSize(16)
+        .setActionTextTypefaceStyle(Typeface.BOLD)
+        .setActionClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showRoundRectToast("滚犊子啦？");
+            }
+        })
+        .setIcon(R.drawable.icon_cancel)
+        .setActivity(MainActivity.this)
+        .setDuration(SnackBarUtils.DurationType.LENGTH_INDEFINITE)
+        .build()
+        .show();
+    ```
 
 
 ### 04.注意要点
@@ -423,6 +425,32 @@ SnackBarUtils.builder()
 - 3.Toast运行在子线程导致崩溃，子线程如何吐司
 - 4.Dialog Unable to add window --token null is not for an application
 - 5.为什么Dialog不能用Application的Context，一旦用了则会导致崩溃
+
+
+
+
+### 其他介绍
+#### 01.关于博客汇总链接
+- 1.[技术博客汇总](https://www.jianshu.com/p/614cb839182c)
+- 2.[开源项目汇总](https://blog.csdn.net/m0_37700275/article/details/80863574)
+- 3.[生活博客汇总](https://blog.csdn.net/m0_37700275/article/details/79832978)
+- 4.[喜马拉雅音频汇总](https://www.jianshu.com/p/f665de16d1eb)
+- 5.[其他汇总](https://www.jianshu.com/p/53017c3fc75d)
+
+
+
+#### 02.关于我的博客
+- github：https://github.com/yangchong211
+- 知乎：https://www.zhihu.com/people/yczbj/activities
+- 简书：http://www.jianshu.com/u/b7b2c6ed9284
+- csdn：http://my.csdn.net/m0_37700275
+- 喜马拉雅听书：http://www.ximalaya.com/zhubo/71989305/
+- 开源中国：https://my.oschina.net/zbj1618/blog
+- 泡在网上的日子：http://www.jcodecraeer.com/member/content_list.php?channelid=1
+- 邮箱：yangchong211@163.com
+- 阿里云博客：https://yq.aliyun.com/users/article?spm=5176.100- 239.headeruserinfo.3.dT4bcV
+- segmentfault头条：https://segmentfault.com/u/xiangjianyu/articles
+- 掘金：https://juejin.im/user/5939433efe88c2006afa0c6e
 
 
 
