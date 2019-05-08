@@ -136,6 +136,8 @@ public class ViewLoading extends Dialog {
 
     /**
      * 销毁加载窗
+     * 注意在try …… catch中，关于return和finally的执行顺序，看这篇博客：
+     * https://github.com/yangchong211/YCBlogs
      * @param context               上下文
      */
     public static void dismiss(Context context) {
@@ -155,15 +157,16 @@ public class ViewLoading extends Dialog {
                     }
                 }
                 //loadDialog.cancel();
-                //建议用dismiss方法销毁弹窗
+                //建议用dismiss方法销毁弹窗，如果没有调用setOnCancelListener方法，两个方法作用是一样的
+                //具体可以看：https://github.com/yangchong211/YCBlogs
                 loadDialog.dismiss();
                 loadDialog = null;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            loadDialog = null;
         } finally {
             //Log.e("ViewLoading","finally");
+            loadDialog = null;
         }
     }
 
