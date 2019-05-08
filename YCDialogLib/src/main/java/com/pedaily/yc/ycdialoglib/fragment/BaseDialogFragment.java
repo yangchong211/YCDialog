@@ -3,19 +3,18 @@ package com.pedaily.yc.ycdialoglib.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.pedaily.yc.ycdialoglib.R;
-import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 
 
 /**
@@ -34,8 +33,20 @@ public abstract class BaseDialogFragment extends DialogFragment {
     private static Dialog dialog;
     private Local local = Local.BOTTOM;
     public enum Local {
-        TOP, CENTER, BOTTOM
+        /**
+         * 顶部
+         */
+        TOP,
+        /**
+         * 居中
+         */
+        CENTER,
+        /**
+         * 底部
+         */
+        BOTTOM
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,8 +58,30 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
     }
 
+    /**
+     * 开始展示
+     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onStart() {
+        super.onStart();
+        setDialogGravity();
+    }
+
+    /**
+     * 销毁弹窗时调用
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mListener!=null){
+            mListener.listener();
+        }
+        dismissDialog();
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         dialog = getDialog();
         if(dialog!=null){
             if(dialog.getWindow()!=null){
@@ -60,6 +93,15 @@ public abstract class BaseDialogFragment extends DialogFragment {
         View v = inflater.inflate(getLayoutRes(), container, false);
         bindView(v);
         return v;
+    }
+
+    /**
+     * 该方法的作用主要是：当DialogFragment依附的Activity被创建的时候调用，此时fragment的活动窗体被初始化
+     * @param savedInstanceState                savedInstanceState
+     */
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     /**
@@ -81,12 +123,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
      */
     protected abstract boolean isCancel();
 
-    /**
-     * 开始展示
-     */
-    @Override
-    public void onStart() {
-        super.onStart();
+
+
+    private void setDialogGravity() {
         if(dialog==null){
             dialog = getDialog();
         }
@@ -112,14 +151,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(mListener!=null){
-            mListener.listener();
-        }
-        dismissDialog();
-    }
 
     /**
      * 获取弹窗高度

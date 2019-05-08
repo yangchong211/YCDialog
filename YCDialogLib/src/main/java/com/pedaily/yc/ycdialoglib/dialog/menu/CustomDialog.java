@@ -81,11 +81,13 @@ public class CustomDialog extends Dialog {
 
         adapter = new DialogAdapter(getContext() , items, layout, orientation);
         adapter.setItemClick(onItemClickListener);
-        if (layout == LINEAR)
+        if (layout == LINEAR) {
             manager = new LinearLayoutManager(getContext(), orientation, false);
-        else if (layout == GRID)
+        } else if (layout == GRID) {
             manager = new GridLayoutManager(getContext(), 5, orientation, false);
-        else manager = new LinearLayoutManager(getContext(), orientation, false);
+        } else {
+            manager = new LinearLayoutManager(getContext(), orientation, false);
+        }
 
         RecyclerView recyclerView = new RecyclerView(getContext());
         recyclerView.setLayoutParams(params);
@@ -114,12 +116,16 @@ public class CustomDialog extends Dialog {
 
     public void layout(int layout) {
         this.layout = layout;
-        if (adapter != null) adapter.setLayout(layout);
+        if (adapter != null) {
+            adapter.setLayout(layout);
+        }
     }
 
     public void orientation(int orientation) {
         this.orientation = orientation;
-        if (adapter != null) adapter.setOrientation(orientation);
+        if (adapter != null) {
+            adapter.setOrientation(orientation);
+        }
     }
 
     public void background(int res) {
