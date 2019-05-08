@@ -154,6 +154,8 @@ public class ViewLoading extends Dialog {
                         return;
                     }
                 }
+                //loadDialog.cancel();
+                //建议用dismiss方法销毁弹窗
                 loadDialog.dismiss();
                 loadDialog = null;
             }

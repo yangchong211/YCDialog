@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -32,7 +31,7 @@ import java.util.List;
  *     revise:
  * </pre>
  */
-public class CustomSelectDialog extends Dialog implements OnClickListener,OnItemClickListener {
+public class CustomSelectDialog extends Dialog {
 
     private SelectDialogListener mListener;
     private SelectDialogCancelListener mCancelListener;
@@ -193,7 +192,13 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         Button mMBtnCancel = findViewById(R.id.mBtn_Cancel);
         TextView mTvTitle = findViewById(R.id.mTv_Title);
 
-        dialogList.setOnItemClickListener(this);
+        dialogList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.onItemClick(parent, view, position, id);
+                dismiss();
+            }
+        });
         dialogList.setAdapter(dialogAdapter);
         mMBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,17 +216,6 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         }else{
             mTvTitle.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        dismiss();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        mListener.onItemClick(parent, view, position, id);
-        dismiss();
     }
 
     private class DialogAdapter extends BaseAdapter {
@@ -255,37 +249,38 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
             if (null == convertView) {
                 viewholder=new ViewHolder();
                 convertView = layoutInflater.inflate(R.layout.view_dialog_item, null);
-                viewholder.dialogItemButton= convertView.findViewById(R.id.dialog_item_bt);
+                viewholder.tvDialog= convertView.findViewById(R.id.dialog_item_bt);
                 convertView.setTag(viewholder);
             }else{
                 viewholder=(ViewHolder) convertView.getTag();
             }
-            viewholder.dialogItemButton.setText(mStrings.get(position));
+            viewholder.tvDialog.setText(mStrings.get(position));
             if (!mUseCustomColor) {
                 mFirstItemColor = mActivity.getResources().getColor(R.color.grayText);
                 mOtherItemColor = mActivity.getResources().getColor(R.color.grayText);
             }
             if (1 == mStrings.size()) {
-                viewholder.dialogItemButton.setTextColor(mFirstItemColor);
-                viewholder.dialogItemButton.setBackgroundResource(R.drawable.shape_dialog_item_bg_only);
+                viewholder.tvDialog.setTextColor(mFirstItemColor);
+                viewholder.tvDialog.setBackgroundResource(R.drawable.shape_dialog_item_bg_only);
             } else if (position == 0) {
-                viewholder.dialogItemButton.setTextColor(mFirstItemColor);
-                viewholder.dialogItemButton.setBackgroundResource(R.drawable.select_dialog_item_bg_top);
+                viewholder.tvDialog.setTextColor(mFirstItemColor);
+                viewholder.tvDialog.setBackgroundResource(R.drawable.select_dialog_item_bg_top);
             } else if (position == mStrings.size() - 1) {
-                viewholder.dialogItemButton.setTextColor(mOtherItemColor);
-                viewholder.dialogItemButton.setBackgroundResource(R.drawable.select_dialog_item_bg_buttom);
+                viewholder.tvDialog.setTextColor(mOtherItemColor);
+                viewholder.tvDialog.setBackgroundResource(R.drawable.select_dialog_item_bg_buttom);
             } else {
-                viewholder.dialogItemButton.setTextColor(mOtherItemColor);
-                viewholder.dialogItemButton.setBackgroundResource(R.drawable.select_dialog_item_bg_center);
+                viewholder.tvDialog.setTextColor(mOtherItemColor);
+                viewholder.tvDialog.setBackgroundResource(R.drawable.select_dialog_item_bg_center);
             }
             return convertView;
         }
-
     }
+
 
     public static class ViewHolder {
-        TextView dialogItemButton;
+        TextView tvDialog;
     }
+
 
     /**
      * 设置列表项的文本颜色
@@ -295,4 +290,5 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         mOtherItemColor = otherItemColor;
         mUseCustomColor = true;
     }
+
 }
