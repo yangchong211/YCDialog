@@ -59,7 +59,7 @@ public final class ToastUtils {
     /**
      * 检查上下文不能为空，必须先进性初始化操作
      */
-    public static void checkContext(){
+    private static void checkContext(){
         if(mApp==null){
             throw new NullPointerException("ToastUtils context is not null，please first init");
         }

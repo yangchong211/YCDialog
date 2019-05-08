@@ -48,6 +48,13 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * 设置item监听事件
      */
     public interface SelectDialogListener {
+        /**
+         * 条目点击事件
+         * @param parent                    parent
+         * @param view                      view
+         * @param position                  索引
+         * @param id                        id
+         */
         void onItemClick(AdapterView<?> parent, View view, int position, long id);
     }
 
@@ -55,6 +62,10 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
      * 取消事件监听接口
      */
     public interface SelectDialogCancelListener {
+        /**
+         * 取消按钮点击事件
+         * @param v                         view
+         */
         void onCancelClick(View v);
     }
 
@@ -131,14 +142,23 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
         setCanceledOnTouchOutside(true);
     }
 
+    /**
+     * 类似于Activity的onCreate函数，可以在这个方法中进行Dialog的一些初始化操作
+     * 包括调用setContentView方法
+     * @param savedInstanceState                savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = getLayoutInflater().inflate(R.layout.view_dialog_select, null);
-        setContentView(view, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        setContentView(view, params);
         initViews();
     }
 
+    /**
+     * 当对话框启动的时候被调用
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -157,6 +177,15 @@ public class CustomSelectDialog extends Dialog implements OnClickListener,OnItem
             onWindowAttributesChanged(wl);
         }
     }
+
+    /**
+     * 当对话框停止的时候被调用
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
 
     private void initViews() {
         DialogAdapter dialogAdapter = new DialogAdapter(mName);

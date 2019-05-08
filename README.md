@@ -418,6 +418,19 @@ SnackBarUtils.builder()
 
 
 ### 07.弹窗bug
+- 1.DialogFragment使用中show()方法遇到的IllegalStateException
+- 2.Toast偶尔报错Unable to add window，is your activity running
+- 3.Toast运行在子线程导致崩溃，子线程如何吐司
+- 4.Dialog Unable to add window --token null is not for an application
+- 5.为什么Dialog不能用Application的Context，一旦用了则会导致崩溃
+
+
+
+
+
+
+
+
 
 
 

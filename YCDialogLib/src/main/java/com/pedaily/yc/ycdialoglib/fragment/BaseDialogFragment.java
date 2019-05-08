@@ -1,6 +1,8 @@
 package com.pedaily.yc.ycdialoglib.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 
 /**
@@ -32,6 +35,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     private static final float DEFAULT_DIM = 0.2f;
     private static Dialog dialog;
     private Local local = Local.BOTTOM;
+    private Activity activity;
     public enum Local {
         /**
          * 顶部
@@ -72,6 +76,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
      */
     @Override
     public void onDestroy() {
+        setBgAlpha(1.0f);
         super.onDestroy();
         if(mListener!=null){
             mListener.listener();
@@ -104,6 +109,32 @@ public abstract class BaseDialogFragment extends DialogFragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (Activity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        activity = null;
+    }
+
+    /**
+     * 设置屏幕透明度
+     * @param bgAlpha               透明度
+     */
+    public void setBgAlpha(float bgAlpha){
+        /*if (getActivity()!=null){
+            DialogUtils.setBackgroundAlpha(getActivity(),bgAlpha);
+        }*/
+        if (activity!=null){
+            DialogUtils.setBackgroundAlpha(activity , bgAlpha);
+        }
+    }
+
+
     /**
      * 获取布局资源文件
      * @return              布局资源文件id值
@@ -124,7 +155,9 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected abstract boolean isCancel();
 
 
-
+    /**
+     * 设置dialog位置
+     */
     private void setDialogGravity() {
         if(dialog==null){
             dialog = getDialog();
@@ -198,6 +231,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
             dialog = null;
         }
     }
+
 
     public onLoadFinishListener mListener;
     public void setLoadFinishListener(onLoadFinishListener listener){

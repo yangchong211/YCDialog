@@ -107,12 +107,10 @@ public class ViewLoading extends Dialog {
 
 
     public static void show(Context context) {
-        ToastUtils.checkContext();
         show(context,"");
     }
 
     public static void show(Context context, String message) {
-        ToastUtils.checkContext();
         show(context, message,false);
     }
 
