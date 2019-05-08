@@ -140,8 +140,8 @@ public final class SnackBarUtils {
     private Snackbar make() {
         Snackbar snackbar = Snackbar.make(builder.view, builder.text, builder.duration);
         Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
-        Button actionText = (Button) layout.findViewById(R.id.snackbar_action);
-        TextView text = (TextView) layout.findViewById(R.id.snackbar_text);
+        Button actionText = layout.findViewById(R.id.snackbar_action);
+        TextView text = layout.findViewById(R.id.snackbar_text);
 
 
         //设置action内容和action点击事件
