@@ -76,7 +76,9 @@ public final class ToastUtils {
     public static void showToast(String content) {
         checkContext();
         if (toast == null) {
-            toast = Toast.makeText(mApp, content, Toast.LENGTH_SHORT);
+            //toast = Toast.makeText(mApp, content, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(mApp, "", Toast.LENGTH_SHORT);
+            toast.setText(content);
         } else {
             toast.setText(content);
         }
