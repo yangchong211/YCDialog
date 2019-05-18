@@ -74,6 +74,7 @@ public final class ToastUtils {
     private static Toast toast;
     @SuppressLint("ShowToast")
     public static void showToast(String content) {
+        DialogUtils.checkMainThread();
         checkContext();
         if (toast == null) {
             //toast = Toast.makeText(mApp, content, Toast.LENGTH_SHORT);
@@ -95,6 +96,7 @@ public final class ToastUtils {
      * @param notice                        内容
      */
     public static void showRoundRectToast(CharSequence notice) {
+        DialogUtils.checkMainThread();
         checkContext();
         if (TextUtils.isEmpty(notice)){
             return;
@@ -115,6 +117,7 @@ public final class ToastUtils {
 
 
     public static void showRoundRectToast(CharSequence notice,CharSequence desc) {
+        DialogUtils.checkMainThread();
         checkContext();
         if (TextUtils.isEmpty(notice)){
             return;
@@ -137,6 +140,7 @@ public final class ToastUtils {
 
 
     public static void showRoundRectToast(@LayoutRes int layout) {
+        DialogUtils.checkMainThread();
         checkContext();
         if (layout==0){
             return;

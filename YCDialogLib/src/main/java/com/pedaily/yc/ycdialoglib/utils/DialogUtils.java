@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
@@ -37,6 +38,16 @@ public final class DialogUtils {
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    public static void checkMainThread(){
+        if (!isMainThread()){
+            throw new IllegalStateException("请不要在子线程中做弹窗操作");
+        }
+    }
+
+    private static boolean isMainThread(){
+        return Looper.getMainLooper() == Looper.myLooper();
     }
 
     /**

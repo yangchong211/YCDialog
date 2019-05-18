@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -64,6 +65,7 @@ public final class SnackBarUtils {
 
 
     public static void showSnackBar(Activity activity, String text) {
+        DialogUtils.checkMainThread();
         if(activity==null || text==null || text.length()==0){
             return;
         }
@@ -82,6 +84,7 @@ public final class SnackBarUtils {
 
 
     public static void showSnackBar(Activity activity, String text, String action, View.OnClickListener listener) {
+        DialogUtils.checkMainThread();
         if(activity==null || text==null || text.length()==0 || action==null || action.length()==0){
             return;
         }
@@ -104,6 +107,7 @@ public final class SnackBarUtils {
     }
 
     public static void showSnackBar(Activity activity, String text, String action, @DrawableRes int resId, View.OnClickListener listener) {
+        DialogUtils.checkMainThread();
         if(activity==null || text==null || text.length()==0 || action==null || action.length()==0 || resId!=0){
             return;
         }

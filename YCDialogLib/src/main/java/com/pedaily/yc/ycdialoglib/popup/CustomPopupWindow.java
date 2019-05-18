@@ -12,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
+import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
+
 
 /**
  * <pre>
@@ -339,6 +341,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
      * 直接展示
      */
     public CustomPopupWindow showAsDropDown(View anchor) {
+        DialogUtils.checkMainThread();
         if(this.mPopupWindow != null) {
             this.mPopupWindow.showAsDropDown(anchor);
         }
@@ -349,6 +352,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
      * 传入x，y值位置展示
      */
     public CustomPopupWindow showAsDropDown(View anchor, int xOff, int yOff) {
+        DialogUtils.checkMainThread();
         if(this.mPopupWindow != null) {
             this.mPopupWindow.showAsDropDown(anchor, xOff, yOff);
         }
@@ -360,6 +364,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public CustomPopupWindow showAsDropDown(View anchor, int xOff, int yOff, int gravity) {
+        DialogUtils.checkMainThread();
         if(this.mPopupWindow != null) {
             this.mPopupWindow.showAsDropDown(anchor, xOff, yOff, gravity);
         }

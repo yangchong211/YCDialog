@@ -206,6 +206,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
     }
 
     public void show(FragmentManager fragmentManager) {
+        DialogUtils.checkMainThread();
         if(fragmentManager!=null){
             //show(fragmentManager, getFragmentTag());
 
