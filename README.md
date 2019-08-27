@@ -181,26 +181,26 @@
 - 同1.2.7 具体可以先安装一下demo，看一下效果，使用方法如下所示：
     ```
     final BottomDialogFragment dialog = new BottomDialogFragment();
-            dialog.setFragmentManager(getSupportFragmentManager());
-            dialog.setViewListener(new BottomDialogFragment.ViewListener() {
+    dialog.setFragmentManager(getSupportFragmentManager());
+    dialog.setViewListener(new BottomDialogFragment.ViewListener() {
+        @Override
+        public void bindView(View v) {
+            TextView tv_cancel = (TextView) v.findViewById(R.id.tv_cancel);
+            tv_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void bindView(View v) {
-                    TextView tv_cancel = (TextView) v.findViewById(R.id.tv_cancel);
-                    tv_cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismissDialogFragment();
-                        }
-                    });
+                public void onClick(View v) {
+                    dialog.dismissDialogFragment();
                 }
             });
-            dialog.setLayoutRes(R.layout.dialog_bottom_layout);
-            dialog.setDimAmount(0.5f);
-            dialog.setTag("BottomDialog");
-            dialog.setCancelOutside(true);
-            //这个高度可以自己设置，十分灵活
-            dialog.setHeight(getScreenHeight() / 2);
-            dialog.show();
+        }
+    });
+    dialog.setLayoutRes(R.layout.dialog_bottom_layout);
+    dialog.setDimAmount(0.5f);
+    dialog.setTag("BottomDialog");
+    dialog.setCancelOutside(true);
+    //这个高度可以自己设置，十分灵活
+    dialog.setHeight(getScreenHeight() / 2);
+    dialog.show();
     ```
 
 

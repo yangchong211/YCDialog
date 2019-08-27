@@ -2,6 +2,7 @@ package com.pedaily.yc.ycdialoglib.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
@@ -10,11 +11,8 @@ import android.view.View;
  *     @author yangchong
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/8/9
- *     desc  : 自定义布局弹窗DialogFragment
+ *     desc  : 自定义布局弹窗DialogFragment，从底部弹出
  *     revise: 1月10日
- *                  有bug，如果想通过点击弹窗控件销毁dialog，该如何处理。
- *                  使用场景：点击对话框中控件，不会销毁dialog，按返回键处理销毁逻辑。
- *                  其实质是DialogFragment，
  * </pre>
  */
 public class BottomDialogFragment extends BaseDialogFragment {
@@ -40,6 +38,10 @@ public class BottomDialogFragment extends BaseDialogFragment {
         return dialog;
     }
 
+    /**
+     * 异常状态重启的话取出状态
+     * @param savedInstanceState                    bundle
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setLocal(Local.BOTTOM);
@@ -52,8 +54,12 @@ public class BottomDialogFragment extends BaseDialogFragment {
         }
     }
 
+    /**
+     * 异常状态下保存重要信息
+     * @param outState                              bundle
+     */
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(KEY_LAYOUT_RES, mLayoutRes);
         outState.putInt(KEY_HEIGHT, mHeight);
         outState.putFloat(KEY_DIM, mDimAmount);
@@ -68,6 +74,10 @@ public class BottomDialogFragment extends BaseDialogFragment {
         }
     }
 
+    /**
+     * 是否支持点击弹窗外部取消
+     * @return                          默认可以取消
+     */
     @Override
     protected boolean isCancel() {
         return mIsCancelOutside;

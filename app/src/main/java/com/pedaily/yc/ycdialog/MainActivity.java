@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //弹出popWindow时，背景是否变暗
                 .enableBackgroundDark(true)
                 //控制亮度
-                .setBgDarkAlpha(0.7f)
+                .setBgDarkAlpha(0.5f)
                 .setOutsideTouchable(true)
                 .setAnimationStyle(R.style.popWindowStyle)
                 .setOnDissmissListener(new PopupWindow.OnDismissListener() {
@@ -448,6 +448,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CustomPopupWindow popWindow =
                 new CustomPopupWindow.PopupWindowBuilder(this)
                 .setView(R.layout.view_pop_custom)
+                        .setBgDarkAlpha(0.5f)
                 .create();
         popWindow .showAsDropDown(tv_33,0,  - (tv_33.getHeight() + popWindow.getHeight()));
         //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
@@ -512,12 +513,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //这个高度可以自己设置，十分灵活
         //dialog.setHeight(getScreenHeight() / 2);
         dialog.show();
-        dialog.setLoadFinishListener(new BaseDialogFragment.onLoadFinishListener() {
-            @Override
-            public void listener() {
-                Log.e("结束了","监听事件");
-            }
-        });
     }
 
 

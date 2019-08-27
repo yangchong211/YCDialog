@@ -258,6 +258,8 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
             this.mCustomPopWindow.mBackgroundDrakValue = darkValue;
             return this;
         }
+
+
     }
 
     /**第四步：创建create方法，待实现*/
@@ -273,11 +275,21 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
         Activity activity = (Activity)this.mContentView.getContext();
         if(activity != null && this.mIsBackgroundDark) {
             //设置背景透明度
-            float alpha = this.mBackgroundDrakValue > 0.0F && this.mBackgroundDrakValue < 1.0F?this.mBackgroundDrakValue:0.7F;
+            float alpha = this.mBackgroundDrakValue > 0.0F && this.mBackgroundDrakValue < 1.0F
+                    ? this.mBackgroundDrakValue:0.7F;
             this.mWindow = activity.getWindow();
-            WindowManager.LayoutParams params = this.mWindow.getAttributes();
-            params.alpha = alpha;
-            this.mWindow.setAttributes(params);
+            if(this.mWindow!=null){
+                WindowManager.LayoutParams lp = this.mWindow.getAttributes();
+                lp.alpha = alpha;
+                if (alpha == 1) {
+                    //不移除该Flag的话,在有视频的页面上的视频会出现黑屏的bug
+                    this.mWindow.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                } else {
+                    //此行代码主要是解决在华为手机上半透明效果无效的bug
+                    this.mWindow.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                }
+                this.mWindow.setAttributes(lp);
+            }
         }
 
         //设置宽高

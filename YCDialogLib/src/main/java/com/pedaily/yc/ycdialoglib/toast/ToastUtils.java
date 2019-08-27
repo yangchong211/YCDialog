@@ -52,7 +52,11 @@ public final class ToastUtils {
         toastBackColor = color;
     }
 
+    /**
+     * 私有构造
+     */
     private ToastUtils() {
+        //避免初始化
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
