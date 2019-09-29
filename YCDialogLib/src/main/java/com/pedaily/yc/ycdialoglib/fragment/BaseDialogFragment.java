@@ -3,6 +3,7 @@ package com.pedaily.yc.ycdialoglib.fragment;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +71,19 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public void onStart() {
         super.onStart();
         setDialogGravity();
+
+        getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
+
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode, KeyEvent arg2) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    dismissDialog();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
     }
 
     /**
