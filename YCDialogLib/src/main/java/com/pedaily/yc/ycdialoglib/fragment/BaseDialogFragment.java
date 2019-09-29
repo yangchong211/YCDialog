@@ -229,8 +229,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public static void dismissDialog(){
         if(dialog!=null && dialog.isShowing()){
             dialog.dismiss();
-            dialog = null;
         }
+        dialog = null;
     }
 
 
