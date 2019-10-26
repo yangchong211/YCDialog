@@ -1,6 +1,7 @@
 package com.pedaily.yc.ycdialoglib.dialog.menu;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.view.SupportMenuInflater;
@@ -40,12 +41,10 @@ public class CustomDialog extends Dialog {
     private LinearLayout container;
     private TextView titleView;
     private TextView cancel;
-
     private DialogAdapter adapter;
-
-
     private int orientation;
     private int layout;
+    private Context context;
 
 
     CustomDialog(Context context) {
@@ -148,5 +147,19 @@ public class CustomDialog extends Dialog {
     void setItemClick(OnItemClickListener onItemClickListener) {
         adapter.setItemClick(onItemClickListener);
     }
+
+    @Override
+    public void show() {
+        if (context instanceof Activity) {
+            if (((Activity) context).isFinishing()) {
+                return;
+            }
+        }
+        if (isShowing()){
+            return;
+        }
+        super.show();
+    }
+
 
 }

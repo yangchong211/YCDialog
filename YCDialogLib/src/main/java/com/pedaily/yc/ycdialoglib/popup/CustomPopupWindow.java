@@ -387,6 +387,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
      * 传入x，y值，和gravity位置展示。是相对gravity的相对位置
      */
     public CustomPopupWindow showAtLocation(View parent, int gravity, int x, int y) {
+        DialogUtils.checkMainThread();
         if(this.mPopupWindow != null) {
             this.mPopupWindow.showAtLocation(parent, gravity, x, y);
         }

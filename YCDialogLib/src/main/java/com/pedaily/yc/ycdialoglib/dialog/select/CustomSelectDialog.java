@@ -185,6 +185,16 @@ public class CustomSelectDialog extends Dialog {
         super.onStop();
     }
 
+    @Override
+    public void show() {
+        if (mActivity!=null && mActivity.isFinishing() ){
+            return;
+        }
+        if (isShowing()){
+            return;
+        }
+        super.show();
+    }
 
     private void initViews() {
         DialogAdapter dialogAdapter = new DialogAdapter(mName);

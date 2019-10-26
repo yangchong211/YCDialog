@@ -227,7 +227,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
      * 如果可以，欢迎star
      */
     public static void dismissDialog(){
-        if(dialog!=null && dialog.isShowing()){
+        if(dialog.isShowing()){
             dialog.dismiss();
         }
         dialog = null;
