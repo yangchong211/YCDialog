@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import com.pedaily.yc.ycdialoglib.R;
 import com.pedaily.yc.ycdialoglib.fragment.CustomDialogFragment;
 
+import java.lang.ref.SoftReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -167,5 +168,11 @@ public final class DialogUtils {
         }
     }
 
+    public static boolean checkNull(SoftReference softReference) {
+        if (softReference == null || softReference.get() == null) {
+            return true;
+        }
+        return false;
+    }
 
 }

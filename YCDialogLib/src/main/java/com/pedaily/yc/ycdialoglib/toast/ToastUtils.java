@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 import com.pedaily.yc.ycdialoglib.R;
 
+import java.lang.ref.SoftReference;
+
 /**
  * <pre>
  *     @author yangchong
@@ -34,6 +36,7 @@ public final class ToastUtils {
     @SuppressLint("StaticFieldLeak")
     private static Application mApp;
     private static int toastBackColor;
+    private static SoftReference<Toast> mToast;
 
     /**
      * 初始化吐司工具类
@@ -80,14 +83,13 @@ public final class ToastUtils {
     public static void showToast(String content) {
         DialogUtils.checkMainThread();
         checkContext();
-        if (toast == null) {
-            //toast = Toast.makeText(mApp, content, Toast.LENGTH_SHORT);
-            toast = Toast.makeText(mApp, "", Toast.LENGTH_SHORT);
-            toast.setText(content);
-        } else {
-            toast.setText(content);
+        if (!DialogUtils.checkNull(mToast)) {
+            mToast.get().cancel();
         }
+        Toast toast = Toast.makeText(mApp, "", Toast.LENGTH_SHORT);
+        toast.setText(content);
         toast.show();
+        mToast = new SoftReference<>(toast);
     }
 
 
@@ -236,9 +238,10 @@ public final class ToastUtils {
         }
 
         public Toast build() {
-            if(toast==null){
-                toast = new Toast(context);
+            if (!DialogUtils.checkNull(mToast)) {
+                mToast.get().cancel();
             }
+            Toast toast = new Toast(context);
             if (isFill) {
                 toast.setGravity(gravity | Gravity.FILL_HORIZONTAL, 0, yOffset);
             } else {
@@ -270,6 +273,7 @@ public final class ToastUtils {
                 View view = LayoutInflater.from(context).inflate(layout, null);
                 toast.setView(view);
             }
+            mToast = new SoftReference<>(toast);
             return toast;
         }
     }
