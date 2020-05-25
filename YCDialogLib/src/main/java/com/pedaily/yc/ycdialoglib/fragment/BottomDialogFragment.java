@@ -1,5 +1,6 @@
 package com.pedaily.yc.ycdialoglib.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
  *     revise: 1月10日
  * </pre>
  */
+@SuppressLint("ValidFragment")
 public class BottomDialogFragment extends BaseDialogFragment {
 
     private static final String KEY_LAYOUT_RES = "bottom_layout_res";
@@ -32,8 +34,13 @@ public class BottomDialogFragment extends BaseDialogFragment {
     private int mLayoutRes;
     private ViewListener mViewListener;
 
+    @SuppressLint("ValidFragment")
+    public BottomDialogFragment(Local local){
+        setLocal(local);
+    }
+
     public static BottomDialogFragment create(FragmentManager manager) {
-        BottomDialogFragment dialog = new BottomDialogFragment();
+        BottomDialogFragment dialog = new BottomDialogFragment(Local.LEFT);
         dialog.setFragmentManager(manager);
         return dialog;
     }
@@ -44,7 +51,7 @@ public class BottomDialogFragment extends BaseDialogFragment {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setLocal(Local.BOTTOM);
+        //setLocal(Local.LEFT);
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             mLayoutRes = savedInstanceState.getInt(KEY_LAYOUT_RES);

@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 两种方式
      */
     private void showDialogFragment() {
-        final BottomDialogFragment dialog = new BottomDialogFragment();
+        final BottomDialogFragment dialog = new BottomDialogFragment(BaseDialogFragment.Local.BOTTOM);
         dialog.setFragmentManager(getSupportFragmentManager());
         dialog.setViewListener(new BottomDialogFragment.ViewListener() {
             @Override

@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.animator.PopupAnimator;
+import com.pedaily.yc.ycdialoglib.animator.ShadowBgAnimator;
 import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 
 
@@ -36,6 +38,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
     private static Dialog dialog;
     private Local local = Local.BOTTOM;
     private Activity activity;
+    protected PopupAnimator popupContentAnimator;
+    protected ShadowBgAnimator shadowBgAnimator;
     public enum Local {
         /**
          * 顶部
@@ -48,7 +52,15 @@ public abstract class BaseDialogFragment extends DialogFragment {
         /**
          * 底部
          */
-        BOTTOM
+        BOTTOM,
+        /**
+         * 左边
+         */
+        LEFT,
+        /**
+         * 右边
+         */
+        RIGHT,
     }
 
 
@@ -58,6 +70,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if(local == Local.BOTTOM){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
         }else if(local == Local.CENTER || local == Local.TOP){
+            setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CenterDialog);
+        }else if(local == Local.LEFT || local == Local.RIGHT){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CenterDialog);
         }
     }
@@ -96,6 +110,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
             dialog.setCancelable(isCancel());
         }
         View v = inflater.inflate(getLayoutRes(), container, false);
+
         bindView(v);
         return v;
     }
@@ -167,7 +182,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if(window!=null){
             WindowManager.LayoutParams params = window.getAttributes();
             params.dimAmount = getDimAmount();
-            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            //params.width = WindowManager.LayoutParams.MATCH_PARENT;
             if (getHeight() > 0) {
                 params.height = getHeight();
             } else {
@@ -177,6 +192,10 @@ public abstract class BaseDialogFragment extends DialogFragment {
                 params.gravity = Gravity.TOP;
             } else if (local == Local.CENTER) {
                 params.gravity = Gravity.CENTER;
+            } else if (local == Local.LEFT) {
+                params.gravity = Gravity.LEFT;
+            } else if (local == Local.RIGHT) {
+                params.gravity = Gravity.RIGHT;
             } else {
                 params.gravity = Gravity.BOTTOM;
             }
@@ -227,10 +246,12 @@ public abstract class BaseDialogFragment extends DialogFragment {
      * 如果可以，欢迎star
      */
     public static void dismissDialog(){
-        if(dialog.isShowing()){
-            dialog.dismiss();
+        if (dialog!=null){
+            if(dialog.isShowing()){
+                dialog.dismiss();
+            }
+            dialog = null;
         }
-        dialog = null;
     }
 
 
