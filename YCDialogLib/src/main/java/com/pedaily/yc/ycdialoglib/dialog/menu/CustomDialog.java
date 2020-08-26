@@ -60,7 +60,6 @@ public class CustomDialog extends Dialog {
         if(getWindow()!=null){
             getWindow().setGravity(Gravity.BOTTOM);
             getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-
         }
         background = findViewById(R.id.background);
         titleView = findViewById(R.id.title);

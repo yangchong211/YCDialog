@@ -170,7 +170,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
         }
 
         /**
-         * 设置是否可以点击弹窗外部
+         * 设置是否可以点击弹窗外部消失
          * @param outsideTouchable  布尔
          */
         public CustomPopupWindow.PopupWindowBuilder setOutsideTouchable(boolean outsideTouchable) {

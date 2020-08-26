@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.dialog.base.BaseCustomDialog;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ import java.util.List;
  *     revise:
  * </pre>
  */
-public class CustomSelectDialog extends Dialog {
+public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
 
     private SelectDialogListener mListener;
     private SelectDialogCancelListener mCancelListener;

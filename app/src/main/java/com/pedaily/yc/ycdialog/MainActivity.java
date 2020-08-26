@@ -426,20 +426,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         popWindow = new CustomPopupWindow.PopupWindowBuilder(this)
                 //.setView(R.layout.pop_layout)
                 .setView(contentView)
+                //设置是否可以设置焦点
                 .setFocusable(true)
                 //弹出popWindow时，背景是否变暗
                 .enableBackgroundDark(true)
                 //控制亮度
                 .setBgDarkAlpha(0.5f)
+                //设置是否可以点击弹窗外部消失
                 .setOutsideTouchable(true)
+                //设置动画
                 .setAnimationStyle(R.style.popWindowStyle)
+                //设置弹窗关闭监听
                 .setOnDissmissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
                         //对话框销毁时
                     }
                 })
+                //创建弹窗
                 .create()
+                //传入x，y值位置展示
                 .showAsDropDown(tv_33,0,10);
     }
 

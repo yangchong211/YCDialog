@@ -95,36 +95,71 @@ public class BottomDialogFragment extends BaseDialogFragment {
         return mLayoutRes;
     }
 
+    /**
+     * 设置manager
+     * @param manager                   manager
+     * @return
+     */
     public BottomDialogFragment setFragmentManager(FragmentManager manager) {
         mFragmentManager = manager;
         return this;
     }
 
+    /**
+     * 绑定视图
+     * @param listener                  listener
+     * @return
+     */
     public BottomDialogFragment setViewListener(ViewListener listener) {
         mViewListener = listener;
         return this;
     }
 
+    /**
+     * 设置弹窗布局
+     * @param layoutRes                 layout
+     * @return
+     */
     public BottomDialogFragment setLayoutRes(@LayoutRes int layoutRes) {
         mLayoutRes = layoutRes;
         return this;
     }
 
+    /**
+     * 设置点击弹窗外部是否可以关闭弹窗
+     * @param cancel                    是否取消
+     * @return
+     */
     public BottomDialogFragment setCancelOutside(boolean cancel) {
         mIsCancelOutside = cancel;
         return this;
     }
 
+    /**
+     * 设置tag
+     * @param tag                       tag
+     * @return
+     */
     public BottomDialogFragment setTag(String tag) {
         mTag = tag;
         return this;
     }
 
+    /**
+     * 设置弹窗背景色透明度
+     * @param dim                       0到1
+     * @return
+     */
     public BottomDialogFragment setDimAmount(float dim) {
         mDimAmount = dim;
         return this;
     }
 
+    /**
+     * 这个高度可以自己设置
+     * @param heightPx                  高度
+     * @return
+     */
     public BottomDialogFragment setHeight(int heightPx) {
         mHeight = heightPx;
         return this;

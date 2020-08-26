@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pedaily.yc.ycdialoglib.R;
+import com.pedaily.yc.ycdialoglib.dialog.base.BaseCustomDialog;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 
 
@@ -28,7 +29,7 @@ import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
  *     revise:
  * </pre>
  */
-public class ViewLoading extends Dialog {
+public class ViewLoading extends BaseCustomDialog<ViewLoading> {
 
     private static ViewLoading loadDialog;
     private boolean canNotCancel;
@@ -57,13 +58,7 @@ public class ViewLoading extends Dialog {
         animation.setFillAfter(true);
         //开始动画
         progressImageView.startAnimation(animation);
-        // 设置Dialog参数
-        Window window = getWindow();
-        if(window!=null){
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.gravity = Gravity.CENTER;
-            window.setAttributes(params);
-        }
+        setLocation(Gravity.CENTER);
     }
 
     @Override
