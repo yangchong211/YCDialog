@@ -5,6 +5,9 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -20,6 +23,7 @@ import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
 import com.pedaily.yc.ycdialoglib.R;
 
 import java.lang.ref.SoftReference;
+import java.lang.reflect.Field;
 
 /**
  * <pre>
@@ -34,7 +38,7 @@ public final class ToastUtils {
 
 
     @SuppressLint("StaticFieldLeak")
-    private static Application mApp;
+    private static Context mApp;
     private static int toastBackColor;
     private static SoftReference<Toast> mToast;
 
@@ -42,13 +46,11 @@ public final class ToastUtils {
      * 初始化吐司工具类
      * @param app 应用
      */
-    public static void init(@NonNull final Application app) {
-        mApp = app;
-        toastBackColor = mApp.getResources().getColor(R.color.color_000000);
-    }
-
-    public static Application getApp() {
-        return mApp;
+    public static void init(@NonNull final Context app) {
+        if (mApp==null){
+            mApp = app;
+            toastBackColor = Color.BLACK;
+        }
     }
 
     public static void setToastBackColor(@ColorInt int color){
@@ -81,9 +83,9 @@ public final class ToastUtils {
     private static Toast toast;
     @SuppressLint("ShowToast")
     public static void showToast(String content) {
-        DialogUtils.checkMainThread();
+        checkMainThread();
         checkContext();
-        if (!DialogUtils.checkNull(mToast)) {
+        if (!checkNull(mToast)) {
             mToast.get().cancel();
         }
         Toast toast = Toast.makeText(mApp, "", Toast.LENGTH_SHORT);
@@ -102,7 +104,7 @@ public final class ToastUtils {
      * @param notice                        内容
      */
     public static void showRoundRectToast(CharSequence notice) {
-        DialogUtils.checkMainThread();
+        checkMainThread();
         checkContext();
         if (TextUtils.isEmpty(notice)){
             return;
@@ -115,15 +117,15 @@ public final class ToastUtils {
                 .setTitle(notice)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(toastBackColor)
-                .setRadius(DialogUtils.dip2px(mApp, 10))
-                .setElevation(DialogUtils.dip2px(mApp, 0))
+                .setRadius(dip2px(mApp, 10))
+                .setElevation(dip2px(mApp, 0))
                 .build()
                 .show();
     }
 
 
     public static void showRoundRectToast(CharSequence notice,CharSequence desc) {
-        DialogUtils.checkMainThread();
+        checkMainThread();
         checkContext();
         if (TextUtils.isEmpty(notice)){
             return;
@@ -137,8 +139,8 @@ public final class ToastUtils {
                 .setTitle(notice)
                 .setTextColor(Color.WHITE)
                 .setBackgroundColor(toastBackColor)
-                .setRadius(DialogUtils.dip2px(mApp, 10))
-                .setElevation(DialogUtils.dip2px(mApp, 0))
+                .setRadius(dip2px(mApp, 10))
+                .setElevation(dip2px(mApp, 0))
                 .build()
                 .show();
     }
@@ -146,7 +148,7 @@ public final class ToastUtils {
 
 
     public static void showRoundRectToast(@LayoutRes int layout) {
-        DialogUtils.checkMainThread();
+        checkMainThread();
         checkContext();
         if (layout==0){
             return;
@@ -238,10 +240,14 @@ public final class ToastUtils {
         }
 
         public Toast build() {
-            if (!DialogUtils.checkNull(mToast)) {
+            if (!checkNull(mToast)) {
                 mToast.get().cancel();
             }
             Toast toast = new Toast(context);
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1){
+                //android 7.1.1 版本
+            }
+            HookToast.hook(toast);
             if (isFill) {
                 toast.setGravity(gravity | Gravity.FILL_HORIZONTAL, 0, yOffset);
             } else {
@@ -277,5 +283,95 @@ public final class ToastUtils {
             return toast;
         }
     }
+
+    public static boolean checkNull(SoftReference softReference) {
+        if (softReference == null || softReference.get() == null) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public static void checkMainThread(){
+        if (!isMainThread()){
+            throw new IllegalStateException("请不要在子线程中做弹窗操作");
+        }
+    }
+
+    private static boolean isMainThread(){
+        //判断是否是主线程
+        return Looper.getMainLooper() == Looper.myLooper();
+    }
+
+
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * <pre>
+     *     @author yangchong
+     *     email  : yangchong211@163.com
+     *     time  : 20120/5/6
+     *     desc  : 利用hook解决toast崩溃问题
+     *     revise: 7.1.1Toast崩溃解决方案
+     *             首先Toast显示依赖于一个窗口，这个窗口被WMS管理（WindowManagerService），
+     *             当需要show的时候这个请求会放在WMS请求队列中，并且会传递一个TN类型的Bider对象给WMS，
+     *             WMS并生成一个token传递给Android进行显示与隐藏，但是如果UI线程的某个线程发生了阻塞，
+     *             并且已经NotificationManager检测已经超时就不删除token记录，此时token已经过期，
+     *             阻塞结束的时候再显示的时候就发生了异常。
+     * </pre>
+     */
+    public static class HookToast {
+
+        private static Field sField_TN;
+        private static Field sField_TN_Handler;
+
+        static {
+            try {
+                Class<?> clazz =  Toast.class;
+                sField_TN = clazz.getDeclaredField("mTN");
+                sField_TN.setAccessible(true);
+                sField_TN_Handler = sField_TN.getType().getDeclaredField("mHandler");
+                sField_TN_Handler.setAccessible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static void hook(Toast toast) {
+            try {
+                Object tn = sField_TN.get(toast);
+                Handler preHandler = (Handler) sField_TN_Handler.get(tn);
+                sField_TN_Handler.set(tn, new HookToast.SafelyHandler(preHandler));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static class SafelyHandler extends Handler {
+
+            private final Handler impl;
+
+            public SafelyHandler(Handler impl) {
+                this.impl = impl;
+            }
+
+            public void dispatchMessage(Message msg) {
+                try {
+                    super.dispatchMessage(msg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            public void handleMessage(Message msg) {
+                //需要委托给原Handler执行
+                impl.handleMessage(msg);
+            }
+        }
+    }
+
 
 }
