@@ -12,6 +12,7 @@ import java.lang.ref.SoftReference;
  *     time  : 2017/06/4
  *     desc  : 弹窗工具类
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public final class PopupUtils {

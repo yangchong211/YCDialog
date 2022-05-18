@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 builder
                         .setDuration(Toast.LENGTH_SHORT)
                         .setFill(false)
-                        .setGravity(Gravity.CENTER)
+                        .setGravity(Gravity.BOTTOM)
                         .setOffset(0)
                         .setDesc("内容内容")
                         .setTitle("标题")
@@ -359,6 +359,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog.setDimAmount(0.5f);
         dialog.setTag("BottomDialog");
         dialog.setCancelOutside(true);
+        dialog.setWidthMatch(true);
         //这个高度可以自己设置，十分灵活
         //dialog.setHeight(getScreenHeight() / 2);
         dialog.show();
@@ -412,6 +413,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setDimAmount(0.5f)
                 .setTag("BottomDialog")
                 .setCancelOutside(true)
+                .setWidthMatch(true)
                 .setHeight(getScreenHeight() / 2)
                 .show();
     }
@@ -422,27 +424,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         names.add("拍照");
         names.add("相册");
         names.add("其他");
-        showDialog(new CustomSelectDialog.SelectDialogListener() {
+        CustomSelectDialog dialog = new CustomSelectDialog(this,
+                R.style.transparentFrameWindowStyle, new CustomSelectDialog.SelectDialogListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, names.get(position), Toast.LENGTH_SHORT).show();
+
             }
         }, names);
-    }
-
-
-    /**
-     * 展示对话框视图，构造方法创建对象
-     */
-    private CustomSelectDialog showDialog(CustomSelectDialog.SelectDialogListener listener, List<String> names) {
-        CustomSelectDialog dialog = new CustomSelectDialog(this,
-                R.style.transparentFrameWindowStyle, listener, names);
         dialog.setItemColor(R.color.colorAccent,R.color.colorPrimary);
-        //判断activity是否finish
-        if (!this.isFinishing()) {
-            dialog.show();
-        }
-        return dialog;
+        dialog.show();
     }
 
 
@@ -651,18 +642,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .show();
 
     }
-
-
-
-    private void showBuilder() {
-        new BuilderDemo.UserBuilder("yc","10086")
-                .age(24)
-                .address("beijing")
-                .phone("13667225184")
-                .build();
-
-    }
-
 
     /**
      * 获取屏幕的高度（单位：px）

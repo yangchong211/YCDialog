@@ -31,6 +31,7 @@ import java.util.List;
  *     time  : 2017/5/2
  *     desc  : DialogAdapter
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class DialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {

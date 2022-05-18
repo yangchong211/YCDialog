@@ -26,7 +26,7 @@ dependencies {
     implementation(rootProject.ext.dependencies["recyclerview"])
     implementation(rootProject.ext.dependencies["cardview"])
     implementation(rootProject.ext.dependencies["material"])
-    implementation project(':YCDialogLib')
+    implementation project(':DialogLib')
     implementation project(path: ':PopupWindow')
     implementation project(path: ':ToastUtils')
     implementation project(path: ':SnackBar')

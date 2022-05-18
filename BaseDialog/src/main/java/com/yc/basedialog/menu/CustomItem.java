@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
  *     time  : 2017/5/2
  *     desc  : 实体类
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class CustomItem {

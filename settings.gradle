@@ -1,4 +1,4 @@
-include ':app', ':YCDialogLib'
+include ':app', ':DialogLib'
 include ':PopupWindow'
 include ':DialogFragment'
 include ':ToastUtils'

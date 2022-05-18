@@ -25,6 +25,7 @@ import androidx.annotation.RequiresApi;
  *     time  : 2017/1/5
  *     desc  : 自定义PopupWindow控件【借鉴AlertDialog.Builder模式】
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class CustomPopupWindow implements PopupWindow.OnDismissListener {

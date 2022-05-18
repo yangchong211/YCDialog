@@ -8,6 +8,7 @@ package com.yc.basedialog.menu;
  *     time  : 2017/5/2
  *     desc  : 条目点击listener
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public interface OnItemClickListener {

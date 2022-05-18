@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
  *     time  : 2017/8/9
  *     desc  : 自定义布局弹窗DialogFragment，从底部弹出
  *     revise: 1月10日
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 @SuppressLint("ValidFragment")
@@ -30,6 +31,7 @@ public class BottomDialogFragment extends BaseDialogFragment {
     private String mTag = super.getFragmentTag();
     private float mDimAmount = super.getDimAmount();
     private int mHeight = super.getHeight();
+    private boolean mIsMatchParent = false;
 
     @LayoutRes
     private int mLayoutRes;
@@ -166,6 +168,17 @@ public class BottomDialogFragment extends BaseDialogFragment {
         return this;
     }
 
+
+    /**
+     * 这个高度可以自己设置
+     * @param isMatchParent                  是否填满
+     * @return
+     */
+    public BottomDialogFragment setWidthMatch(boolean isMatchParent) {
+        mIsMatchParent = isMatchParent;
+        return this;
+    }
+
     @Override
     public float getDimAmount() {
         return mDimAmount;
@@ -177,10 +190,14 @@ public class BottomDialogFragment extends BaseDialogFragment {
     }
 
     @Override
+    public boolean isWidthMatchParent() {
+        return mIsMatchParent;
+    }
+
+    @Override
     public String getFragmentTag() {
         return mTag;
     }
-
 
     public BaseDialogFragment show() {
         show(mFragmentManager);

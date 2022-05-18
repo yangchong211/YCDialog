@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
  *     blog  : https://github.com/yangchong211
  *     time  : 2017/8/9
  *     desc  : 自定义布局弹窗DialogFragment
+ *     GitHub: https://github.com/yangchong211/YCDialog
  *     revise: 1月10日
  *                  有bug，如果想通过点击弹窗控件销毁dialog，该如何处理。
  *                  使用场景：点击对话框中控件，不会销毁dialog，按返回键处理销毁逻辑。

@@ -29,6 +29,7 @@ import java.util.List;
  *     time  : 2017/06/4
  *     desc  : 仿IOS底部弹窗Dialog
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {

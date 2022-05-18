@@ -22,6 +22,7 @@ import com.yc.basedialog.base.BaseCustomDialog;
  *     time  : 2016/06/4
  *     desc  : 全局加载弹窗
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class ViewLoading extends BaseCustomDialog<ViewLoading> {

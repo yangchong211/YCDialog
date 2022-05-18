@@ -17,6 +17,7 @@ import android.widget.PopupWindow;
  *     time  : 2016/06/4
  *     desc  : PopupWindow抽象类
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public abstract class BasePopDialog extends PopupWindow {

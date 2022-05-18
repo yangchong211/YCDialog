@@ -5,10 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/YCDialog.iml" filepath="$PROJECT_DIR$/.idea/modules/YCDialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseDialog/YCDialog.BaseDialog.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseDialog/YCDialog.BaseDialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DialogFragment/YCDialog.DialogFragment.iml" filepath="$PROJECT_DIR$/.idea/modules/DialogFragment/YCDialog.DialogFragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/YCDialogLib/YCDialog.DialogLib.iml" filepath="$PROJECT_DIR$/.idea/modules/YCDialogLib/YCDialog.DialogLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PopupWindow/YCDialog.PopupWindow.iml" filepath="$PROJECT_DIR$/.idea/modules/PopupWindow/YCDialog.PopupWindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SnackBar/YCDialog.SnackBar.iml" filepath="$PROJECT_DIR$/.idea/modules/SnackBar/YCDialog.SnackBar.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastUtils/YCDialog.ToastUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastUtils/YCDialog.ToastUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/YCDialogLib/YCDialog.YCDialogLib.iml" filepath="$PROJECT_DIR$/.idea/modules/YCDialogLib/YCDialog.YCDialogLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YCDialog.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YCDialog.app.iml" />
     </modules>
   </component>

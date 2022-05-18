@@ -13,12 +13,15 @@ import java.lang.reflect.Field;
  *     time  : 2020/5/6
  *     desc  : 利用hook解决toast崩溃问题
  *              https://www.jianshu.com/p/437f473017d6
+ *     GitHub: https://github.com/yangchong211/YCDialog
  *     revise: 7.1.1Toast崩溃解决方案
  *             首先Toast显示依赖于一个窗口，这个窗口被WMS管理（WindowManagerService），
  *             当需要show的时候这个请求会放在WMS请求队列中，并且会传递一个TN类型的Bider对象给WMS，
  *             WMS并生成一个token传递给Android进行显示与隐藏，但是如果UI线程的某个线程发生了阻塞，
  *             并且已经NotificationManager检测已经超时就不删除token记录，此时token已经过期，
  *             阻塞结束的时候再显示的时候就发生了异常。
+ *
+ *
  * </pre>
  */
 public final class HookToast {

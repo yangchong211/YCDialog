@@ -35,6 +35,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  *     time  : 2017/09/18
  *     desc  : SnackbarUtils工具类
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public final class SnackBarUtils {

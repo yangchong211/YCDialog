@@ -19,14 +19,19 @@ import com.yc.basedialog.R;
  *     time  : 2017/5/2
  *     desc  : dialog的base类
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class BaseCustomDialog<T> extends Dialog {
 
     protected Context mContext;
-    // 动画资源id
+    /**
+     * 动画资源id
+     */
     protected int mAnimId = -1;
-    // 显示位置
+    /**
+     * 显示位置
+     */
     protected int mGravity = -1;
     protected boolean isFullScreen = false;
 

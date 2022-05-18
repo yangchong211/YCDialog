@@ -32,6 +32,7 @@ import java.util.List;
  *     time  : 2017/5/2
  *     desc  : CustomDialog
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class CustomDialog extends Dialog {

@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
  *             解决方法1：将布局文件中的match_parent都变成wrap_content，或者对长宽加以限制。设置popupwindow的固定长宽。但是有时候写布局又很难避过。
  *             解决办法2：
  *     revise:
+ *     GitHub: https://github.com/yangchong211/YCDialog
  * </pre>
  */
 public class WrapPopupWindow extends PopupWindow {
