@@ -30,10 +30,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation(rootProject.ext.dependencies["appcompat"])
-    implementation(rootProject.ext.dependencies["annotation"])
-    implementation(rootProject.ext.dependencies["recyclerview"])
-    implementation(rootProject.ext.dependencies["cardview"])
-    implementation(rootProject.ext.dependencies["material"])
+    implementation project(path: ':PopupWindow')
+    implementation project(path: ':ToastUtils')
+    implementation project(path: ':SnackBar')
+    implementation project(path: ':DialogFragment')
+    implementation project(path: ':BaseDialog')
 }
 

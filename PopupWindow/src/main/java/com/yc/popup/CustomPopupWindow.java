@@ -392,6 +392,7 @@ public class CustomPopupWindow implements PopupWindow.OnDismissListener {
     }
 
     private void apply(PopupWindow mPopupWindow) {
+        //设置为false表示不裁剪
         mPopupWindow.setClippingEnabled(this.mClippEnable);
         if(this.mIgnoreCheekPress) {
             mPopupWindow.setIgnoreCheekPress();

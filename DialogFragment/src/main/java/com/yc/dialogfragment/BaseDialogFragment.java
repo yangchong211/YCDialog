@@ -31,7 +31,7 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public abstract class BaseDialogFragment extends DialogFragment {
 
-    private static final String TAG = "base_bottom_dialog";
+    private static final String TAG = "BaseDialogFragment";
     private static final float DEFAULT_DIM = 0.2f;
     private static Dialog dialog;
     private DialogLocal local = DialogLocal.BOTTOM;
@@ -69,7 +69,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
         if(mListener!=null){
             mListener.listener();
         }
-        dismissDialog();
     }
 
     @Override

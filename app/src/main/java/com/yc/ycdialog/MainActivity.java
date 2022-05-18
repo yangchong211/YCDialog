@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 CustomPop customPop = new CustomPop(this);
                 customPop.setDelayedMsDismiss(2500);
                 customPop.setBgAlpha(0.5f);
-                customPop.showAsDropDown(tv_33, 0, -tv_33.getMeasuredHeight() - tv_33.getHeight());
+                customPop.showAsDropDown(tv_33, 0, 0);
                 break;
             case R.id.tv_32:
                 showPopupWindow1();
@@ -504,7 +504,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .PopupWindowBuilder(this)
                 .setView(R.layout.view_pop_custom)
                 .setOutsideTouchable(false)
-                .setEnableOutsideTouchable(true)
+                //.setEnableOutsideTouchable(true)
                 .setBgDarkAlpha(0.5f)
                 .create();
         popWindow.setViewClickListener(new View.OnClickListener() {
