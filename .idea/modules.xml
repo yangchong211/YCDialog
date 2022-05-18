@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GitHub-YCDialog.iml" filepath="$PROJECT_DIR$/GitHub-YCDialog.iml" group="YCDialog" />
-      <module fileurl="file://$PROJECT_DIR$/YCDialog.iml" filepath="$PROJECT_DIR$/YCDialog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/YCDialogLib/YCDialog-YCDialogLib.iml" filepath="$PROJECT_DIR$/YCDialogLib/YCDialog-YCDialogLib.iml" group="YCDialog/YCDialogLib" />
-      <module fileurl="file://$PROJECT_DIR$/app/YCDialog-app.iml" filepath="$PROJECT_DIR$/app/YCDialog-app.iml" group="YCDialog/app" />
-      <module fileurl="file://$PROJECT_DIR$/YCDialogLib/YCDialogLib.iml" filepath="$PROJECT_DIR$/YCDialogLib/YCDialogLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/YCDialog.iml" filepath="$PROJECT_DIR$/.idea/modules/YCDialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseDialog/YCDialog.BaseDialog.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseDialog/YCDialog.BaseDialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DialogFragment/YCDialog.DialogFragment.iml" filepath="$PROJECT_DIR$/.idea/modules/DialogFragment/YCDialog.DialogFragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PopupWindow/YCDialog.PopupWindow.iml" filepath="$PROJECT_DIR$/.idea/modules/PopupWindow/YCDialog.PopupWindow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SnackBar/YCDialog.SnackBar.iml" filepath="$PROJECT_DIR$/.idea/modules/SnackBar/YCDialog.SnackBar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToastUtils/YCDialog.ToastUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/ToastUtils/YCDialog.ToastUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/YCDialogLib/YCDialog.YCDialogLib.iml" filepath="$PROJECT_DIR$/.idea/modules/YCDialogLib/YCDialog.YCDialogLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/YCDialog.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/YCDialog.app.iml" />
     </modules>
   </component>
 </project>

@@ -11,14 +11,14 @@ import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import com.pedaily.yc.ycdialoglib.R;
-import com.pedaily.yc.ycdialoglib.fragment.CustomDialogFragment;
 
 import java.lang.ref.SoftReference;
 import java.lang.reflect.Field;
@@ -74,45 +74,6 @@ public final class DialogUtils {
 
 
     /**
-     * 请求通知权限
-     * @param context                       上下文
-     */
-    public static void requestMsgPermission(final Context context) {
-        if(context==null || context instanceof Application){
-            return;
-        }
-        try {
-            // 6.0以上系统才可以判断权限
-            if (!NotificationManagerCompat.from(context).areNotificationsEnabled()) {
-                CustomDialogFragment
-                        .create(((FragmentActivity)context).getSupportFragmentManager())
-                        .setTitle("")
-                        .setContent("开启消息通知能够帮助你查看更多消息哦~")
-                        .setCancelContent("下次再说")
-                        .setOkContent("立即开启")
-                        .setOkColor(context.getResources().getColor(R.color.color_000000))
-                        .setCancelOutside(true)
-                        .setCancelListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                CustomDialogFragment.dismissDialogFragment();
-                            }
-                        })
-                        .setOkListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                CustomDialogFragment.dismissDialogFragment();
-                                toSetting(context);
-                            }
-                        })
-                        .show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * 不知道为啥，竟然不管用了。后期深入研究下
      * @param context                       上下文
      * @return
@@ -145,28 +106,7 @@ public final class DialogUtils {
         return false;
     }
 
-    /**
-     * 跳转到设置中心页面
-     * @param context                   上下文，注意需要是FragmentActivity类型上下文
-     */
-    @SuppressLint("ObsoleteSdkInt")
-    private static void toSetting(Context context) {
-        if (context instanceof FragmentActivity){
-            String packageName = context.getPackageName();
-            Intent localIntent = new Intent();
-            localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (Build.VERSION.SDK_INT >= 9) {
-                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-                localIntent.setData(Uri.fromParts("package", packageName, null));
-            } else {
-                localIntent.setAction(Intent.ACTION_VIEW);
-                localIntent.setClassName("com.android.settings",
-                        "com.android.setting.InstalledAppDetails");
-                localIntent.putExtra("com.android.settings.ApplicationPkgName", packageName);
-            }
-            context.startActivity(localIntent);
-        }
-    }
+
 
     public static boolean checkNull(SoftReference softReference) {
         if (softReference == null || softReference.get() == null) {

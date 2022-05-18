@@ -1,16 +1,15 @@
 package com.pedaily.yc.ycdialog;
 
+import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,18 +22,26 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pedaily.yc.ycdialoglib.fragment.BaseDialogFragment;
-import com.pedaily.yc.ycdialoglib.fragment.BottomDialogFragment;
-import com.pedaily.yc.ycdialoglib.fragment.CustomDialogFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import com.yc.dialogfragment.BaseDialogFragment;
+import com.yc.dialogfragment.BottomDialogFragment;
+import com.yc.dialogfragment.CustomDialogFragment;
 import com.pedaily.yc.ycdialoglib.dialog.menu.CustomBottomDialog;
 import com.pedaily.yc.ycdialoglib.dialog.menu.CustomItem;
 import com.pedaily.yc.ycdialoglib.dialog.menu.OnItemClickListener;
 import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
-import com.pedaily.yc.ycdialoglib.popup.CustomPopupWindow;
-import com.pedaily.yc.ycdialoglib.snackbar.SnackBarUtils;
-import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pedaily.yc.ycdialoglib.dialog.select.CustomSelectDialog;
 import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
+import com.yc.popup.CustomPopupWindow;
+import com.yc.snackbar.SnackBarUtils;
+import com.yc.toastutils.ToastUtils;
 
 
 import java.util.ArrayList;
@@ -62,7 +69,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initListener();
 
         //注意，建议加上这个判断
-        DialogUtils.requestMsgPermission(this);
+        requestMsgPermission(this);
+    }
+
+
+    /**
+     * 请求通知权限
+     * @param context                       上下文
+     */
+    private void requestMsgPermission(final Context context) {
+        if(context==null || context instanceof Application){
+            return;
+        }
+        try {
+            // 6.0以上系统才可以判断权限
+            if (!NotificationManagerCompat.from(context).areNotificationsEnabled()) {
+                CustomDialogFragment
+                        .create(((FragmentActivity)context).getSupportFragmentManager())
+                        .setTitle("")
+                        .setContent("开启消息通知能够帮助你查看更多消息哦~")
+                        .setCancelContent("下次再说")
+                        .setOkContent("立即开启")
+                        .setOkColor(context.getResources().getColor(com.pedaily.yc.ycdialoglib.R.color.color_000000))
+                        .setCancelOutside(true)
+                        .setCancelListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                CustomDialogFragment.dismissDialogFragment();
+                            }
+                        })
+                        .setOkListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                CustomDialogFragment.dismissDialogFragment();
+                                toSetting(context);
+                            }
+                        })
+                        .show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -105,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_21:
                 ToastUtils.setToastBackColor(this.getResources().getColor(R.color.gray_black));
-                ToastUtils.showToast("自定义吐司");
+                ToastUtils.showRoundRectToast("自定义吐司");
                 break;
             case R.id.tv_22:
                 ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_7f000000));
@@ -349,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         break;
                                     case R.id.iv_download:
-                                        ToastUtils.showToast("下载");
+                                        ToastUtils.showRoundRectToast("下载");
                                         break;
                                     default:
                                         break;
@@ -437,7 +484,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //设置动画
                 .setAnimationStyle(R.style.popWindowStyle)
                 //设置弹窗关闭监听
-                .setOnDissmissListener(new PopupWindow.OnDismissListener() {
+                .setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
                         //对话框销毁时
@@ -446,17 +493,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //创建弹窗
                 .create()
                 //传入x，y值位置展示
-                .showAsDropDown(tv_33,0,10);
+                .showAsDropDown(tv_33,0,0);
     }
 
+    private CustomPopupWindow popWindow1;
 
     private void showPopupWindow2() {
-        CustomPopupWindow popWindow =
-                new CustomPopupWindow.PopupWindowBuilder(this)
+        final CustomPopupWindow popWindow = new CustomPopupWindow
+                .PopupWindowBuilder(this)
                 .setView(R.layout.view_pop_custom)
-                        .setBgDarkAlpha(0.5f)
+                .setOutsideTouchable(false)
+                .setEnableOutsideTouchable(true)
+                .setBgDarkAlpha(0.5f)
                 .create();
-        popWindow .showAsDropDown(tv_33,0,  - (tv_33.getHeight() + popWindow.getHeight()));
+        popWindow.setViewClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showRoundRectToast("我被点击了");
+                popWindow.dismiss();
+            }
+        });
+        //popWindow.showAsDropDown(tv_33,0,  - (tv_33.getHeight() + popWindow.getHeight()));
+        popWindow.showAsDropDown(tv_33,0,  - (tv_33.getMeasuredHeight() + popWindow.getHeight()));
         //popWindow.showAtLocation(mButton1, Gravity.NO_GRAVITY,0,0);
     }
 
@@ -618,4 +676,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    /**
+     * 跳转到设置中心页面
+     * @param context                   上下文，注意需要是FragmentActivity类型上下文
+     */
+    @SuppressLint("ObsoleteSdkInt")
+    private static void toSetting(Context context) {
+        if (context instanceof FragmentActivity){
+            String packageName = context.getPackageName();
+            Intent localIntent = new Intent();
+            localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (Build.VERSION.SDK_INT >= 9) {
+                localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                localIntent.setData(Uri.fromParts("package", packageName, null));
+            } else {
+                localIntent.setAction(Intent.ACTION_VIEW);
+                localIntent.setClassName("com.android.settings",
+                        "com.android.setting.InstalledAppDetails");
+                localIntent.putExtra("com.android.settings.ApplicationPkgName", packageName);
+            }
+            context.startActivity(localIntent);
+        }
+    }
 }

@@ -1,1 +1,6 @@
 include ':app', ':YCDialogLib'
+include ':PopupWindow'
+include ':DialogFragment'
+include ':ToastUtils'
+include ':SnackBar'
+include ':BaseDialog'

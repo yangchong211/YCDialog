@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Looper;
-import android.support.annotation.StyleRes;
 import android.view.Gravity;
 import android.view.Window;
+
+import androidx.annotation.StyleRes;
 
 import com.pedaily.yc.ycdialoglib.R;
 

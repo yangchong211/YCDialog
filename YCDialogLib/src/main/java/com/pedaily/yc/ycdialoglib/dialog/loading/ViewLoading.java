@@ -1,23 +1,20 @@
 package com.pedaily.yc.ycdialoglib.dialog.loading;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.pedaily.yc.ycdialoglib.R;
 import com.pedaily.yc.ycdialoglib.dialog.base.BaseCustomDialog;
-import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 
 
 /**

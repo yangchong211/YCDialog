@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
         android:gravity="center_horizontal"
         android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_shopping_cart_buy"
+        android:padding="10dp"
+        android:background="@color/color_7f000000"
         android:orientation="vertical">
 
         <TextView
@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="22dp"
             android:text="添加购物车"
-            android:textColor="@color/blackText1"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
         <TextView

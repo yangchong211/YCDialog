@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
+apply from: rootProject.projectDir.absolutePath + "/yc.gradle"
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
         applicationId "com.pedaily.yc.ycdialog"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
     }
     buildTypes {
         release {
@@ -21,10 +21,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation  'com.android.support:recyclerview-v7:28.0.0'
-    implementation  'com.android.support:cardview-v7:28.0.0'
-    implementation  'com.android.support:design:28.0.0'
+    implementation(rootProject.ext.dependencies["appcompat"])
+    implementation(rootProject.ext.dependencies["annotation"])
+    implementation(rootProject.ext.dependencies["recyclerview"])
+    implementation(rootProject.ext.dependencies["cardview"])
+    implementation(rootProject.ext.dependencies["material"])
     implementation project(':YCDialogLib')
+    implementation project(path: ':PopupWindow')
+    implementation project(path: ':ToastUtils')
+    implementation project(path: ':SnackBar')
+    implementation project(path: ':DialogFragment')
 //    implementation 'cn.yc:YCDialogLib:3.6.6'
 }
