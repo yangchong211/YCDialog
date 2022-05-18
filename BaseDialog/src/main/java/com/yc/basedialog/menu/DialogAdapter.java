@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.menu;
+package com.yc.basedialog.menu;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,7 +17,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pedaily.yc.ycdialoglib.R;
+import com.yc.basedialog.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialog;
+package com.yc.ycdialog;
 
 /**
  * Created by yc on 2018/1/10.

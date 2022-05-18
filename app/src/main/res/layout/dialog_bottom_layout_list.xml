@@ -29,7 +29,7 @@
     <View style="@style/DeepUnderLineDp"/>
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,6 +37,7 @@
         android:background="@color/colorWhite"/>
 
     <View style="@style/DeepUnderLineDp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

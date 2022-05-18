@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialog;
+package com.yc.ycdialog;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -33,12 +33,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.yc.dialogfragment.BaseDialogFragment;
 import com.yc.dialogfragment.BottomDialogFragment;
 import com.yc.dialogfragment.CustomDialogFragment;
-import com.pedaily.yc.ycdialoglib.dialog.menu.CustomBottomDialog;
-import com.pedaily.yc.ycdialoglib.dialog.menu.CustomItem;
-import com.pedaily.yc.ycdialoglib.dialog.menu.OnItemClickListener;
-import com.pedaily.yc.ycdialoglib.dialog.loading.ViewLoading;
-import com.pedaily.yc.ycdialoglib.dialog.select.CustomSelectDialog;
-import com.pedaily.yc.ycdialoglib.utils.DialogUtils;
+import com.yc.basedialog.menu.CustomBottomDialog;
+import com.yc.basedialog.menu.CustomItem;
+import com.yc.basedialog.menu.OnItemClickListener;
+import com.yc.basedialog.loading.ViewLoading;
+import com.yc.basedialog.select.CustomSelectDialog;
+import com.yc.dialogfragment.DialogLocal;
 import com.yc.popup.CustomPopupWindow;
 import com.yc.snackbar.SnackBarUtils;
 import com.yc.toastutils.ToastUtils;
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setContent("开启消息通知能够帮助你查看更多消息哦~")
                         .setCancelContent("下次再说")
                         .setOkContent("立即开启")
-                        .setOkColor(context.getResources().getColor(com.pedaily.yc.ycdialoglib.R.color.color_000000))
+                        .setOkColor(context.getResources().getColor(R.color.color_000000))
                         .setCancelOutside(true)
                         .setCancelListener(new View.OnClickListener() {
                             @Override
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_23:
                 ToastUtils.setToastBackColor(this.getResources().getColor(R.color.color_000000));
-                ToastUtils.showRoundRectToast("吐司一下","他发的撒经济法的解放军");
+                ToastUtils.showRoundRectToast("吐司一下","八格牙路八格牙路");
                 break;
             case R.id.tv_24:
                 ToastUtils.showRoundRectToast(R.layout.view_layout_toast_delete);
@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ToastUtils.showRoundRectToast(R.layout.view_layout_toast_load);
                 break;
             case R.id.tv_26:
+                //自定义吐司
                 ToastUtils.Builder builder = new ToastUtils.Builder(this.getApplication());
                 builder
                         .setDuration(Toast.LENGTH_SHORT)
@@ -340,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 两种方式
      */
     private void showDialogFragment() {
-        final BottomDialogFragment dialog = new BottomDialogFragment(BaseDialogFragment.Local.BOTTOM);
+        final BottomDialogFragment dialog = new BottomDialogFragment(DialogLocal.BOTTOM);
         dialog.setFragmentManager(getSupportFragmentManager());
         dialog.setViewListener(new BottomDialogFragment.ViewListener() {
             @Override

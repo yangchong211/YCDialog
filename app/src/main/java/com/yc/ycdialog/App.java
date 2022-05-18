@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialog;
+package com.yc.ycdialog;
 
 import android.app.Application;
 

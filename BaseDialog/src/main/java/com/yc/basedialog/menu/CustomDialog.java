@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.menu;
+package com.yc.basedialog.menu;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pedaily.yc.ycdialoglib.R;
+import com.yc.basedialog.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +45,12 @@ public class CustomDialog extends Dialog {
     private DialogAdapter adapter;
     private int orientation;
     private int layout;
-    private Context context;
+    private final Context context;
 
 
     CustomDialog(Context context) {
         super(context, R.style.CustomBottomDialog);
+        this.context = context;
         init();
     }
 
@@ -58,7 +59,7 @@ public class CustomDialog extends Dialog {
         setCancelable(true);
         setCanceledOnTouchOutside(true);
         //建议在这里做个非空判断
-        if(getWindow()!=null){
+        if (getWindow() != null) {
             getWindow().setGravity(Gravity.BOTTOM);
             getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         }
@@ -78,7 +79,7 @@ public class CustomDialog extends Dialog {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         RecyclerView.LayoutManager manager;
 
-        adapter = new DialogAdapter(getContext() , items, layout, orientation);
+        adapter = new DialogAdapter(getContext(), items, layout, orientation);
         adapter.setItemClick(onItemClickListener);
         if (layout == LINEAR) {
             manager = new LinearLayoutManager(getContext(), orientation, false);
@@ -104,11 +105,11 @@ public class CustomDialog extends Dialog {
         titleView.setVisibility(View.VISIBLE);
     }
 
-    public void setCancel(boolean isShow , String text){
-        if(isShow){
+    public void setCancel(boolean isShow, String text) {
+        if (isShow) {
             cancel.setVisibility(View.VISIBLE);
             cancel.setText(text);
-        }else {
+        } else {
             cancel.setVisibility(View.GONE);
         }
     }
@@ -155,7 +156,7 @@ public class CustomDialog extends Dialog {
                 return;
             }
         }
-        if (isShowing()){
+        if (isShowing()) {
             return;
         }
         super.show();

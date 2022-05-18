@@ -1,24 +1,14 @@
-package com.pedaily.yc.ycdialoglib.utils;
+package com.yc.ycdialoglib.utils;
 
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AppOpsManager;
-import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
-import androidx.core.app.NotificationManagerCompat;
-import androidx.fragment.app.FragmentActivity;
-
-import com.pedaily.yc.ycdialoglib.R;
 
 import java.lang.ref.SoftReference;
 import java.lang.reflect.Field;

@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialog;
+package com.yc.ycdialog;
 
 import android.content.Context;
 import android.view.View;

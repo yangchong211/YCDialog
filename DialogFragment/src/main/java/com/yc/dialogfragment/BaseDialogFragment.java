@@ -34,40 +34,18 @@ public abstract class BaseDialogFragment extends DialogFragment {
     private static final String TAG = "base_bottom_dialog";
     private static final float DEFAULT_DIM = 0.2f;
     private static Dialog dialog;
-    private Local local = Local.BOTTOM;
+    private DialogLocal local = DialogLocal.BOTTOM;
     private Activity activity;
-    public enum Local {
-        /**
-         * 顶部
-         */
-        TOP,
-        /**
-         * 居中
-         */
-        CENTER,
-        /**
-         * 底部
-         */
-        BOTTOM,
-        /**
-         * 左边
-         */
-        LEFT,
-        /**
-         * 右边
-         */
-        RIGHT,
-    }
-
+    public OnFinishListener mListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(local == Local.BOTTOM){
+        if(local == DialogLocal.BOTTOM){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
-        }else if(local == Local.CENTER || local == Local.TOP){
+        }else if(local == DialogLocal.CENTER || local == DialogLocal.TOP){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CenterDialog);
-        }else if(local == Local.LEFT || local == Local.RIGHT){
+        }else if(local == DialogLocal.LEFT || local == DialogLocal.RIGHT){
             setStyle(DialogFragment.STYLE_NO_TITLE, R.style.CenterDialog);
         }
     }
@@ -190,13 +168,13 @@ public abstract class BaseDialogFragment extends DialogFragment {
             } else {
                 params.height = WindowManager.LayoutParams.WRAP_CONTENT;
             }
-            if (local == Local.TOP) {
+            if (local == DialogLocal.TOP) {
                 params.gravity = Gravity.TOP;
-            } else if (local == Local.CENTER) {
+            } else if (local == DialogLocal.CENTER) {
                 params.gravity = Gravity.CENTER;
-            } else if (local == Local.LEFT) {
+            } else if (local == DialogLocal.LEFT) {
                 params.gravity = Gravity.LEFT;
-            } else if (local == Local.RIGHT) {
+            } else if (local == DialogLocal.RIGHT) {
                 params.gravity = Gravity.RIGHT;
             } else {
                 params.gravity = Gravity.BOTTOM;
@@ -222,7 +200,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         return TAG;
     }
 
-    public void setLocal(Local local) {
+    public void setLocal(DialogLocal local) {
         this.local = local;
     }
 
@@ -277,15 +255,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
     }
 
-    public onFinishListener mListener;
-    public void setFinishListener(onFinishListener listener){
+    public void setFinishListener(OnFinishListener listener){
         mListener = listener;
-    }
-    public interface onFinishListener{
-        /**
-         * 监听
-         */
-        void listener();
     }
 
 }

@@ -1,7 +1,6 @@
-package com.pedaily.yc.ycdialoglib.dialog.select;
+package com.yc.basedialog.select;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,8 +16,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.pedaily.yc.ycdialoglib.R;
-import com.pedaily.yc.ycdialoglib.dialog.base.BaseCustomDialog;
+import com.yc.basedialog.R;
+import com.yc.basedialog.base.BaseCustomDialog;
 
 import java.util.List;
 
@@ -34,11 +33,10 @@ import java.util.List;
  */
 public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
 
-    private SelectDialogListener mListener;
+    private final SelectDialogListener mListener;
     private SelectDialogCancelListener mCancelListener;
-
-    private Activity mActivity;
-    private List<String> mName;
+    private final Activity mActivity;
+    private final List<String> mName;
     private String mTitle;
     private boolean mUseCustomColor = false;
     private int mFirstItemColor;
@@ -50,10 +48,11 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
     public interface SelectDialogListener {
         /**
          * 条目点击事件
-         * @param parent                    parent
-         * @param view                      view
-         * @param position                  索引
-         * @param id                        id
+         *
+         * @param parent   parent
+         * @param view     view
+         * @param position 索引
+         * @param id       id
          */
         void onItemClick(AdapterView<?> parent, View view, int position, long id);
     }
@@ -64,70 +63,70 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
     public interface SelectDialogCancelListener {
         /**
          * 取消按钮点击事件
-         * @param v                         view
+         *
+         * @param v view
          */
         void onCancelClick(View v);
     }
 
     /**
-     * @param activity          调用弹出菜单的activity
-     * @param theme             主题
-     * @param listener          菜单项单击事件
-     * @param names             菜单项名称
+     * @param activity 调用弹出菜单的activity
+     * @param theme    主题
+     * @param listener 菜单项单击事件
+     * @param names    菜单项名称
      */
     public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
                               List<String> names) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
-        this.mName=names;
+        this.mName = names;
         setCanceledOnTouchOutside(true);
     }
 
     /**
-     * @param activity          调用弹出菜单的activity
-     * @param theme             主题
-     * @param listener          菜单项单击事件
-     * @param cancelListener    取消事件
-     * @param names             菜单项名称
+     * @param activity       调用弹出菜单的activity
+     * @param theme          主题
+     * @param listener       菜单项单击事件
+     * @param cancelListener 取消事件
+     * @param names          菜单项名称
      */
     public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
-                              SelectDialogCancelListener cancelListener , List<String> names) {
+                              SelectDialogCancelListener cancelListener, List<String> names) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
         mCancelListener = cancelListener;
-        this.mName=names;
+        this.mName = names;
         // 设置是否点击外围不解散
         setCanceledOnTouchOutside(false);
     }
 
     /**
-     * @param activity          调用弹出菜单的activity
-     * @param theme             主题
-     * @param listener          菜单项单击事件
-     * @param names             菜单项名称
-     * @param title             菜单标题文字
-     *
+     * @param activity 调用弹出菜单的activity
+     * @param theme    主题
+     * @param listener 菜单项单击事件
+     * @param names    菜单项名称
+     * @param title    菜单标题文字
      */
     public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
                               List<String> names, String title) {
         super(activity, theme);
         mActivity = activity;
         mListener = listener;
-        this.mName=names;
+        this.mName = names;
         mTitle = title;
         // 设置是否点击外围可解散
         setCanceledOnTouchOutside(true);
     }
 
     /**
-     * @param activity          调用弹出菜单的activity
-     * @param theme             主题
-     * @param listener          菜单项单击事件
-     * @param cancelListener    取消点击事件
-     * @param names             名称
-     * @param title             标题
+     * @param activity       调用弹出菜单的activity
+     * @param theme          主题
+     * @param listener       菜单项单击事件
+     * @param cancelListener 取消点击事件
+     * @param names          名称
+     * @param title          标题
      */
     public CustomSelectDialog(Activity activity, int theme, SelectDialogListener listener,
                               SelectDialogCancelListener cancelListener, List<String> names,
@@ -136,7 +135,7 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
         mActivity = activity;
         mListener = listener;
         mCancelListener = cancelListener;
-        this.mName=names;
+        this.mName = names;
         mTitle = title;
         // 设置是否点击外围可解散
         setCanceledOnTouchOutside(true);
@@ -145,7 +144,8 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
     /**
      * 类似于Activity的onCreate函数，可以在这个方法中进行Dialog的一些初始化操作
      * 包括调用setContentView方法
-     * @param savedInstanceState                savedInstanceState
+     *
+     * @param savedInstanceState savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,10 +188,10 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
 
     @Override
     public void show() {
-        if (mActivity!=null && mActivity.isFinishing() ){
+        if (mActivity != null && mActivity.isFinishing()) {
             return;
         }
-        if (isShowing()){
+        if (isShowing()) {
             return;
         }
         super.show();
@@ -199,7 +199,7 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
 
     private void initViews() {
         DialogAdapter dialogAdapter = new DialogAdapter(mName);
-        ListView dialogList= findViewById(R.id.dialog_list);
+        ListView dialogList = findViewById(R.id.dialog_list);
         Button mMBtnCancel = findViewById(R.id.mBtn_Cancel);
         TextView mTvTitle = findViewById(R.id.mTv_Title);
 
@@ -214,26 +214,26 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
         mMBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mCancelListener != null){
+                if (mCancelListener != null) {
                     mCancelListener.onCancelClick(v);
                 }
                 dismiss();
             }
         });
 
-        if(!TextUtils.isEmpty(mTitle)){
+        if (!TextUtils.isEmpty(mTitle)) {
             mTvTitle.setVisibility(View.VISIBLE);
             mTvTitle.setText(mTitle);
-        }else{
+        } else {
             mTvTitle.setVisibility(View.GONE);
         }
     }
 
     private class DialogAdapter extends BaseAdapter {
 
-        private List<String> mStrings;
+        private final List<String> mStrings;
         private ViewHolder viewholder;
-        private LayoutInflater layoutInflater;
+        private final LayoutInflater layoutInflater;
 
         DialogAdapter(List<String> strings) {
             this.mStrings = strings;
@@ -258,12 +258,12 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (null == convertView) {
-                viewholder=new ViewHolder();
+                viewholder = new ViewHolder();
                 convertView = layoutInflater.inflate(R.layout.view_dialog_item, null);
-                viewholder.tvDialog= convertView.findViewById(R.id.dialog_item_bt);
+                viewholder.tvDialog = convertView.findViewById(R.id.dialog_item_bt);
                 convertView.setTag(viewholder);
-            }else{
-                viewholder=(ViewHolder) convertView.getTag();
+            } else {
+                viewholder = (ViewHolder) convertView.getTag();
             }
             viewholder.tvDialog.setText(mStrings.get(position));
             if (!mUseCustomColor) {
@@ -288,7 +288,7 @@ public class CustomSelectDialog extends BaseCustomDialog<CustomSelectDialog> {
     }
 
 
-    public static class ViewHolder {
+    private static class ViewHolder {
         TextView tvDialog;
     }
 

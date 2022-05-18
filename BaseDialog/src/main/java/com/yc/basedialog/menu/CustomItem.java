@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.menu;
+package com.yc.basedialog.menu;
 
 import android.graphics.drawable.Drawable;
 

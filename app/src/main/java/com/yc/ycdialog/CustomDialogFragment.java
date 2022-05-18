@@ -1,6 +1,5 @@
-package com.pedaily.yc.ycdialog;
+package com.yc.ycdialog;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

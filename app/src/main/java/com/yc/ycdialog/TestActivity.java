@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialog;
+package com.yc.ycdialog;
 
 import android.content.DialogInterface;
 import android.graphics.Color;

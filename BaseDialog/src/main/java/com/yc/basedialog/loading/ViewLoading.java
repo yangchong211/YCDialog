@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.loading;
+package com.yc.basedialog.loading;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,11 +10,9 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
-import com.pedaily.yc.ycdialoglib.R;
-import com.pedaily.yc.ycdialoglib.dialog.base.BaseCustomDialog;
+import com.yc.basedialog.R;
+import com.yc.basedialog.base.BaseCustomDialog;
 
 
 /**

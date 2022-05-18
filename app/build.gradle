@@ -5,7 +5,7 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        applicationId "com.pedaily.yc.ycdialog"
+        applicationId "com.yc.ycdialog"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -31,5 +31,6 @@ dependencies {
     implementation project(path: ':ToastUtils')
     implementation project(path: ':SnackBar')
     implementation project(path: ':DialogFragment')
+    implementation project(path: ':BaseDialog')
 //    implementation 'cn.yc:YCDialogLib:3.6.6'
 }

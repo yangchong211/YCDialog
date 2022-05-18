@@ -1,4 +1,4 @@
-package com.pedaily.yc.ycdialoglib.dialog.base;
+package com.yc.basedialog.base;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,7 +9,8 @@ import android.view.Window;
 
 import androidx.annotation.StyleRes;
 
-import com.pedaily.yc.ycdialoglib.R;
+import com.yc.basedialog.R;
+
 
 /**
  * <pre>

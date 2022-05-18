@@ -36,12 +36,12 @@ public class BottomDialogFragment extends BaseDialogFragment {
     private ViewListener mViewListener;
 
     @SuppressLint("ValidFragment")
-    public BottomDialogFragment(Local local){
+    public BottomDialogFragment(DialogLocal local){
         setLocal(local);
     }
 
     public static BottomDialogFragment create(FragmentManager manager) {
-        BottomDialogFragment dialog = new BottomDialogFragment(Local.LEFT);
+        BottomDialogFragment dialog = new BottomDialogFragment(DialogLocal.BOTTOM);
         dialog.setFragmentManager(manager);
         return dialog;
     }

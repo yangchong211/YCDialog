@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
  * <pre>
  *     @author yangchong
  *     email  : yangchong211@163.com
- *     time  : 20120/5/6
+ *     time  : 2020/5/6
  *     desc  : 利用hook解决toast崩溃问题
  *              https://www.jianshu.com/p/437f473017d6
  *     revise: 7.1.1Toast崩溃解决方案
