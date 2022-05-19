@@ -26,11 +26,17 @@ dependencies {
     implementation(rootProject.ext.dependencies["recyclerview"])
     implementation(rootProject.ext.dependencies["cardview"])
     implementation(rootProject.ext.dependencies["material"])
-    implementation project(':DialogLib')
-    implementation project(path: ':PopupWindow')
-    implementation project(path: ':ToastUtils')
-    implementation project(path: ':SnackBar')
-    implementation project(path: ':DialogFragment')
-    implementation project(path: ':BaseDialog')
+//    implementation project(':DialogLib')
+//    implementation project(path: ':PopupWindow')
+//    implementation project(path: ':ToastUtils')
+//    implementation project(path: ':SnackBar')
+//    implementation project(path: ':DialogFragment')
+//    implementation project(path: ':BaseDialog')
+    implementation 'com.github.yangchong211.YCDialog:DialogLib:3.6.8'
+//    implementation 'com.github.yangchong211.YCDialog:PopupWindow:3.6.8'
+//    implementation 'com.github.yangchong211.YCDialog:ToastUtils:3.6.8'
+//    implementation 'com.github.yangchong211.YCDialog:SnackBar:3.6.8'
+//    implementation 'com.github.yangchong211.YCDialog:DialogFragment:3.6.8'
+//    implementation 'com.github.yangchong211.YCDialog:BaseDialog:3.6.8'
 //    implementation 'cn.yc:YCDialogLib:3.6.6'
 }

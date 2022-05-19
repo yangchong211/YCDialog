@@ -26,7 +26,15 @@
 ### 02.如何使用
 - 首先在项目build.gradlew中添加**
     ```
-    implementation 'cn.yc:YCDialogLib:3.6.6'
+    //这个是依赖弹窗所有的
+    implementation 'com.github.yangchong211.YCDialog:DialogLib:3.6.8'
+  
+    //如果你想使用某个lib，可以选择下面这种依赖
+    implementation 'com.github.yangchong211.YCDialog:PopupWindow:3.6.8'
+    implementation 'com.github.yangchong211.YCDialog:ToastUtils:3.6.8'
+    implementation 'com.github.yangchong211.YCDialog:SnackBar:3.6.8'
+    implementation 'com.github.yangchong211.YCDialog:DialogFragment:3.6.8'
+    implementation 'com.github.yangchong211.YCDialog:BaseDialog:3.6.8'
     ```
 
 
